@@ -1,0 +1,46 @@
+---
+title: "Implement Recoil with Gatsbyjs"
+date: 2021-14-02
+slug: '/implemet_recoil_with_gatsby'
+published: true
+---
+
+I am currently in the middle of a project where I needed to share multiple states between components. Looking at the most populair choices out there for state management in react, the top 3 candidates is:
+  
+- Redux
+- React Context
+- Recoil
+
+Looking at the tree top candidates, Recoil immediatly caught my attention. It is super simple, easy to use and the most important thing which applies to every JS develop out there, it is NEEEEEEW!  
+
+## Implementation
+I tried to do a test implementation in gatsby based on the official [getting started](https://recoiljs.org/docs/introduction/getting-started/) docs. However, when I switched to another site the state of the former site would get lost.  
+
+## Why does this not work with gatsby and how can this be fixed?
+The reason for that is "Components that use recoil state need RecoilRoot to appear somewhere in the parent tree. A good place to put this is in your root component" and while this applies to a normal Reactjs project A page in GatsbyJs doesn't have a root component in the same way. In order to overcome this issue we must wrap evey page with the `<RecoilRoot>` root.  
+To fix this we will need to take a look at Gatsbyjs's [API}(https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/), so to wrap every component 
+
+```js
+# gatsby-browser.js
+
+import React from "react"
+import { RecoilRoot } from "recoil"
+
+
+
+export const wrapPageElement = ({ element, props }) => {
+	return (
+		<RecoilRoot>
+			{element}
+		</RecoilRoot>
+	)
+}
+```
+And this should be it, I started the development server to test it out and everything seemed to be working, great!!
+
+## But what about SSR?
+
+Once I had implemented Recoil, created the states and the functionality I needed for my project and was ready to deploy the site I ran into another issue.
+If you have the `gatsby-ssr.js` file you need to have the exact same line in there `cat gatsby-browser.js >> gatsby-ssr.js. And that shuld be it, Recoil shuld now work an you should be able to build the project without any build errors.
+
+
