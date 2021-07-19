@@ -4,7 +4,7 @@ import useDarkMode from "use-dark-mode";
 
 
 
-const ThemeToggle = () => {
+export const ThemeToggle = () => {
   const iconSize = "28";
   const darkMode = useDarkMode(false);
 
@@ -26,4 +26,3 @@ const ThemeToggle = () => {
   );
 };
 
-export default ThemeToggle;

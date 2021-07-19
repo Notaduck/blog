@@ -1,8 +1,8 @@
 import React from "react";
 import { Link, graphql } from "gatsby";
-import Layout from "../components/layout";
+import { Layout } from "../components/layout";
 import { FiCoffee, FiCalendar } from "react-icons/fi";
-import SEO from "../components/seo";
+import { SEO } from "../components/seo";
 
 const ArticleList = ({ data, pageContext }) => {
   const { currentPage, numPages } = pageContext;

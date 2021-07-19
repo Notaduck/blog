@@ -8,11 +8,11 @@ import "./layout.css";
 import "../styles/global.css";
 
 import Header from "./header";
-import NavBar from "./Nav/navbar";
-import Footer from "./footer";
-import ThemeToggle from "./themeToggle/themeToggle";
+import { NavBar } from "./nav";
+import { ThemeToggle } from "./themeToggle";
+import { Footer } from "./footer";
 
-const Layout = ({ children }) => {
+export const Layout = ({ children }) => {
 
   const data = useStaticQuery(query);
 
@@ -36,12 +36,11 @@ const Layout = ({ children }) => {
         
         `}
       >
-
-        <ThemeToggle />
+        <ThemeToggle/>
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <NavBar />
+        <NavBar/>
         <main className="mt-10 flex-1">{children}</main>
-        <Footer />
+        <Footer/>
       </div>
     </>
   );
@@ -61,4 +60,3 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default Layout;

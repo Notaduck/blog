@@ -1,7 +1,7 @@
 import React from "react";
 import { navigate } from "gatsby";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
+import { Layout } from "../components/layout";
+import { SEO } from "../components/seo";
 import { useForm } from "react-hook-form";
 
 const Contact = ({ location }) => {
@@ -32,7 +32,7 @@ const Contact = ({ location }) => {
           type="hidden"
           name="form-name"
           value="Contact Form"
-          ref={register}
+            {...register('form-name')}
         />
 
         <div className="flex xs:flex-col sm:flex-row w-full">
@@ -43,7 +43,7 @@ const Contact = ({ location }) => {
               placeholder="First name"
               type="text"
               name="first_name"
-              ref={register}
+            {...register('first_name')}
             />
           </div>
 
@@ -54,7 +54,7 @@ const Contact = ({ location }) => {
               placeholder="Last name"
               type="text"
               name="last_name"
-              ref={register}
+            {...register('last_name')}
             />
           </div>
         </div>
@@ -65,16 +65,15 @@ const Contact = ({ location }) => {
             placeholder="Email"
             type="email"
             name="email"
-            ref={register}
+            {...register('email')}
           />
         </div>
         <div className="space-y-2">
           <label className="xs:hidden md:visible">Message</label>
           <textarea
             className=" focus:underline block bg-gray-light  rounded w-full h-28 border-gray-600 border-2"
-            name="message"
             placeholder="Enter message"
-            ref={register}
+            {...register('message')}
           />
         </div>
         <button

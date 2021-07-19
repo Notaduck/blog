@@ -1,7 +1,7 @@
 import React from "react";
 import { FiFacebook, FiGithub, FiLinkedin } from "react-icons/fi";
 
-const Footer = () => {
+export const Footer = () => {
   const iconSize = "1.5rem";
 
   const links = [
@@ -41,4 +41,3 @@ const Footer = () => {
   );
 };
 
-export default Footer;
