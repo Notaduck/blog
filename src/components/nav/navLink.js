@@ -9,13 +9,14 @@ export const NavLink = ({ path, title }) => (
                    text-sm s
                    m:text-base 
                    font-medium 
+                   uppercase
                    px-px  
                    text-main
                    hover:underline
                    transition 
                    duration-150 
                    ease-in-out'
-		activeClassName='text-leather text-gray-900 hover:text-leather-light  '
+		activeClassName='text-accent text-gray-900 hover:text-leather-light  '
 		partiallyActive={true}>
 		{title}
 	</Link>

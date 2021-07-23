@@ -1,38 +1,33 @@
-
-/* * {
-    font-family: 'Crimson Text', serif;
-}
-
- h1, h2, h3 {
-    font-family: 'Unica One', cursive;
-} */
-
-
  h1 {
 	font-size: 1.5rem;
-line-height: 2rem;
+  line-height: 2rem;
 }
 
 
  h2 {
-font-size: 1.125rem;
-line-height: 1.75rem;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
- h3 {
-font-size: 0.875rem;
-line-height: 1.25rem;
+h3 {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
+
 .light-mode {
-  --primary: #f3f3f3;
+  --primary: #ffffff;
   --secondary: #dbe1e8;
   --text-main: #0d0106;
   --text-secondary: #454e56;
+  --highlight: rgb(188, 67, 93);
   --accent: #009ffd;
-}.dark-mode {
-  --primary: #323437;
+}
+
+.dark-mode {
+  --primary: #2f4858;
   --secondary: #2a2e35;
   --text-main: #d0cfc4;
+  --highlight: rgb(188, 67, 93);
   --text-secondary: #b8b8b9;
   --accent: #fc7753;
 }

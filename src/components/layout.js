@@ -1,46 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
-
-import "@fontsource/unica-one" // Defaults to weight 400.
-import "./layout.css";
+import "@fontsource/unica-one"; // Defaults to weight 400.
 import "../styles/global.css";
-
+import { useLocation } from "@reach/router";
 import Header from "./header";
 import { NavBar } from "./nav";
 import { ThemeToggle } from "./themeToggle";
 import { Footer } from "./footer";
+import { Container } from "./shared";
 
-export const Layout = ({ children }) => {
-
+export const Layout = ({ pageContext, children }) => {
   const data = useStaticQuery(query);
-
+  const [isIndexPage, setIsIndexPage] = useState();
+  const location = useLocation();
+  useEffect(() => {
+    setIsIndexPage(location.pathname !== "/");
+  });
 
   return (
     <>
       <div
         className={`
-                    transition-all 
-                    duration-300
+                    ${isIndexPage && " transition-all duration-300 "}
                     flex 
                     flex-col  
                     min-h-screen
                     overflow-y-visible
-                    sm:pl-20 sm:pr-20
-                    lg:pl-30 lg:pr-30
-                    xl:pl-60 xl:pr-60
-                    pt-10
                     bg-primary
                     text-main-text
         
         `}
       >
-        <ThemeToggle/>
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <NavBar/>
-        <main className="mt-10 flex-1">{children}</main>
-        <Footer/>
+        <ThemeToggle />
+        {/* <Header siteTitle={data.site.siteMetadata?.title || `Title`} /> */}
+        <NavBar />
+        {!isIndexPage ? (
+          <main className="flex-1 px-4 sm:px-0">{children}</main>
+        ) : (
+          <Container>
+            <main className="mt-10 flex-1 px-4 py-6 sm:px-0">{children}</main>
+          </Container>
+        )}
+
+        <Container>
+          <Footer />
+        </Container>
       </div>
     </>
   );
@@ -59,4 +65,3 @@ export const query = graphql`
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
 };
-

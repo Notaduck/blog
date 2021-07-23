@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit',
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
@@ -8,12 +9,13 @@ module.exports = {
         "orange-primary": "#e28743",
         "blue-primary": "#1e81b0",
         "blue-secondary": "#063970",
-        leather: "#9d7463",
-        leatherlight: "#af8171",
         primary: 'var(--primary)',
         secondary: 'var(--secondary)',
         'main-text': 'var(--text-main)',
+        accent: 'var(--accent)',
         'secondary-text': 'var(--text-secondary)',
+        tag:  'var(--text-secondary)',
+        highlight:  'var(--highlight)',
       },
     },
     screens: {
