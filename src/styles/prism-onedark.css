@@ -23,8 +23,8 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  border-radius: 5px;
-  margin: 10rem;
+  border-radius: 2px;
+  /* margin: 10rem; */
 }
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
@@ -48,7 +48,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 /* Code blocks */
 pre[class*="language-"] {
   padding: 1em;
-  margin: .5em 0;
+  margin: 1.0em 0;
   overflow: auto;
 }
 
@@ -59,9 +59,10 @@ pre[class*="language-"] {
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
+  padding: 0.2em .2em 0.2em .2em;
+  border-radius: .2em;
   white-space: normal;
+  opacity: 70%;
 }
 
 .token.comment,

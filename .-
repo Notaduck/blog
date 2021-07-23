@@ -1,5 +1,0 @@
-
-const persons = new Map()
-
-persons.set('Tarzan', 1)
-persons.set('Jane', 2)

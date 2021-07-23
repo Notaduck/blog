@@ -2,6 +2,7 @@
 slug: '/how_to_setup_Jupyter'
 title: 'Setup Jupyter Notebook server – Centos/Rhel 7'
 date: '2015-01-03'
+tags: ['python']
 published: true 
 ---
 

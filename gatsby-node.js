@@ -10,7 +10,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     createNodeField({
       name: `slug`,
       node,
-      value: `/articles${value}`,
+      value: `/blog${value}`,
     });
   }
 };
@@ -43,8 +43,8 @@ exports.createPages = async ({ graphql, actions }) => {
 
   Array.from({ length: numPages }).forEach((_, i) => {
     createPage({
-      path: i === 0 ? `/articles` : `/articles/${i + 1}`,
-      component: path.resolve("./src/templates/article-list-template.js"),
+      path: i === 0 ? `/blog` : `/blog/${i + 1}`,
+      component: path.resolve("./src/templates/article-list.template.tsx"),
       context: {
         limit: articlePerPage,
         skip: i * articlePerPage,
@@ -57,8 +57,8 @@ exports.createPages = async ({ graphql, actions }) => {
   articles.forEach(({ node }, index) => {
   console.log( `${index} ----- articles${node.frontmatter.slug}`,)
     createPage({
-      path: `articles${node.frontmatter.slug}`,
-      component: path.resolve(`./src/templates/article-template.js`),
+      path: `blog${node.frontmatter.slug}`,
+      component: path.resolve(`./src/templates/article.template.tsx`),
       context: { id: node.id },
     });
   });
