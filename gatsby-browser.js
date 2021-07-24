@@ -12,5 +12,16 @@
 
 // Markdown formatting, uses Tailwind @apply primitive to apply Tailwind's utility classes to
 // elements created by the Markdown parser
+// import React from 'react'
+// import useDarkMode from "use-dark-mode"
+
 import "./src/styles/markdown.css"
+
 import "./src/styles/prism-onedark.css"
+// import './node_modules/prismjs/themes/prism-tomorrow.css'
+
+//     const isDarkmode = useDarkMode().value
+//     return <React.Fragment>
+//         {children}
+//     </React.Fragment>
+// }

@@ -28,7 +28,7 @@ const Index = () => {
             <h2
               className={`${
                 animated ? "" : "translate-y-10 opacity-0"
-              }  transform transition duration-2000 ease-in-out text-3xl md:text-5xl font-bold`}
+              } font-inconsolata transform transition duration-2000 ease-in-out text-3xl md:text-5xl font-bold`}
             >
               {content.index.text[0]}
               <br />
@@ -38,7 +38,7 @@ const Index = () => {
             <h2
               className={`${
                 animated ? "" : "translate-y-10 opacity-0"
-              }  transform transition duration-2000 ease-in-out text-2xl md:text-3xl font-bold`}
+              } font-inconsolata transform transition duration-2000 ease-in-out text-2xl md:text-3xl font-bold`}
             >
               {content.index.text[2]}
               <br />
@@ -47,7 +47,7 @@ const Index = () => {
             <h1
               className={`${
                 animated ? "" : "translate-y-10 opacity-0"
-              }  transform transition duration-2000 ease-in-out font-bold text-2xl text-gray-500`}
+              }  font-inconsolata transform transition duration-2000 ease-in-out font-bold text-2xl text-gray-500`}
             >
               {content.index.text[3]}{" "}
               <Typical

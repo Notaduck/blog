@@ -1,22 +1,26 @@
 module.exports = {
-  mode: 'jit',
+  mode: "jit",
   purge: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         "gray-light": "#f3f3f3",
-        "orange-primary": "#e28743",
-        "blue-primary": "#1e81b0",
-        "blue-secondary": "#063970",
-        primary: 'var(--primary)',
-        secondary: 'var(--secondary)',
-        'main-text': 'var(--text-main)',
-        accent: 'var(--accent)',
-        'secondary-text': 'var(--text-secondary)',
-        tag:  'var(--text-secondary)',
-        highlight:  'var(--highlight)',
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        "main-text": "var(--text-main)",
+        accent: "var(--accent)",
+        "secondary-text": "var(--text-secondary)",
+        highlight: "var(--highlight)",
       },
+      minHeight: {
+        "(screen-16)": "calc(100vh - 4rem)",
+      },
+      fontFamily: {
+        montserrat: "'Montserrat', sans-serif;",
+        inconsolata: "'Inconsolata', sans-serif;"
+      }
+      
     },
     screens: {
       xs: "300px",

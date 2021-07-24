@@ -1,3 +1,6 @@
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+ 
  h1 {
 	font-size: 1.5rem;
   line-height: 2rem;
@@ -24,7 +27,7 @@ h3 {
 }
 
 .dark-mode {
-  --primary: #2f4858;
+  --primary: #091c29;
   --secondary: #2a2e35;
   --text-main: #d0cfc4;
   --highlight: rgb(188, 67, 93);

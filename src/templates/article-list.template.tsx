@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { Link, graphql } from "gatsby";
 import { Layout } from "../components/layout";
 import { FiCoffee, FiCalendar, FiTerminal } from "react-icons/fi";
-import { FaTerminal, FaCalendarAlt,FaCoffee } from "react-icons/fa";
+import { FaTerminal, FaCalendarAlt, FaCoffee } from "react-icons/fa";
 import { SEO } from "../components/seo";
 import { ArticleListQuery } from "../../graphql-types";
 import { Container } from "../components";
@@ -23,38 +23,41 @@ const ArticleList: FC<Props> = ({ data, pageContext }) => {
     allMarkdownRemark: { nodes },
   } = data;
 
-  console.log(nodes);
-
   return (
     <Layout>
-
       <SEO title="Blog" />
       {nodes.map((node, index) => {
         return (
-          <div className="flex flex-col mb-4 border-b-2  pb-4 b-accent">
+          <div
+            key={`${node}_${index}`}
+            className="flex flex-col mb-4 border-b-2  pb-4 b-accent"
+          >
             {/* TITLE */}
-            <h2 className="text-2xl font-black mb-2 flex items-center space-x-4">
-              <FiTerminal/>
-              <Link  to={`/blog${node.frontmatter.slug}`}>
-                  {node.frontmatter.title}
+            <h2 className=" font-inconsolata sm:text-xl md:text-2xl font-black mb-2 flex items-center space-x-4">
+              <FiTerminal className='xm:hidden' />
+              <Link to={`/blog${node?.frontmatter?.slug}`}>
+                {node?.frontmatter?.title}
               </Link>
             </h2>
 
             {/* DATE AND TAGS */}
-            <div className="flex space-x-2 mb-4 ">
-              <div className="flex space-x-2 items-center m-0 uppercase">
-                <FiCalendar />
-                {node.frontmatter.date}
+            <div className="flex flex-col  font-montserrat  space-x-2 mb-4 ">
+              <div className="flex items-center m-0 uppercase">
+                <FiCalendar className='mr-2' />
+                {node?.frontmatter?.date}
               </div>
-              <div className="flex space-x-2 text-tag">
-                {node.frontmatter.tags.map((tag) => (
-                  <div> {tag} </div>
-                ))}
-              </div>
+
+              {/* {node?.frontmatter?.tags && (
+                <div className="flex flex-wrap items-center space-x-2 text-tag">
+                  {node.frontmatter.tags.map((tag) => (
+                    <div> {tag} </div>
+                  ))}
+                </div>
+              )} */}
             </div>
 
             {/* EXCERPT AND READ MORE */}
-            <div className="mb-4">{node.excerpt}</div>
+            <div className="mb-4 font-montserrat">{node.excerpt}</div>
 
             <div className="flex">
               <div className="flex space-x-2 items-center m-0">
@@ -64,7 +67,7 @@ const ArticleList: FC<Props> = ({ data, pageContext }) => {
                   {node.timeToRead} min{" "}
                   <Link
                     className="hover:underline text-accent hover:text-secondary-text"
-                    to={`/articles${node.frontmatter.slug}`}
+                    to={`/articles${node?.frontmatter?.slug}`}
                   >
                     read.
                   </Link>
@@ -143,7 +146,6 @@ const ArticleList: FC<Props> = ({ data, pageContext }) => {
           </Link>
         )}
       </div>
-
     </Layout>
   );
 };

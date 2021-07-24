@@ -15,15 +15,7 @@ He showed us "me" how to setup jupyter notebook on a localhost machine, but
 within 5 minutes i was annoyed that my laptop had to host the server due 
 to performance and heat on my lab. So I decided to setup a jupyter notebook server
 instead and it is a fairly simple process and dosn't take more than 5-10 minutes.
-
-
-
-
->Content  
- - Step 1. Dependencies  
- - Step 2. Setup & Configure Jupyter notebook
-
-
+  
 #### Step 1. Dependencies
 
 We are going to need the python-pip package to install jupyter.

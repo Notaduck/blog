@@ -6,26 +6,13 @@ import { NavLink } from "./navLink";
 import { Link } from "gatsby";
 import { useEffect } from "react";
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
+import { content } from "../../content/data";
 
 export const NavBar = () => {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const darkMode = useDarkMode(false);
 
-  const links: { label: String; slug: string }[] = [
-    {
-      label: "Home",
-      slug: "/",
-    },
-    {
-      label: "Blog",
-      slug: "/blog",
-    },
-    {
-      label: "Contact",
-      slug: "/contact",
-    },
-  ];
 
   useEffect(() => {
     console.log(darkMode.value);
@@ -41,16 +28,16 @@ export const NavBar = () => {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center w-full h-full justify-between">
               {/* <div className="h-full align-middle"> */}
-              <p className="uppercase flex items-center h-full text-main-text hover:bg-highlight hover:text-white px-3 font-medium transition-all duration-300 text-xl ">
-                <FaLessThan /> guldberglab <FaGreaterThan />
-              </p>
+              <Link to='/' className=" font-inconsolata text-2xl font-bold󠁧 uppercase flex items-center h-full text-main-text px-3 font-medium transition-all duration-300">
+                <FaLessThan /> {content.nav.titel} <FaGreaterThan />
+              </Link>
               {/* </div> */}
               <div className=" h-full hidden md:block">
                 <div className="h-full flex items-baseline py-auto">
-                  {links.map((link) => (
+                  {content.nav.items.map((link) => (
                     <Link
                       to={link.slug}
-                      className="flex items-center h-full text-main-text hover:bg-highlight hover:text-white px-3 text-sm font-medium transition-all duration-300"
+                      className=" font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white px-3 font-medium transition-all duration-300"
                     >
                       {link.label}
                     </Link>
@@ -117,40 +104,16 @@ export const NavBar = () => {
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a
-                  href="#"
-                  className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Dashboard
-                </a>
 
-                <a
-                  href="#"
+                  {content.nav.items.map((item) => (
+                <Link
+                  to={item.slug}
                   className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
                 >
-                  Team
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Projects
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Calendar
-                </a>
-
-                <a
-                  href="#"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Reports
-                </a>
+                  
+                  {item.label}
+                </Link>
+                  ) ) }
               </div>
             </div>
           )}

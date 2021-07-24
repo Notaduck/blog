@@ -3,20 +3,49 @@ export type Type = {
     text: string[];
     typical: (string | number)[];
   };
+  nav: {
+    titel: string;
+    items: {
+      label: string;
+      slug: string;
+    }[];
+  };
 };
 
 export const content: Type = {
   index: {
-    text: ["Hi There!","I'm Daniel Guldberg Aaes.", "Welcome to GuldbergLab, my personal portfolio and blog", "I am a, "],
+    text: [
+      "Hi There!",
+      "I'm Daniel Guldberg Aaes.",
+      "Welcome to GuldbergLab, my personal portfolio and blog",
+      "I am, ",
+    ],
     typical: [
-      "Full stack developer \u{1F680}",
+      "a full stack developer \u{1F680}",
       2000,
-      "Backend developer. ",
+      "passionated about devops",
       2000,
-      "Linux geek. ",
+      "a Linux geek.",
       2000,
-      "Keyboard geek. ",
+      "keyboard geek. ",
       2000,
+    ],
+  },
+  nav: {
+    titel: "guldberglab",
+    items: [
+      {
+        label: "Home",
+        slug: "/",
+      },
+      {
+        label: "Blog",
+        slug: "/blog",
+      },
+      {
+        label: "Contact",
+        slug: "/contact",
+      },
     ],
   },
 };
