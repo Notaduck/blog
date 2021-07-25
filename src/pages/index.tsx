@@ -3,10 +3,9 @@ import { Layout } from "../components";
 import { content } from "../content";
 import Typical from "react-typical";
 import { FiChevronDown } from "react-icons/fi";
-import { GatsbyImage } from "gatsby-plugin-image/dist/src/components/gatsby-image.browser";
 
 const Index = () => {
-  const [animated, setAnimated] = useState(true);
+  const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
     setAnimated(true);
@@ -14,9 +13,9 @@ const Index = () => {
 
   return (
     <Layout>
-      <div className="flex flex-col min-h-screen items-center justify-center ">
+  <div className=" mt-auto flex-1 flex flex-col  items-center justify-center mx-auto ">
         <div className="w-10/12 mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
-          <div className="w-full md:w-2/5">
+          <div className=" flex-1 flex flex-col w-full md:w-2/5">
             {/* <image src='https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/104113705/original/6076831db34315e45bd2a31a9d79bb7b91d48e04/design-flat-style-minimalist-avatar-of-you.jpg'/> */}
             {/* <LazyLoadImage
             src={content.header.img}
@@ -56,19 +55,14 @@ const Index = () => {
                 className="inline-block"
               />
             </h1>
-            {/* <ScrollLink to="stack" smooth={true}>
-            <button className=" animate-float bg-indigo-500 px-10 py-3 text-xl uppercase mt-10 rounded-lg">
-              {content.index.btnText}
-            </button>
-          </ScrollLink> */}
           </div>
         </div>
-        {/* <div className="flex justify-around w-full items-center h-full ">
-          <button className='flex flex-col items-center border-2 border-gray-400 rounded-3xl p-5' >
+        <div className="mt-auto flex justify-around w-full items-center h-full ">
+          <button className="flex flex-col items-center border-2 border-gray-400 rounded-3xl p-5">
             <p> Do you wanna now more?</p>
             <FiChevronDown />
           </button>
-        </div> */}
+        </div>
       </div>
     </Layout>
   );

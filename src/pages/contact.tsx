@@ -25,6 +25,8 @@ const Contact = ({ location }) => {
       <form
         className="xs:px-10 xl:px-44 xl:py-24 mx-auto w-full h-full "
       >
+
+      <h1 className='text-4xl mb-10'> Contact </h1>
         <Row>
           <Input
             type="text"

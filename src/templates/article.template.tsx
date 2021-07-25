@@ -15,7 +15,7 @@ const ArticleTemplate: FC = ({ data }) => {
   } = data.markdownRemark;
   return (
     <Layout>
-      <div className="mb-8 mt-8">
+      <div className="mb-8 xs:mt-2 md:mt-8">
         <h1 className=" font-inconsolata text-4xl font-black"> {title}</h1>
         <div className="flex space-x-4">
           <span> {date}</span>
