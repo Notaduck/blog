@@ -39,7 +39,8 @@ export const Layout = ({ pageContext, children }) => {
           <main className="flex-1 px-4 sm:px-0">{children}</main>
         ) : (
           <Container className='flex-1 min-h-screen'>
-            <main className=" min-h-(screen-16) mt-10 px-4 py-6 sm:px-0">{children}</main>
+            {/* <main className=" min-h-(screen-16) mt-10 px-4 py-6 sm:px-0">{children}</main> */}
+            <main className="flex-grow flex flex-col p-4">{children}</main>
           </Container>
         )}
 
