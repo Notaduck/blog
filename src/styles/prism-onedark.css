@@ -23,7 +23,7 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  border-radius: 2px;
+  border-radius: 4px;
   /* margin: 10rem; */
 }
 

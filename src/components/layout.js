@@ -15,6 +15,7 @@ export const Layout = ({ pageContext, children }) => {
   const data = useStaticQuery(query);
   const [isIndexPage, setIsIndexPage] = useState();
   const location = useLocation();
+
   useEffect(() => {
     setIsIndexPage(location.pathname !== "/");
   }, [location.pathname]);
@@ -40,7 +41,7 @@ export const Layout = ({ pageContext, children }) => {
         ) : (
           <Container className='flex-1 min-h-screen'>
             {/* <main className=" min-h-(screen-16) mt-10 px-4 py-6 sm:px-0">{children}</main> */}
-            <main className="flex-grow flex flex-col p-4">{children}</main>
+            <main className="flex-grow flex flex-col p-4 mx-auto max-w-5xl">{children}</main>
           </Container>
         )}
 

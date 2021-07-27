@@ -26,6 +26,8 @@ const ArticleList: FC<Props> = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO title="Blog" />
+      <div className="xs:mt-2 md:mt-8 min-h-content">
+
       {nodes.map((node, index) => {
         return (
           <div
@@ -83,6 +85,8 @@ const ArticleList: FC<Props> = ({ data, pageContext }) => {
             Next Page →
           </Link>
         )}
+      </div>
+
       </div>
     </Layout>
   );

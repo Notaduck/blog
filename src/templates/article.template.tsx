@@ -16,7 +16,7 @@ const ArticleTemplate: FC = ({ data }) => {
   return (
     <Layout>
       <div className="mb-8 xs:mt-2 md:mt-8">
-        <h1 className=" font-inconsolata text-4xl font-black"> {title}</h1>
+        <h1 className=" font-inconsolata text-4xl font-black antialiased"> {title}</h1>
         <div className="flex space-x-4">
           <span> {date}</span>
 

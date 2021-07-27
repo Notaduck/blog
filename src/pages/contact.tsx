@@ -22,6 +22,9 @@ const Contact = ({ location }) => {
   return (
     <Layout>
       <SEO title="Contact" />
+
+      <div className="xs:mt-2 md:mt-8 min-h-content">
+
       <form
         className="xs:px-10 xl:px-44 xl:py-24 mx-auto w-full h-full "
       >
@@ -58,6 +61,8 @@ const Contact = ({ location }) => {
           Send
         </button>
       </form>
+
+      </div>
     </Layout>
   );
 };
