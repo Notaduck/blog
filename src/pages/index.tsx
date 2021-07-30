@@ -66,6 +66,4 @@ const Index = () => {
   );
 };
 
-const query = query
-
 export default Index;
