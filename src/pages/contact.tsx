@@ -4,6 +4,7 @@ import { Layout } from "../components/layout";
 import { SEO } from "../components/seo";
 import { useForm } from "react-hook-form";
 import { Input, Row, TextArea } from "../components/form";
+import { ContactForm } from "../components/form/contactForm";
 
 const Contact = ({ location }) => {
   const { register } = useForm();
@@ -25,7 +26,8 @@ const Contact = ({ location }) => {
 
       <div className="xs:mt-2 md:mt-8 min-h-content">
 
-      <form
+<ContactForm/>
+      {/* <form
         className="xs:px-10 xl:px-44 xl:py-24 mx-auto w-full h-full "
       >
 
@@ -60,9 +62,9 @@ const Contact = ({ location }) => {
         >
           Send
         </button>
-      </form>
+      </form> */}
 
-      </div>
+      </div> 
     </Layout>
   );
 };

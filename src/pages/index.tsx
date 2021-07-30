@@ -3,6 +3,7 @@ import { Layout } from "../components";
 import { content } from "../content";
 import Typical from "react-typical";
 import { Section } from "../components/indexPage/section";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
@@ -17,9 +18,10 @@ const Index = () => {
       <Section id="hero" to="tech_stack" btnText='Scroll'>
         <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto ">
           <div className="w-10/12 mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
-            {/* <div className="  flex-1 flex flex-col w-full md:w-2/5">
-              <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/104113705/original/6076831db34315e45bd2a31a9d79bb7b91d48e04/design-flat-style-minimalist-avatar-of-you.jpg" />
-            </div> */}
+            <div className="  flex-1 flex flex-col w-full md:w-2/5"> 
+              {/* <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/104113705/original/6076831db34315e45bd2a31a9d79bb7b91d48e04/design-flat-style-minimalist-avatar-of-you.jpg" /> */}
+              <StaticImage src='../images/profile.png' alt='avatar'/>
+            </div>
             <div className=" text-main-text text-center md:text-left">
               <h2
                 className={`${
@@ -63,5 +65,7 @@ const Index = () => {
     </Layout>
   );
 };
+
+const query = query
 
 export default Index;
