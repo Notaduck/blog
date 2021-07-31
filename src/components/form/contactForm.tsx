@@ -25,10 +25,13 @@ export const ContactForm = () => {
   };
 
   useEffect(() => {
+    if ( isSend )  {
     setTimeout(() => {
       navigate('/')
     }, 10000);
-  });
+
+    }
+  }, [isSend]);
 
   return !isSend ? (
     <form onSubmit={handleSubmit(onSubmit)}>

@@ -14,7 +14,7 @@ export const Section: FC<TSection> = ({ children, id, to, btnText, reset }) => {
   );
 
   return (
-    <section id={id} className="relative w-full min-h-full-minus-nav  ">
+    <section id={id} className="inline-flex relative w-full min-h-full-minus-nav max-h-full-content  ">
       {children}
 
       <Link

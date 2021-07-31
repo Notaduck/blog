@@ -31,6 +31,11 @@ module.exports = {
         content: "calc(100vh - 4.0rem - 7.6rem )",
         "full-minus-nav": "calc(100vh - 4.0rem)",
       },
+
+      maxHeight: {
+        content: "calc(100vh - 4.0rem - 7.6rem )",
+        "full-minus-nav": "calc(100vh - 4.0rem)",
+      },
       fontFamily: {
         montserrat: "'Montserrat', sans-serif;",
         inconsolata: "'Inconsolata', sans-serif;",
