@@ -11,7 +11,8 @@ Recently I discovered [ react-hook-form ](https://react-hook-form.com/) which is
   
 However, the decision to split the huge form into a form with steps was quickly made but I had no idea how this in reality should be implemented. After some thoughts on the problem I decided to use gatsby's `dynamic routes` and `recoil` to manage the state. 
 
-## Create a project
+  
+## Create a project 
 First of all we need a brand new gatsby project, for this demo I am going to use the default gatsby starter, I would advice any one who starts a new gatsby project to start to from scratch to have the most control an knowlgde about the project.
 
 ```bash

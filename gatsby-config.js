@@ -68,7 +68,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         // CommonMark mode (default: true)
-        commonmark: true,
+        commonmark: false,
         // Footnotes mode (default: true)
         footnotes: true,
         // Pedantic mode (default: true)

@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Input, TextArea } from "./components";
 import axios from "axios";
-import * as yup from "yup";
 import { useYupValidationResolver, validationSchema } from "./schema";
 import { Button } from "../shared/button";
-import { navigate } from "gatsby";
 
 export const ContactForm = () => {
   const [isSend, setIsSend] = useState(false);
@@ -24,17 +22,8 @@ export const ContactForm = () => {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    if ( isSend )  {
-    setTimeout(() => {
-      navigate('/')
-    }, 10000);
-
-    }
-  }, [isSend]);
-
   return !isSend ? (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex-col pt-20 w-10/12 justify-center items-center mx-auto my-auto">
       <div className="flex flex-wrap -mx-3 sm:mb-2 md:mb-0">
         <Input
           type="text"
@@ -79,15 +68,15 @@ export const ContactForm = () => {
   ) : (
       <div className='min-h-content pt-12 '>
       <div >
-      <h1 className=" text-6xl font-inconsolata mb-2">
+      <h1 >
         {" "}
         Thank you for the message
       </h1>
-      <h2 className="text-4xl font-montserrat mb-4">
+      <h2 >
         {" "}
         I will respond as soon as possbiel
       </h2>
-      <p className='font-montserrat'> You will be redirected to the home page in 10 seconds.</p>
+      <p > You will be redirected to the home page in 10 seconds.</p>
 
       </div>
     </div>

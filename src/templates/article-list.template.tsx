@@ -35,7 +35,7 @@ const ArticleList: FC<Props> = ({ data, pageContext }) => {
             className="flex flex-col mb-4 border-b-2  pb-4 b-accent"
           >
             {/* TITLE */}
-            <h2 className=" font-inconsolata sm:text-xl md:text-2xl font-black mb-2 flex items-center space-x-4">
+            <h2 className="sm:text-xl md:text-2xl font-black mb-2 flex items-center space-x-4">
               <FiTerminal className="xm:hidden" />
               <Link to={`/blog${node?.frontmatter?.slug}`}>
                 {node?.frontmatter?.title}

@@ -7,3 +7,4 @@ export * from "./seo";
 export * from "./indexPage";
 export * from './form/components.tsx'
 export * from './shared'
+export * from './shared'

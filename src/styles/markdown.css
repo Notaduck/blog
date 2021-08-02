@@ -3,7 +3,7 @@
 }
 
 .markdown > h1 {
-  @apply text-4xl text-main-text mt-16 mb-8;
+  @apply text-5xl text-main-text mt-16 mb-8;
 }
 
 .markdown > h2 {

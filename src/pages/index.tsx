@@ -4,6 +4,7 @@ import { content } from "../content";
 import Typical from "react-typical";
 import { Section } from "../components/indexPage/section";
 import { StaticImage } from "gatsby-plugin-image";
+import { ContactForm } from "../components/form/contactForm";
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
@@ -12,15 +13,14 @@ const Index = () => {
     setAnimated(true);
   }, []);
 
-  const iconSize = 102 
+  const iconSize = 102;
 
   return (
     <Layout>
-      <Section id="hero" to="tech_stack" btnText="Scroll">
+      <Section headOrTail id="hero" to="tech_stack" btnText="Scroll">
         <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto ">
-          <div className="w-10/12 mx-auto flex flex-col md:flex-row-reverse items-center justify-between ">
+          <div className="w-10/12 mx-auto flex flex-col md:flex-row-reverse items-center">
             <div className="  flex-1 flex flex-col w-full md:w-2/5">
-              {/* <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/104113705/original/6076831db34315e45bd2a31a9d79bb7b91d48e04/design-flat-style-minimalist-avatar-of-you.jpg" /> */}
               <StaticImage src="../images/profile.png" alt="avatar" />
             </div>
             <div className=" text-main-text text-center md:text-left">
@@ -60,21 +60,141 @@ const Index = () => {
         </div>
       </Section>
 
-      <Section id="tech_stack" to="hero" btnText="Back to the top" reset={true}>
+      <Section id="tech_stack" to="about_me" btnText="About Me">
         <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto">
-          <div className= 'flex flex-col items-center'>
-            <StaticImage height={300} src='../images/corne.png' alt='nodejs' />
-            <h1 className="text-4xl font-inconsolata drop-shadow-lg "> Techknologies I work with </h1>
+          <div className="flex flex-col items-center">
+            {/* <StaticImage height={300} src="../images/corne.png" alt="nodejs" /> */}
+            <h1
+              className="text-4xl  mt-10 mb-10 font-inconsolata drop-shadow-lg"
+              style={{ textAlign: "center" }}
+            >
+              Technologies I work with
+            </h1>
           </div>
 
-          <div className='flex items-center'>
-            <StaticImage  src='../images/logos/gatsby-logo.png' alt='nodejs' />
-            <StaticImage  src='../images/logos/react-logo.png' alt='nodejs' />
-            <StaticImage  src='../images/logos/docker-logo.png' alt='nodejs' />
-            <StaticImage  src='../images/logos/nodejs-logo.png' alt='nodejs' />
-            <StaticImage  src='../images/logos/azure-logo.png' alt='nodejs' />
+          <div className="flex flex-row w-full p-2 text-center justify-around mt-2 items-center space-x-6">
+
+            <span
+              className={` min-h-40 min-w-40 bg-white shadow-xl  ml-2  rounded-full flex justify-center items-center p-5 m-2`}
+            >
+
+            <StaticImage
+              placeholder="blurred"
+              layout="constrained"
+              width={150}
+              height={150}
+              src="../images/logos/gatsby-logo.png"
+              alt="nodejs"
+            />
+            </span>
+            <span
+              className={` min-h-40 min-w-40 bg-white shadow-xl  ml-2  rounded-full flex justify-center items-center p-5 m-2`}
+            >
+
+            <StaticImage
+              placeholder="blurred"
+              layout="constrained"
+              width={50}
+              height={50}
+              src="../images/logos/react-logo.png"
+              alt="react"
+            />
+            </span>
+
+            <span
+              className={` min-h-40 min-w-40 bg-white shadow-xl  ml-2  rounded-full flex justify-center items-center p-5 m-2`}
+            >
+
+            <StaticImage
+              placeholder="blurred"
+              layout="constrained"
+              width={150}
+              height={150}
+              src="../images/logos/docker-logo.png"
+              alt="docker"
+            />
+            </span>
+
+          </div>
+          <div className="flex-col w-full p-2 mb-20 text-center justify-around mt-2 items-center">
+
+            <StaticImage
+              style={{ width: "150px" }}
+              src="../images/logos/nodejs-logo.png"
+              alt="nodejs"
+            />
+            <StaticImage
+              style={{ width: "150px" }}
+              src="../images/logos/azure-logo.png"
+              alt="nodejs"
+            />
+          </div>
         </div>
+      </Section>
+
+      <Section id="about_me" to="contact" btnText="Get in touch">
+        <div className="font-montserrat w-10/12" style={{ margin: "0 auto" }}>
+          <h1 className="md:text-3xl text-center sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
+            I guess because my parents keep telling me to be more ladylike. As
+            though!
+          </h1>
+          <p className="mb-4">
+            I don't know what you did, Fry, but once again, you screwed up! Now
+            all the planets are gonna start cracking wise about our mamas. No!
+            The cat shelter's on to me. Um, is this the boring, peaceful kind of
+            taking to the streets?
+          </p>
+          <p className="mb-4">
+            We're also Santa Claus! Leela, Bender, we're going grave robbing.
+            The key to victory is discipline, and that means a well made bed.{" "}
+            <strong>
+              {" "}
+              You will practice until you can make your bed in your sleep.
+            </strong>{" "}
+            <em> Leela, are you alright?</em> You got wanged on the head.
+          </p>
+          <ul>
+            <li>
+              I've got to find a way to escape the horrible ravages of youth.
+              Suddenly, I'm going to the bathroom like clockwork, every three
+              hours. And those jerks at Social Security stopped sending me
+              checks. Now 'I'' have to pay ''them'!
+            </li>
+            <li>
+              Now Fry, it's been a few years since medical school, so remind me.
+              Disemboweling in your species: fatal or non-fatal?
+            </li>
+            <li>Throw her in the brig.</li>
+          </ul>
+
+          <p className="mb-4">
+            Can we have Bender Burgers again? Calculon is gonna kill us and it's
+            all everybody else's fault! Calculon is gonna kill us and it's all
+            everybody else's fault! Doomsday device? Ah, now the ball's in
+            Farnsworth's court!
+          </p>
+          <p className="mb-4">
+            Say it in Russian! Who's brave enough to fly into something we all
+            keep calling a death sphere? So I really am important? How I feel
+            when I'm drunk is correct? You seem malnourished. Are you suffering
+            from intestinal parasites?
+          </p>
+          <p>
+            Who are those horrible orange men? You guys aren't Santa! You're not
+            even robots. How dare you lie in front of Jesus? Hello Morbo, how's
+            the family? I love you, buddy!
+          </p>
         </div>
+      </Section>
+
+      <Section
+        id="contact"
+        to="hero"
+        className="flex-col items-center justify center"
+        btnText="Back to the top"
+        reset={true}
+      >
+        <ContactForm />
       </Section>
     </Layout>
   );
