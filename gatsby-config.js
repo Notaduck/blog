@@ -76,7 +76,7 @@ module.exports = {
         // GitHub Flavored Markdown mode (default: true)
         gfm: true,
         // Plugins configs
-        plugins: [],
+        plugins: [`gatsby-remark-responsive-iframe`],
       },
     },
   {

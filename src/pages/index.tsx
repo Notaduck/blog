@@ -5,6 +5,8 @@ import Typical from "react-typical";
 import { Section } from "../components/indexPage/section";
 import { StaticImage } from "gatsby-plugin-image";
 import { ContactForm } from "../components/form/contactForm";
+import { TechBadge } from "../components/indexPage/techBadge";
+
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
@@ -19,7 +21,7 @@ const Index = () => {
     <Layout>
       <Section headOrTail id="hero" to="tech_stack" btnText="Scroll">
         <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto ">
-          <div className="w-10/12 mx-auto flex flex-col md:flex-row-reverse items-center">
+          <div className="w-10/12 mx-auto py-14 flex flex-col xl:flex-row-reverse items-center justify-between ">
             <div className="  flex-1 flex flex-col w-full md:w-2/5">
               <StaticImage src="../images/profile.png" alt="avatar" />
             </div>
@@ -29,7 +31,7 @@ const Index = () => {
                   animated ? "" : "translate-y-10 opacity-0"
                 } font-inconsolata transform transition duration-2000 ease-in-out text-3xl md:text-5xl font-bold`}
               >
-                {content.index.text[0]}
+
                 <br />
                 {content.index.text[1]}
               </h2>
@@ -61,75 +63,65 @@ const Index = () => {
       </Section>
 
       <Section id="tech_stack" to="about_me" btnText="About Me">
-        <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto">
           <div className="flex flex-col items-center">
-            {/* <StaticImage height={300} src="../images/corne.png" alt="nodejs" /> */}
-            <h1
-              className="text-4xl  mt-10 mb-10 font-inconsolata drop-shadow-lg"
-              style={{ textAlign: "center" }}
-            >
+            {/* <StaticImage height={300} src="../images/corne.png" alt="nodejs" />  */}
+            <h1 className="text-4xl  mt-10 mb-10 font-inconsolata drop-shadow-lg text-center">
               Technologies I work with
             </h1>
           </div>
 
           <div className="flex flex-row w-full p-2 text-center justify-around mt-2 items-center space-x-6">
+            <TechBadge image={(
 
-            <span
-              className={` min-h-40 min-w-40 bg-white shadow-xl  ml-2  rounded-full flex justify-center items-center p-5 m-2`}
-            >
+              <StaticImage
+                placeholder="blurred"
+                layout="constrained"
+                width={150}
+                height={150}
+                src="../images/logos/gatsby-logo.png"
+                alt="nodejs"
+              />
+            )}>
+            </TechBadge>
 
-            <StaticImage
-              placeholder="blurred"
-              layout="constrained"
-              width={150}
-              height={150}
-              src="../images/logos/gatsby-logo.png"
-              alt="nodejs"
-            />
-            </span>
-            <span
-              className={` min-h-40 min-w-40 bg-white shadow-xl  ml-2  rounded-full flex justify-center items-center p-5 m-2`}
-            >
+            <TechBadge>
+              <StaticImage
+                placeholder="blurred"
+                layout="constrained"
+                width={160}
+                height={150}
+                src="../images/logos/react-logo.png"
+                alt="react"
+              />
+            </TechBadge>
 
-            <StaticImage
-              placeholder="blurred"
-              layout="constrained"
-              width={50}
-              height={50}
-              src="../images/logos/react-logo.png"
-              alt="react"
-            />
-            </span>
-
-            <span
-              className={` min-h-40 min-w-40 bg-white shadow-xl  ml-2  rounded-full flex justify-center items-center p-5 m-2`}
-            >
-
-            <StaticImage
-              placeholder="blurred"
-              layout="constrained"
-              width={150}
-              height={150}
-              src="../images/logos/docker-logo.png"
-              alt="docker"
-            />
-            </span>
-
+            <TechBadge>
+              <StaticImage
+                placeholder="blurred"
+                layout="constrained"
+                width={150}
+                height={150}
+                src="../images/logos/docker-logo.png"
+                alt="docker"
+              />
+            </TechBadge>
           </div>
           <div className="flex-col w-full p-2 mb-20 text-center justify-around mt-2 items-center">
-
-            <StaticImage
-              style={{ width: "150px" }}
-              src="../images/logos/nodejs-logo.png"
-              alt="nodejs"
-            />
-            <StaticImage
-              style={{ width: "150px" }}
-              src="../images/logos/azure-logo.png"
-              alt="nodejs"
-            />
+            <TechBadge>
+              <StaticImage
+                style={{ width: "150px" }}
+                src="../images/logos/nodejs-logo.png"
+                alt="nodejs"
+              />
+            </TechBadge>
+            <TechBadge>
+              <StaticImage
+                style={{ width: "150px" }}
+                src="../images/logos/azure-logo.png"
+                alt="nodejs"
+              />
+            </TechBadge>
           </div>
-        </div>
       </Section>
 
       <Section id="about_me" to="contact" btnText="Get in touch">
@@ -190,10 +182,16 @@ const Index = () => {
       <Section
         id="contact"
         to="hero"
-        className="flex-col items-center justify center"
+        // className="flex-col items-center justify center"
         btnText="Back to the top"
-        reset={true}
+        reset
+        headOrTail
       >
+
+    <div className="flex-col pt-20 w-10/12 justify-center items-center mx-auto my-auto">
+
+        <h1> Ping me section</h1>
+    </div>
         <ContactForm />
       </Section>
     </Layout>

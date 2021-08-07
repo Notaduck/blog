@@ -16,7 +16,7 @@ export const content: Type = {
   index: {
     text: [
       "Hi There!",
-      "I'm Daniel Guldberg Aaes.",
+      "I'm Daniel Guldberg A.",
       "Welcome to GuldbergLab, my personal portfolio and blog",
       "I am, ",
     ],
