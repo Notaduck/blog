@@ -5,8 +5,12 @@ import Typical from "react-typical";
 import { Section } from "../components/indexPage/section";
 import { StaticImage } from "gatsby-plugin-image";
 import { ContactForm } from "../components/form/contactForm";
-import { TechBadge } from "../components/indexPage/techBadge";
-
+import { Parallax } from "@react-spring/parallax";
+import Divider from "../components/indexPage/divider";
+import { UpDown } from "../src/styles/animations";
+import Svg from "../src/components/svg";
+import { UpDownWide } from "../components/indexPage/animations";
+import Content from "../src/elements/content";
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
@@ -14,6 +18,18 @@ const Index = () => {
   useEffect(() => {
     setAnimated(true);
   }, []);
+
+  const calculateAge = (dob1: string) => {
+    var today = new Date();
+    var birthDate = new Date(dob1); // create a date object directly from `dob1` argument
+    var age_now = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age_now--;
+    }
+    console.log(age_now);
+    return age_now;
+  };
 
   const iconSize = 102;
 
@@ -31,7 +47,6 @@ const Index = () => {
                   animated ? "" : "translate-y-10 opacity-0"
                 } font-inconsolata transform transition duration-2000 ease-in-out text-3xl md:text-5xl font-bold`}
               >
-
                 <br />
                 {content.index.text[1]}
               </h2>
@@ -62,119 +77,94 @@ const Index = () => {
         </div>
       </Section>
 
+
       <Section id="tech_stack" to="about_me" btnText="About Me">
-          <div className="flex flex-col items-center">
-            {/* <StaticImage height={300} src="../images/corne.png" alt="nodejs" />  */}
-            <h1 className="text-4xl  mt-10 mb-10 font-inconsolata drop-shadow-lg text-center">
-              Technologies I work with
-            </h1>
-          </div>
-
-          <div className="flex flex-row w-full p-2 text-center justify-around mt-2 items-center space-x-6">
-            <TechBadge image={(
-
-              <StaticImage
-                placeholder="blurred"
-                layout="constrained"
-                width={150}
-                height={150}
-                src="../images/logos/gatsby-logo.png"
-                alt="nodejs"
-              />
-            )}>
-            </TechBadge>
-
-            <TechBadge>
-              <StaticImage
-                placeholder="blurred"
-                layout="constrained"
-                width={160}
-                height={150}
-                src="../images/logos/react-logo.png"
-                alt="react"
-              />
-            </TechBadge>
-
-            <TechBadge>
-              <StaticImage
-                placeholder="blurred"
-                layout="constrained"
-                width={150}
-                height={150}
-                src="../images/logos/docker-logo.png"
-                alt="docker"
-              />
-            </TechBadge>
-          </div>
-          <div className="flex-col w-full p-2 mb-20 text-center justify-around mt-2 items-center">
-            <TechBadge>
-              <StaticImage
-                style={{ width: "150px" }}
-                src="../images/logos/nodejs-logo.png"
-                alt="nodejs"
-              />
-            </TechBadge>
-            <TechBadge>
-              <StaticImage
-                style={{ width: "150px" }}
-                src="../images/logos/azure-logo.png"
-                alt="nodejs"
-              />
-            </TechBadge>
-          </div>
+     <Parallax pages={1}>
+      <div>
+        <Divider speed={0.2} offset={0} factor={1}>
+          <UpDown>
+            <Svg icon="triangle" hiddenMobile width={48} stroke color="icon_orange" left="5%" top="10%" />
+            <Svg icon="nestjs" hiddenMobile width={198} stroke color="icon_orange" left="10%" top="20%" />
+            <Svg icon="hexa" width={48} stroke color="icon_red" left="60%" top="70%" />
+            <Svg icon="box" width={6} color="icon_darker" left="60%" top="15%" />
+          </UpDown>
+          <UpDownWide>
+            <Svg icon="arrowUp" hiddenMobile width={16} color="icon_blue" left="80%" top="10%" />
+            <Svg icon="triangle" width={12} stroke color="icon_brightest" left="90%" top="50%" />
+            <Svg icon="circle" width={16} color="icon_darker" left="70%" top="90%" />
+            <Svg icon="triangle" width={16} stroke color="icon_darkest" left="30%" top="65%" />
+            <Svg icon="cross" width={16} stroke color="icon_pink" left="28%" top="15%" />
+            <Svg icon="circle" width={6} color="icon_darkest" left="75%" top="10%" />
+            <Svg icon="upDown" hiddenMobile width={8} color="icon_darkest" left="45%" top="10%" />
+          </UpDownWide>
+          {/* <Svg icon="circle" hiddenMobile width={24} color="icon_darker" left="5%" top="70%" />
+          <Svg icon="circle" width={6} color="icon_darkest" left="4%" top="20%" />
+          <Svg icon="circle" width={12} color="icon_darkest" left="50%" top="60%" />
+          <Svg icon="upDown" width={8} color="icon_darkest" left="95%" top="90%" />
+          <Svg icon="upDown" hiddenMobile width={24} color="icon_darker" left="40%" top="80%" />
+          <Svg icon="triangle" width={8} stroke color="icon_darker" left="25%" top="5%" />
+          <Svg icon="circle" width={64} color="icon_green" left="95%" top="5%" />
+          <Svg icon="box" hiddenMobile width={64} color="icon_purple" left="5%" top="90%" />
+          <Svg icon="box" width={6} color="icon_darkest" left="10%" top="10%" />
+          <Svg icon="box" width={12} color="icon_darkest" left="40%" top="30%" />
+          <Svg icon="hexa" width={16} stroke color="icon_darker" left="10%" top="50%" />
+          <Svg icon="hexa" width={8} stroke color="icon_darker" left="80%" top="70%" /> */}
+        </Divider> 
+        {/* <Content sx={{ variant: `texts.bigger` }} speed={0.4} offset={0} factor={1}>
+          <Inner>
+            <Themed.h1>404 - Page not found</Themed.h1>
+            <Themed.p>
+              Go back to <Link to="/">homepage</Link>.
+            </Themed.p>
+          </Inner>
+        </Content> */}
+      </div>
+    </Parallax>
       </Section>
 
       <Section id="about_me" to="contact" btnText="Get in touch">
-        <div className="font-montserrat w-10/12" style={{ margin: "0 auto" }}>
-          <h1 className="md:text-3xl text-center sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
-            I guess because my parents keep telling me to be more ladylike. As
-            though!
+        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12">
+          <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
+            Who am I?
           </h1>
           <p className="mb-4">
-            I don't know what you did, Fry, but once again, you screwed up! Now
-            all the planets are gonna start cracking wise about our mamas. No!
-            The cat shelter's on to me. Um, is this the boring, peaceful kind of
-            taking to the streets?
+            My name is Daniel Guldberg Aaes, I am a {calculateAge("1991-07-02")} year
+            old with a bachelor in Sofware development from the IT University of
+            Copenhagen in Denmark.
           </p>
-          <p className="mb-4">
-            We're also Santa Claus! Leela, Bender, we're going grave robbing.
-            The key to victory is discipline, and that means a well made bed.{" "}
-            <strong>
-              {" "}
-              You will practice until you can make your bed in your sleep.
-            </strong>{" "}
-            <em> Leela, are you alright?</em> You got wanged on the head.
-          </p>
-          <ul>
-            <li>
-              I've got to find a way to escape the horrible ravages of youth.
-              Suddenly, I'm going to the bathroom like clockwork, every three
-              hours. And those jerks at Social Security stopped sending me
-              checks. Now 'I'' have to pay ''them'!
-            </li>
-            <li>
-              Now Fry, it's been a few years since medical school, so remind me.
-              Disemboweling in your species: fatal or non-fatal?
-            </li>
-            <li>Throw her in the brig.</li>
-          </ul>
 
-          <p className="mb-4">
-            Can we have Bender Burgers again? Calculon is gonna kill us and it's
-            all everybody else's fault! Calculon is gonna kill us and it's all
-            everybody else's fault! Doomsday device? Ah, now the ball's in
-            Farnsworth's court!
-          </p>
-          <p className="mb-4">
-            Say it in Russian! Who's brave enough to fly into something we all
-            keep calling a death sphere? So I really am important? How I feel
-            when I'm drunk is correct? You seem malnourished. Are you suffering
-            from intestinal parasites?
-          </p>
           <p>
-            Who are those horrible orange men? You guys aren't Santa! You're not
-            even robots. How dare you lie in front of Jesus? Hello Morbo, how's
-            the family? I love you, buddy!
+            {" "}
+            Initially I started out in the social and healt care profession and
+            worked there for a coule of years. Howeever, I had always been in
+            doubt if I wanted to work with people or in the tech industry due to
+            fact that I was afraid of turning a hobby into work and loosing the
+            joy within it. But at some point I took the decision to transition
+            my career from the social and healt care field into Initially I
+            started out in the social and healt care profession and worked there
+            for a coule of years. Howeever, I had always been in doubt if I
+            wanted to work with people or in the tech industry due to fact that
+            I was afraid of turning a hobby into work and loosing the joy within
+            it. 
+          </p>
+
+          <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
+            Why this blog?
+          </h1>
+          <p className="mb-4">
+            Throuhout the last couple of years I have gained experince with various programming languages in different domains such as 
+            Java, Python, C, C#, F# JS and so on. Most of the knowlegde I have gained is spending countless of hours reading the docs,
+            used google fu and read a tun of online tutorials and guides. I fell that I now have enough experience to pass on the knowlgede
+            and at the same time I learn a whole lot by making theese blog post since it forces me to reflect on my aquired knowlegde
+            which often leads to flaws where I have to dive deeper in the topic in order to pass on the knowlegde in a responsive way.
+          </p>
+
+          <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
+            What do I do in my sparetime
+          </h1>
+
+          <p>
+
           </p>
         </div>
       </Section>
@@ -187,11 +177,9 @@ const Index = () => {
         reset
         headOrTail
       >
-
-    <div className="flex-col pt-20 w-10/12 justify-center items-center mx-auto my-auto">
-
-        <h1> Ping me section</h1>
-    </div>
+        <div className="flex-col pt-20 w-10/12 justify-center items-center mx-auto my-auto">
+          <h1> Ping me section</h1>
+        </div>
         <ContactForm />
       </Section>
     </Layout>

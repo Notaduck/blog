@@ -1,3 +1,5 @@
+import { FaLinux } from "react-icons/fa";
+
 export type Type = {
   index: {
     text: string[];
@@ -16,18 +18,20 @@ export const content: Type = {
   index: {
     text: [
       "Hi There!",
-      "I'm Daniel Guldberg A.",
-      "Welcome to GuldbergLab, my personal portfolio and blog",
-      "I am, ",
+      "My name is Daniel Guldberg A.",
+      "Welcome to my personal portfolio and blog",
+      // "I am, ",
     ],
     typical: [
-      "a full stack developer \u{1F680}",
+      "I am, a full stack developer \u{2630}",
       2000,
-      "passionated about devops",
+
+      "with a passion for devops \u{1F680} ",
       2000,
-      "a Linux geek.",
+
+      "A Linux geek linux  " ,
       2000,
-      "keyboard geek. ",
+      "a keyboard entuast \u{2328}",
       2000,
     ],
   },
