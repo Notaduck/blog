@@ -84,20 +84,24 @@ const Index = () => {
       <div>
         <Divider speed={0.7} offset={0} factor={2}>
           <UpDown>
-            <Svg icon="triangle" hiddenMobile width={48} stroke color="icon_orange" left="5%" top="10%" />
             {/* <Svg icon="hexa" width={48} stroke color="icon_red" left="60%" top="70%" /> */}
             {/* FRONTEND */}
-            <StaticImage src='../images/logos/react-logo.png' alt='reactjs logo' height={158} className='relative top-56 left-16' />
-            <StaticImage src='../images/logos/gatsby-logo.png' alt='reactjs logo' height={58} className='relative top-56 left-16' />
-            <Svg icon="box" width={6} color="icon_darker" left="60%" top="15%" />
+            <div className='w-24'>
+              <StaticImage src='../images/logos/react-logo.png' alt='reactjs logo' className='relative top-56 left-16' />
+            </div>
+
+            <div className='w-24'>
+            <StaticImage src='../images/logos/docker-logo.png' alt='docker logo' className='relative top-11 left-72' />
+            </div>
+            {/* <Svg icon="box" width={6} color="icon_darker" left="60%" top="15%" /> */}
           </UpDown>
           <UpDownWide>
 
+            {/* <StaticImage src='../images/logos/gatsby-logo.png' alt='reactjs logo' height={58} className='relative top-40 left-72' /> */}
             {/* BACKEND */}
-            <StaticImage src='../images/logos/azure-logo.png' alt='azure logo' height={58} className='relative top-56 left-16' />
-            <StaticImage src='../images/logos/docker-logo.png' alt='docker logo' height={158} className='relative top-56 left-16' />
-            <StaticImage src='../images/logos/nodejs-logo.png' alt='node logo' height={158} className='relative top-56 left-16' />
-            <StaticImage src='../images/logos/nestjs-logo.png' alt='reactjs logo' height={58} className='relative top-56 left-16' />
+            {/* <StaticImage src='../images/logos/azure-logo.png' alt='azure logo' height={58} className='relative top-56 left-16' /> */}
+            {/* <StaticImage src='../images/logos/nodejs-logo.png' alt='node logo' height={158} className='relative -bottom-3/4 left-16' /> */}
+            {/* <StaticImage src='../images/logos/nestjs-logo.png' alt='reactjs logo' height={58} className='relative top-56 left-16' /> */}
             {/* <Svg icon="arrowUp" hiddenMobile width={16} color="icon_blue" left="80%" top="10%" />
             <Svg icon="triangle" width={12} stroke color="icon_brightest" left="90%" top="50%" />
             <Svg icon="circle" width={16} color="icon_darker" left="70%" top="90%" /> */}
@@ -110,7 +114,7 @@ const Index = () => {
             <Svg icon="upDown" hiddenMobile width={8} color="icon_darkest" left="45%" top="10%" />
             <Svg icon='upDown' hiddenMobile width={8} color="icon_darkest" left="45%" top="10%" /> */}
           </UpDownWide>
-          <Svg icon="circle" width={12} color="icon_darkest" left="50%" top="60%" />
+          {/* <Svg icon="circle" width={12} color="icon_darkest" left="50%" top="60%" />
           <Svg icon="upDown" width={8} color="icon_darkest" left="95%" top="90%" />
           <Svg icon="upDown" hiddenMobile width={24} color="icon_darker" left="40%" top="80%" />
           <Svg icon="triangle" width={8} stroke color="icon_darker" left="25%" top="5%" />
@@ -118,7 +122,7 @@ const Index = () => {
           <Svg icon="box" width={6} color="icon_darkest" left="10%" top="10%" />
           <Svg icon="box" width={12} color="icon_darkest" left="40%" top="30%" />
           <Svg icon="hexa" width={16} stroke color="icon_darker" left="10%" top="50%" />
-          <Svg icon="hexa" width={8} stroke color="icon_darker" left="80%" top="70%" />
+          <Svg icon="hexa" width={8} stroke color="icon_darker" left="80%" top="70%" /> */}
         </Divider> 
         <Content sx={{ variant: `texts.bigger` }} speed={0.4} offset={0} factor={1}>
           <Inner>
