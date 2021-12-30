@@ -6,8 +6,10 @@ import { SEO } from "../components/seo";
 import { FiCalendar, FiCoffee } from "react-icons/fi";
 
 import "../styles/markdown.css";
+import Comments from "../components/comments/comments";
+import { ArticleData } from "./types";
 
-const ArticleTemplate: FC = ({ data }) => {
+const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
   const {
     frontmatter: { title, date },
     html,
@@ -16,7 +18,10 @@ const ArticleTemplate: FC = ({ data }) => {
   return (
     <Layout>
       <div className="mb-8 xs:mt-2 md:mt-8">
-        <h1 className=" font-inconsolata text-4xl font-black antialiased"> {title}</h1>
+        <h1 className=" font-inconsolata text-4xl font-black antialiased">
+          {" "}
+          {title}
+        </h1>
         <div className="flex space-x-4">
           <span> {date}</span>
 
@@ -30,11 +35,14 @@ const ArticleTemplate: FC = ({ data }) => {
 
       <div className="">
         <SEO description={excerpt} title={title} />
-        <div
-          className=" font-montserrat text-gray-800 dark:text-main markdown"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className="grid grid-cols-1 divide-y space-y-10gg">
+          <article
+            className="prose-lg"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
 
+          <Comments issueTerm={location.pathname} />
+        </div>
         <div className="flex justify-center mt-10 mb-10  ">
           <Link
             to="/blog"

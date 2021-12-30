@@ -78,59 +78,53 @@ const Index = () => {
         </div>
       </Section>
 
-
       <Section id="tech_stack" to="about_me" btnText="About Me">
-     <Parallax pages={1}>
+        <div className="flex justify-center items-start space-x-14">
+          <div>
+            <h2>Languages I speak</h2>
+            <div className="flex">
+            <div>
+              <h2> Frontend </h2>
+              <ul>
+                <li> HTML </li>
+                <li> CSS </li>
+                <li> Tailwind </li>
+                <li> React </li>
+                <li> Gatsby Js </li>
+                <li> Next js </li>
+                <li> Handlebars </li>
+              </ul>
+            </div>
+
+            <div>
+              <h2> Backend </h2>
+              <ul>
+                <li> Node </li>
+                <li> CSS </li>
+                <li> Tailwind </li>
+                <li> Handlebars </li>
+              </ul>
+            </div>
+            </div>
+          </div>
+
+          {/* <div>
+            <h2>Tools I use</h2>
+            <ul>
+              <li> Node </li>
+              <li> CSS </li>
+              <li> Tailwind </li>
+              <li> Handlebars </li>
+            </ul>
+          </div> */}
+        </div>
+
+        {/* <Parallax pages={1}>
       <div>
-        <Divider speed={0.7} offset={0} factor={2}>
-          <UpDown>
-            {/* <Svg icon="hexa" width={48} stroke color="icon_red" left="60%" top="70%" /> */}
-            {/* FRONTEND */}
-            <div className='w-24'>
-              <StaticImage src='../images/logos/react-logo.png' alt='reactjs logo' className='relative top-56 left-16' />
-            </div>
-
-            <div className='w-24'>
-            <StaticImage src='../images/logos/docker-logo.png' alt='docker logo' className='relative top-11 left-72' />
-            </div>
-            {/* <Svg icon="box" width={6} color="icon_darker" left="60%" top="15%" /> */}
-          </UpDown>
-          <UpDownWide>
-
-            {/* <StaticImage src='../images/logos/gatsby-logo.png' alt='reactjs logo' height={58} className='relative top-40 left-72' /> */}
-            {/* BACKEND */}
-            {/* <StaticImage src='../images/logos/azure-logo.png' alt='azure logo' height={58} className='relative top-56 left-16' /> */}
-            {/* <StaticImage src='../images/logos/nodejs-logo.png' alt='node logo' height={158} className='relative -bottom-3/4 left-16' /> */}
-            {/* <StaticImage src='../images/logos/nestjs-logo.png' alt='reactjs logo' height={58} className='relative top-56 left-16' /> */}
-            {/* <Svg icon="arrowUp" hiddenMobile width={16} color="icon_blue" left="80%" top="10%" />
-            <Svg icon="triangle" width={12} stroke color="icon_brightest" left="90%" top="50%" />
-            <Svg icon="circle" width={16} color="icon_darker" left="70%" top="90%" /> */}
-            {/* <Svg icon="nestjs" hiddenMobile width={300} stroke color="icon_orange" left="10%" top="20%" /> */}
-            {/* <Svg icon='r' */}
-            {/* <Svg icon="triangle" width={6} stroke color="icon_darkest" left="30%" top="65%" />
-            <Svg icon="cross" width={19} stroke color="" left="20%" top="15%" /> */}
-             {/* <Svg icon="gatsbyjs" width={250} stroke color="text-red-500" left="28%" top="15%" /> */}
-            {/* <Svg icon="circle" width={6} color="icon_darkest" left="75%" top="10%" />
-            <Svg icon="upDown" hiddenMobile width={8} color="icon_darkest" left="45%" top="10%" />
-            <Svg icon='upDown' hiddenMobile width={8} color="icon_darkest" left="45%" top="10%" /> */}
-          </UpDownWide>
-          {/* <Svg icon="circle" width={12} color="icon_darkest" left="50%" top="60%" />
-          <Svg icon="upDown" width={8} color="icon_darkest" left="95%" top="90%" />
-          <Svg icon="upDown" hiddenMobile width={24} color="icon_darker" left="40%" top="80%" />
-          <Svg icon="triangle" width={8} stroke color="icon_darker" left="25%" top="5%" />
-          <Svg icon="circle" width={64} color="icon_green" left="95%" top="5%" />
-          <Svg icon="box" width={6} color="icon_darkest" left="10%" top="10%" />
-          <Svg icon="box" width={12} color="icon_darkest" left="40%" top="30%" />
-          <Svg icon="hexa" width={16} stroke color="icon_darker" left="10%" top="50%" />
-          <Svg icon="hexa" width={8} stroke color="icon_darker" left="80%" top="70%" /> */}
-        </Divider> 
-        <Content sx={{ variant: `texts.bigger` }} speed={0.4} offset={0} factor={1}>
-          <Inner>
-            <h1 className='font-inconsolata'> Techhnoligies I work with </h1>
-          </Inner>
-        </Content>
+        <Divider speed={0.7} offset={0} factor={2}></Divider> 
+        <Content sx={{ variant: `texts.bigger` }} speed={0.4} offset={0} factor={1}></Content>
       </div>
-    </Parallax>
+    </Parallax> */}
       </Section>
 
       <Section id="about_me" to="contact" btnText="Get in touch">
@@ -139,9 +133,9 @@ const Index = () => {
             Who am I?
           </h1>
           <p className="mb-4">
-            My name is Daniel Guldberg Aaes, I am a {calculateAge("1991-07-02")} year
-            old with a bachelor in Sofware development from the IT University of
-            Copenhagen in Denmark.
+            My name is Daniel Guldberg Aaes, I am a {calculateAge("1991-07-02")}{" "}
+            year old with a bachelor in Sofware development from the IT
+            University of Copenhagen in Denmark.
           </p>
 
           <p>
@@ -156,27 +150,30 @@ const Index = () => {
             for a coule of years. Howeever, I had always been in doubt if I
             wanted to work with people or in the tech industry due to fact that
             I was afraid of turning a hobby into work and loosing the joy within
-            it. 
+            it.
           </p>
 
           <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
             Why this blog?
           </h1>
           <p className="mb-4">
-            Throuhout the last couple of years I have gained experince with various programming languages in different domains such as 
-            Java, Python, C, C#, F# JS and so on. Most of the knowlegde I have gained is spending countless of hours reading the docs,
-            used google fu and read a tun of online tutorials and guides. I fell that I now have enough experience to pass on the knowlgede
-            and at the same time I learn a whole lot by making theese blog post since it forces me to reflect on my aquired knowlegde
-            which often leads to flaws where I have to dive deeper in the topic in order to pass on the knowlegde in a responsive way.
+            Throuhout the last couple of years I have gained experince with
+            various programming languages in different domains such as Java,
+            Python, C, C#, F# JS and so on. Most of the knowlegde I have gained
+            is spending countless of hours reading the docs, used google fu and
+            read a tun of online tutorials and guides. I fell that I now have
+            enough experience to pass on the knowlgede and at the same time I
+            learn a whole lot by making theese blog post since it forces me to
+            reflect on my aquired knowlegde which often leads to flaws where I
+            have to dive deeper in the topic in order to pass on the knowlegde
+            in a responsive way.
           </p>
 
           <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
             What do I do in my sparetime
           </h1>
 
-          <p>
-
-          </p>
+          <p></p>
         </div>
       </Section>
 

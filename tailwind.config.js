@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       bottom: {
-        14: '6rem'
+        14: "6rem",
       },
       colors: {
         "gray-light": "#f3f3f3",
@@ -92,5 +92,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };

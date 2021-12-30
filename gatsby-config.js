@@ -68,15 +68,15 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         // CommonMark mode (default: true)
-        commonmark: false,
+        // commonmark: false,
         // Footnotes mode (default: true)
-        footnotes: true,
+        // footnotes: true,
         // Pedantic mode (default: true)
-        pedantic: true,
+        // pedantic: true,
         // GitHub Flavored Markdown mode (default: true)
-        gfm: true,
+        // gfm: true,
         // Plugins configs
-        plugins: [`gatsby-remark-responsive-iframe`],
+        // plugins: [`gatsby-remark-responsive-iframe`],
       },
     },
   {
