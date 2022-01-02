@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Link, graphql } from "gatsby";
 
 import { Layout } from "../components/layout";
@@ -6,17 +6,22 @@ import { SEO } from "../components/seo";
 import { FiCalendar, FiCoffee } from "react-icons/fi";
 
 import "../styles/markdown.css";
-import Comments from "../components/comments/comments";
+import { Comments } from "../components/comments/comments";
 import { ArticleData } from "./types";
+import ToC from "../components/toc";
 
 const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
   const {
     frontmatter: { title, date },
     html,
     excerpt,
+    headings
   } = data.markdownRemark;
+
   return (
     <Layout>
+      <div className="grid-cols-2">
+      <ToC headings={headings} />
       <div className="mb-8 xs:mt-2 md:mt-8">
         <h1 className=" font-inconsolata text-4xl font-black antialiased">
           {" "}
@@ -35,9 +40,9 @@ const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
 
       <div className="">
         <SEO description={excerpt} title={title} />
-        <div className="grid grid-cols-1 divide-y space-y-10gg">
+        <div className="grid grid-cols-1 divide-yespace-y-10gg">
           <article
-            className="prose-lg"
+            className="prose  md:prose-lg lg:prose-xl"
             dangerouslySetInnerHTML={{ __html: html }}
           />
 
@@ -60,6 +65,8 @@ const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
           </Link>
         </div>
       </div>
+
+      </div>
     </Layout>
   );
 };
@@ -70,6 +77,11 @@ export const query = graphql`
       html
       excerpt
       timeToRead
+      headings(depth: h6) {
+        id
+        value
+        depth
+      }
       frontmatter {
         title
         tags

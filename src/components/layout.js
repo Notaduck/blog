@@ -5,13 +5,12 @@ import { useStaticQuery, graphql } from "gatsby";
 import "@fontsource/unica-one"; // Defaults to weight 400.
 import "../styles/global.css";
 import { useLocation } from "@reach/router";
-import Header from "./header";
 import { NavBar } from "./nav";
 import { ThemeToggle } from "./themeToggle";
 import { Footer } from "./footer";
 import { Container } from "./shared";
 
-export const Layout = ({ pageContext, children }) => {
+export const Layout = ({ children }) => {
   const data = useStaticQuery(query);
   const [isIndexPage, setIsIndexPage] = useState();
   const location = useLocation();
