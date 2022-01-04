@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useStaticQuery, graphql } from "gatsby";
 
 import "@fontsource/unica-one"; // Defaults to weight 400.
-import "../styles/global.css";
 import { useLocation } from "@reach/router";
 import { NavBar } from "./nav";
 import { ThemeToggle } from "./themeToggle";
