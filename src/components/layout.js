@@ -30,7 +30,6 @@ export const Layout = ({ children }) => {
                     overflow-y-visible
                     bg-primary
                     text-main-text
-        
         `}
       >
         <ThemeToggle />
@@ -39,11 +38,9 @@ export const Layout = ({ children }) => {
           <main className="flex-1 px-4 sm:px-0">{children}</main>
         ) : (
           <Container className='flex-1 min-h-screen'>
-            {/* <main className=" min-h-(screen-16) mt-10 px-4 py-6 sm:px-0">{children}</main> */}
             <main className="flex-grow flex flex-col p-4 mx-auto max-w-5xl">{children}</main>
           </Container>
         )}
-
         <Container>
           <Footer />
         </Container>
