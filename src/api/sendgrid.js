@@ -16,7 +16,7 @@ const handler = (req, res) => {
     if (body) {
       message.to = process.env.SENDGRID_AUTHORIZED_EMAIL;
       message.subject = req.body.subject;
-      message.text = req.body.text;
+      message.text = req.body.text + req.body.from;
       message.html = req.body.text;
     }
 
