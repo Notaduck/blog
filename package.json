@@ -41,7 +41,7 @@
     "gitalk": "^1.7.2",
     "headlessui": "^0.0.0",
     "mdast-util-toc": "^6.1.0",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "postcss": "^8.4.5",
     "prismjs": "^1.25.0",
     "prop-types": "^15.8.0",
