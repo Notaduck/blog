@@ -14,7 +14,7 @@ module.exports = {
     siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
   },
   plugins: [
-    // `gatsby-plugin-graphql-codegen`,
+      `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-use-dark-mode",
