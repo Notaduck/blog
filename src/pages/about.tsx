@@ -1,13 +1,22 @@
-import React from "react";
-import { graphql } from "gatsby";
+import { FC } from "react";
+import { graphql, PageProps } from "gatsby";
 import Img from "gatsby-image";
-import { SEO } from '../components/seo'
+import { SEO } from "../components/seo";
 import { Layout } from "../components/layout";
 
-const About = ({ data }) => {
+type PageData = { site: Queries.Site; file: Queries.File };
 
-  const { site : { siteMetadata : { name, profession }}} = data
-  const { file : { childImageSharp : { fluid : picture }}} = data
+const About: FC<PageProps<PageData>> = ({ data }) => {
+  const {
+    site: {
+      siteMetadata: { name, profession },
+    },
+  } = data;
+  const {
+    file: {
+      childImageSharp: { fluid: picture },
+    },
+  } = data;
 
   return (
     <Layout>
@@ -21,7 +30,7 @@ const About = ({ data }) => {
           <div className="flex flex-col items-center align-center xs:pt-6 md:pt-0">
             <h2> Hi, my name is {name}. </h2>
             <h3> I am a {profession}</h3>
-          </div> 
+          </div>
         </div>
         <section>
           <p> I am currently emplyed at </p>
@@ -32,11 +41,11 @@ const About = ({ data }) => {
 };
 
 export const query = graphql`
-  {
+  query aboutPageQuery {
     site {
       siteMetadata {
         name
-        profession 
+        profession
       }
     }
     file(name: { regex: "/me/" }) {

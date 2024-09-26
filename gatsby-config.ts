@@ -13,9 +13,14 @@ module.exports = {
     profession: "Software Developer",
     siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
   },
-  graphqlTypegen: true,
+  graphqlTypegen: {
+    typesOutputPath: `gatsby-types.d.ts`,
+    generateOnBuild: false,
+    documentSearchPaths: [`./gatsby-node.ts`, `./plugins/**/gatsby-node.ts`],
+    // Other options...
+  },
   plugins: [
-      `gatsby-plugin-netlify`,
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-alias-imports`,
@@ -88,7 +93,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-            `gatsby-remark-autolink-headers`,
+          `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-images`,
             options: {

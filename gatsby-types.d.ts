@@ -2695,6 +2695,11 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
+type aboutPageQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type aboutPageQueryQuery = { readonly site: { readonly siteMetadata: { readonly name: string | null, readonly profession: string | null } | null } | null, readonly file: { readonly id: string, readonly childImageSharp: { readonly fluid: { readonly base64: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly sizes: string } | null } | null } | null };
+
 type articleListQueryVariables = Exact<{
   skip: Scalars['Int'];
   limit: Scalars['Int'];
