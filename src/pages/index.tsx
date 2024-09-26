@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { content } from "../content";
-import Typical from "react-typical";
-import { Section } from "../components/indexPage/section";
-import { StaticImage } from "gatsby-plugin-image";
-import { ContactForm } from "../components/form/contactForm";
-import { Parallax } from "@react-spring/parallax";
-import Divider from "../components/indexPage/divider";
-import { UpDown } from "../src/styles/animations";
-import Svg from "../src/components/svg";
-import { UpDownWide } from "../components/indexPage/animations";
-import Content from "../src/elements/content";
-import Inner from "../src/elements/inner";
+import { ContactForm } from "@components/form";
+import { Section } from "@components/indexPage";
 import { Layout } from "@components/layout";
+import { content } from "@src/content/data";
+import { StaticImage } from "gatsby-plugin-image";
+import { useState, useEffect } from "react";
+import Typical from "react-typical";
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
@@ -20,19 +13,18 @@ const Index = () => {
     setAnimated(true);
   }, []);
 
-  const calculateAge = (dob1: string) => {
+  const calculateAge = (dob: string) => {
     var today = new Date();
-    var birthDate = new Date(dob1); // create a date object directly from `dob1` argument
+    var birthDate = new Date(dob); // create a date object directly from `dob1` argument
     var age_now = today.getFullYear() - birthDate.getFullYear();
     var m = today.getMonth() - birthDate.getMonth();
+
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age_now--;
     }
-    console.log(age_now);
+
     return age_now;
   };
-
-  const iconSize = 102;
 
   return (
     <Layout>

@@ -6,7 +6,7 @@ tags: ["NestJS", "Stripe"]
 published: true
 ---
 
-# Navigating the Stripe Jungle in NestJS: A Personal Adventure 🐍
+# Navigating the Stripe Jungle in NestJS: A Personal Adventure.
 
 Hey there, fellow code wranglers! 👋
 
@@ -55,33 +55,31 @@ export class StripeModule {}
 Instead of scattering Stripe client initializations all over the place (which was giving me serious whiplash), I set up providers for each market's Stripe client.
 
 ```typescript
-
 @Module({
   imports: [
     // ...other modules
   ],
   providers: [
-		    {
-		  provide: 'GB_STRIPE_CLIENT',
-		  useFactory: () =>
-		    new Stripe(process.env.STRIPE_GB_SECRET_KEY, {
-		      apiVersion: '2024-XX-XX',
-		    }),
-		},
-		{
-		  provide: 'DK_STRIPE_CLIENT',
-		  useFactory: () =>
-		    new Stripe(process.env.STRIPE_DK_SECRET_KEY, {
-		      apiVersion: '2024-XX-XX',
-		    }),
-		},
-		{
-			provide: StripeClientFactory,
-			useFactory: (ukClient: Stripe, scandiClient: Stripe) =>
-				new StripeClientFactory(ukClient, scandiClient),
-			inject: ["GB_STRIPE_CLIENT", "DK_STRIPE_CLIENT"],
-		},
-
+    {
+      provide: "GB_STRIPE_CLIENT",
+      useFactory: () =>
+        new Stripe(process.env.STRIPE_GB_SECRET_KEY, {
+          apiVersion: "2024-XX-XX",
+        }),
+    },
+    {
+      provide: "DK_STRIPE_CLIENT",
+      useFactory: () =>
+        new Stripe(process.env.STRIPE_DK_SECRET_KEY, {
+          apiVersion: "2024-XX-XX",
+        }),
+    },
+    {
+      provide: StripeClientFactory,
+      useFactory: (ukClient: Stripe, scandiClient: Stripe) =>
+        new StripeClientFactory(ukClient, scandiClient),
+      inject: ["GB_STRIPE_CLIENT", "DK_STRIPE_CLIENT"],
+    },
   ],
   controllers: [StripeController],
   exports: [StripeService],
@@ -101,11 +99,11 @@ export class StripeClientFactory {
 
   constructor(
     private readonly gbClient: Stripe,
-    private readonly dkClient: Stripe,
+    private readonly dkClient: Stripe
   ) {
     this.stripeClients = new Map<Market, Stripe>([
-      ['GB', this.ukClient],
-      ['DK', this.dkClient],
+      ["GB", this.ukClient],
+      ["DK", this.dkClient],
     ]);
   }
 
@@ -155,6 +153,6 @@ So, next time you find yourself in the midst of a multi-market integration, reme
 
 **I know there still are ways to improve this, instead of making a `StripeFactory` we could build a `PaymentFactory` which can receive various payment clients and make our own payment abstraction so we are ready for when stripe decides to shut us down and we quickly have to move to another payment provider over night, and yes this have happened to me. I promise you it was nothing sketchy or illegal, just a payment provider who was hard to work with.**
 
-Thanks for joining me on this little adventure. 
+Thanks for joining me on this little adventure.
 
 Happy coding! 🎉

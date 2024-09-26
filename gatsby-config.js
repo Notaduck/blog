@@ -13,6 +13,7 @@ module.exports = {
     profession: "Software Developer",
     siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
   },
+  graphqlTypegen: true,
   plugins: [
       `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
@@ -33,14 +34,6 @@ module.exports = {
         classNameLight: "light-mode",
         storageKey: "darkMode",
         minify: true,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-root-import",
-      options: {
-        src: path.join(__dirname, "src"),
-        pages: path.join(__dirname, "src/pages"),
-        components: path.join(__dirname, "src/components"),
       },
     },
     {

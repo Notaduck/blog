@@ -1,16 +1,9 @@
-import { FC } from "react";
 import { Link, graphql } from "gatsby";
 import { FiCoffee, FiCalendar, FiTerminal } from "react-icons/fi";
-import { ArticleListQuery } from "../../graphql-types";
 import { Layout } from "@components/layout";
 import { SEO } from "@components/seo";
 
-type Props = {
-  data: ArticleListQuery;
-  pageContext: any;
-};
-
-const ArticleList: FC<Props> = ({ data, pageContext }) => {
+const ArticleList = ({ data, pageContext }) => {
   const { currentPage, numPages } = pageContext;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
@@ -115,25 +108,4 @@ export const query = graphql`
   }
 `;
 
-//export const query = graphql`
-//  query articleList($skip: Int!, $limit: Int!) {
-//    allMarkdownRemark(
-//      sort: { fields: frontmatter___date, order: DESC }
-//      limit: $limit
-//      skip: $skip
-//    ) {
-//      nodes {
-//        id
-//        excerpt(truncate: true, pruneLength: 300)
-//        timeToRead
-//        frontmatter {
-//          date(formatString: "MMMM YYYY")
-//          title
-//          slug
-//          tags
-//        }
-//      }
-//    }
-//  }
-//`;
 export default ArticleList;

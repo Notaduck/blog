@@ -1,57 +1,61 @@
-import React, { FC, useEffect } from "react";
+import { FC } from "react";
 import { Link, graphql } from "gatsby";
+import { FiCoffee } from "react-icons/fi";
 
-import { Layout } from "../components/layout";
-import { SEO } from "../components/seo";
-import { FiCalendar, FiCoffee } from "react-icons/fi";
+import { Layout } from "@components/layout";
+import { SEO } from "@components/seo";
+import { Comments } from "@components/comments/comments";
 
 import "../styles/markdown.css";
-import { Comments } from "../components/comments/comments";
 import { ArticleData } from "./types";
 import ToC from "../components/toc";
+
+// type Props = {
+//   dat: Queries.
+// }
 
 const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
   const {
     frontmatter: { title, date },
     html,
     excerpt,
-    headings
+    headings,
   } = data.markdownRemark;
 
   return (
     <Layout>
       <div className="grid-cols-2">
-      <ToC headings={headings} />
-      <div className="mb-8 xs:mt-2 md:mt-8">
-        <h1 className=" font-inconsolata text-4xl font-black antialiased">
-          {" "}
-          {title}
-        </h1>
-        <div className="flex space-x-4">
-          <span> {date}</span>
+        <ToC headings={headings} />
+        <div className="mb-8 xs:mt-2 md:mt-8">
+          <h1 className=" font-inconsolata text-4xl font-black antialiased">
+            {" "}
+            {title}
+          </h1>
+          <div className="flex space-x-4">
+            <span> {date}</span>
 
-          <div className="flex space-x-2 items-center m-0">
-            <FiCoffee />
+            <div className="flex space-x-2 items-center m-0">
+              <FiCoffee />
 
-            <p className="m-0"> {data.markdownRemark.timeToRead} min </p>
+              <p className="m-0"> {data.markdownRemark.timeToRead} min </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="">
-        <SEO description={excerpt} title={title} />
-        <div className="grid grid-cols-1 divide-yespace-y-10gg">
-          <article
-            className="prose  md:prose-lg lg:prose-xl"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+        <div className="">
+          <SEO description={excerpt} title={title} />
+          <div className="grid grid-cols-1 divide-yespace-y-10gg">
+            <article
+              className="prose  md:prose-lg lg:prose-xl"
+              dangerouslySetInnerHTML={{ __html: html }}
+            />
 
-          <Comments issueTerm={location.pathname} />
-        </div>
-        <div className="flex justify-center mt-10 mb-10  ">
-          <Link
-            to="/blog"
-            className="p-3  
+            <Comments issueTerm={location.pathname} />
+          </div>
+          <div className="flex justify-center mt-10 mb-10  ">
+            <Link
+              to="/blog"
+              className="p-3  
             uppercase
             cursor-pointer 
             border-gray-600
@@ -60,12 +64,11 @@ const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
              hover:border-gray-800
             hover:text-gray-300
             dark:text-white"
-          >
-            go back
-          </Link>
+            >
+              go back
+            </Link>
+          </div>
         </div>
-      </div>
-
       </div>
     </Layout>
   );
