@@ -1,17 +1,14 @@
-import React from 'react'
-// import profile from '../images/profile.png'
-
-import { FaGithub } from 'react-icons/fa';
-import { FaDribbble } from 'react-icons/fa';
-import { FaTwitter } from 'react-icons/fa';
-import { FaRegEnvelope } from 'react-icons/fa';
+import { FaGithub } from "react-icons/fa";
+import { FaDribbble } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaRegEnvelope } from "react-icons/fa";
 
 export const Card = () => {
   return (
     <div className="w-full">
       <div className="flex flex-col justify-center max-w-xs mx-auto bg-white shadow-xl rounded-xl p-5">
         <div className="">
-            <p>image here</p>
+          <p>image here</p>
           {/* <img className="w-32 mx-auto shadow-xl rounded-full" src={profile} alt="Profile face" /> */}
         </div>
         <div className="text-center mt-5">
@@ -22,25 +19,37 @@ export const Card = () => {
             Front-End Developer/Designer
           </p>
           <div className="flex align-center justify-center mt-4">
-            <a className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-gray-800 hover:bg-gray-800 rounded-full hover:text-white transition-colors duration-300" href="https://github.com/BraydenTW">
+            <a
+              className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-gray-800 hover:bg-gray-800 rounded-full hover:text-white transition-colors duration-300"
+              href="https://github.com/BraydenTW"
+            >
               <FaGithub />
               <span className="sr-only">Github</span>
             </a>
-            <a className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-pink-600 hover:bg-pink-600 rounded-full hover:text-white transition-colors duration-300" href="https://github.com/BraydenTW">
+            <a
+              className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-pink-600 hover:bg-pink-600 rounded-full hover:text-white transition-colors duration-300"
+              href="https://github.com/BraydenTW"
+            >
               <FaDribbble />
               <span className="sr-only">Dribble</span>
             </a>
-            <a className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-blue-500 hover:bg-blue-500 rounded-full hover:text-white transition-colors duration-300" href="https://github.com/BraydenTW">
+            <a
+              className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-blue-500 hover:bg-blue-500 rounded-full hover:text-white transition-colors duration-300"
+              href="https://github.com/BraydenTW"
+            >
               <FaTwitter />
-              <span className="sr-only">Twitter</span>  
+              <span className="sr-only">Twitter</span>
             </a>
-            <a className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-teal-500 hover:bg-teal-500 rounded-full hover:text-white transition-colors duration-300" href="https://github.com/BraydenTW">
+            <a
+              className="text-xl m-1 p-1 sm:m-2 sm:p-2 text-teal-500 hover:bg-teal-500 rounded-full hover:text-white transition-colors duration-300"
+              href="https://github.com/BraydenTW"
+            >
               <FaRegEnvelope />
-              <span className="sr-only">Email</span>  
+              <span className="sr-only">Email</span>
             </a>
           </div>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
