@@ -1,7 +1,3 @@
-// require("prismjs/themes/prism-twilight.css")
-// require("./src/styles/prism-onedark.css")
-// require(  "./src/styles/markdown.css" )
-
 // TailwindCSS
 // Read more on how to add other base styles https://tailwindcss.com/docs/adding-base-styles
 // Extracting components https://tailwindcss.com/docs/extracting-components
@@ -18,10 +14,3 @@
 import "./src/styles/markdown.css"
 import "./src/styles/prism-onedark.css"
 import "./src/styles/global.css"
-// import './node_modules/prismjs/themes/prism-tomorrow.css'
-
-//     const isDarkmode = useDarkMode().value
-//     return <React.Fragment>
-//         {children}
-//     </React.Fragment>
-// }

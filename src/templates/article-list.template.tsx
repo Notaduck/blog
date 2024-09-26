@@ -1,9 +1,9 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link, graphql } from "gatsby";
 import { FiCoffee, FiCalendar, FiTerminal } from "react-icons/fi";
 import { ArticleListQuery } from "../../graphql-types";
-import { Layout } from "../src/components/layout";
-import { SEO } from "../src/components/seo";
+import { Layout } from "@components/layout";
+import { SEO } from "@components/seo";
 
 type Props = {
   data: ArticleListQuery;

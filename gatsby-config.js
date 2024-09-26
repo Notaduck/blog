@@ -17,6 +17,16 @@ module.exports = {
       `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
     {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@components": "src/components",
+          "@src": "src",
+        },
+        extensions: ["ts", "tsx", "js", "jsx"],
+      },
+    },
+    {
       resolve: "gatsby-plugin-use-dark-mode",
       options: {
         classNameDark: "dark-mode",

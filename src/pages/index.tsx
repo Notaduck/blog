@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Layout } from "../components";
 import { content } from "../content";
 import Typical from "react-typical";
 import { Section } from "../components/indexPage/section";
@@ -12,6 +11,7 @@ import Svg from "../src/components/svg";
 import { UpDownWide } from "../components/indexPage/animations";
 import Content from "../src/elements/content";
 import Inner from "../src/elements/inner";
+import { Layout } from "@components/layout";
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
@@ -83,28 +83,28 @@ const Index = () => {
           <div>
             <h2>Languages I speak</h2>
             <div className="flex">
-            <div>
-              <h2> Frontend </h2>
-              <ul>
-                <li> HTML </li>
-                <li> CSS </li>
-                <li> Tailwind </li>
-                <li> React </li>
-                <li> Gatsby Js </li>
-                <li> Next js </li>
-                <li> Handlebars </li>
-              </ul>
-            </div>
+              <div>
+                <h2> Frontend </h2>
+                <ul>
+                  <li> HTML </li>
+                  <li> CSS </li>
+                  <li> Tailwind </li>
+                  <li> React </li>
+                  <li> Gatsby Js </li>
+                  <li> Next js </li>
+                  <li> Handlebars </li>
+                </ul>
+              </div>
 
-            <div>
-              <h2> Backend </h2>
-              <ul>
-                <li> Node </li>
-                <li> CSS </li>
-                <li> Tailwind </li>
-                <li> Handlebars </li>
-              </ul>
-            </div>
+              <div>
+                <h2> Backend </h2>
+                <ul>
+                  <li> Node </li>
+                  <li> CSS </li>
+                  <li> Tailwind </li>
+                  <li> Handlebars </li>
+                </ul>
+              </div>
             </div>
           </div>
 

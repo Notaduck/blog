@@ -1,35 +1,46 @@
 import * as React from "react";
-import { Global } from "@emotion/react";
+import { Global, Interpolation, Theme } from "@emotion/react";
 import { SEO } from "./seo";
 
-type LayoutProps = { children: React.ReactNode; className?: string };
+// Define a type for the theme to ensure it includes `colors`.
+interface CustomTheme extends Theme {
+  colors?: {
+    primary?: string;
+    background?: string;
+  };
+}
 
-export const Layout = ({ children, className = `` }: LayoutProps) => (
+type LayoutProps = {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export const Layout: React.FC<LayoutProps> = ({ children, className = "" }) => (
   <React.Fragment>
     <Global
-      styles={(theme) => ({
+      styles={(theme: CustomTheme): Interpolation<CustomTheme> => ({
         "*": {
-          boxSizing: `inherit`,
+          boxSizing: "inherit",
           "&:before": {
-            boxSizing: `inherit`,
+            boxSizing: "inherit",
           },
           "&:after": {
-            boxSizing: `inherit`,
+            boxSizing: "inherit",
           },
         },
         html: {
-          fontSize: `18px`,
-          WebkitTextSizeAdjust: `100%`,
+          fontSize: "18px",
+          WebkitTextSizeAdjust: "100%",
         },
         img: {
-          borderStyle: `none`,
+          borderStyle: "none",
         },
         pre: {
-          fontFamily: `monospace`,
-          fontSize: `1em`,
+          fontFamily: "monospace",
+          fontSize: "1em",
         },
         "[hidden]": {
-          display: `none`,
+          display: "none",
         },
         "::selection": {
           backgroundColor: theme?.colors?.primary,
