@@ -1,10 +1,10 @@
-import * as React from "react"
-import { Global } from "@emotion/react"
-import SEO from "./seo"
+import * as React from "react";
+import { Global } from "@emotion/react";
+import { SEO } from "./seo";
 
-type LayoutProps = { children: React.ReactNode; className?: string }
+type LayoutProps = { children: React.ReactNode; className?: string };
 
-const Layout = ({ children, className = `` }: LayoutProps) => (
+export const Layout = ({ children, className = `` }: LayoutProps) => (
   <React.Fragment>
     <Global
       styles={(theme) => ({
@@ -32,14 +32,17 @@ const Layout = ({ children, className = `` }: LayoutProps) => (
           display: `none`,
         },
         "::selection": {
-          backgroundColor: theme.colors.primary,
-          color: theme.colors.background,
+          backgroundColor: theme?.colors?.primary,
+          color: theme?.colors?.background,
         },
       })}
     />
-    <SEO />
+    <SEO
+      title={undefined}
+      description={undefined}
+      pathname={undefined}
+      children={undefined}
+    />
     <main className={className}>{children}</main>
   </React.Fragment>
-)
-
-export default Layout
+);
