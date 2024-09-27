@@ -13,9 +13,25 @@ module.exports = {
     profession: "Software Developer",
     siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
   },
+  graphqlTypegen: {
+    typesOutputPath: `gatsby-types.d.ts`,
+    generateOnBuild: false,
+    documentSearchPaths: [`./gatsby-node.ts`, `./plugins/**/gatsby-node.ts`],
+    // Other options...
+  },
   plugins: [
-      `gatsby-plugin-netlify`,
+    `gatsby-plugin-netlify`,
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@components": "src/components",
+          "@src": "src",
+        },
+        extensions: ["ts", "tsx", "js", "jsx"],
+      },
+    },
     {
       resolve: "gatsby-plugin-use-dark-mode",
       options: {
@@ -23,14 +39,6 @@ module.exports = {
         classNameLight: "light-mode",
         storageKey: "darkMode",
         minify: true,
-      },
-    },
-    {
-      resolve: "gatsby-plugin-root-import",
-      options: {
-        src: path.join(__dirname, "src"),
-        pages: path.join(__dirname, "src/pages"),
-        components: path.join(__dirname, "src/components"),
       },
     },
     {
@@ -85,7 +93,7 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
-            `gatsby-remark-autolink-headers`,
+          `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-images`,
             options: {

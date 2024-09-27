@@ -2,13 +2,23 @@ import styled from "@emotion/styled";
 import React from "react";
 import tw from "twin.macro";
 
-const ToC = ({ headings }) => (
+// Define the type for the headings prop
+interface Heading {
+  value: string;
+  depth: number;
+}
+
+interface ToCProps {
+  headings: Heading[];
+}
+
+const ToC = ({ headings }: ToCProps) => (
   <TOC>
-    <Title className='underline'>Table of contents</Title>
+    <Title className="underline">Table of contents</Title>
     <InnerScroll>
       {headings.map((heading) => {
         if (heading.depth > 4) {
-          return <div />;
+          return <div key={heading.value} />;
         }
 
         return (
@@ -25,19 +35,16 @@ const ToC = ({ headings }) => (
   </TOC>
 );
 
-const TOC = ({ children }) => (
-  <ul className="bg-primary  border-black fixed hidde lg:flex flex-col rounded-2xl p-3 mt-8 my-3 w-full left-[calc(55%_+_400px)] top-[90px]">
+// Define the props type for the TOC component
+interface TOCProps {
+  children: React.ReactNode;
+}
+
+const TOC = ({ children }: TOCProps) => (
+  <ul className="bg-primary border-black fixed hidde lg:flex flex-col rounded-2xl p-3 mt-8 my-3 w-full left-[calc(55%_+_400px)] top-[90px]">
     {children}
   </ul>
 );
-
-const Toc = styled.ul`
-  ${tw`bg-white fixed hidden lg:flex flex-col rounded p-3 my-3`};
-  width: 20rem;
-  left: calc(50% + 400px);
-  top: 80px;
-  max-height: 30vh;
-`;
 
 const Title = tw.h2`text-2xl mb-2`;
 

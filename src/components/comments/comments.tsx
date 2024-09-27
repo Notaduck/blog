@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import useDarkMode from "use-dark-mode";
 
 type Props = {
@@ -21,14 +21,15 @@ export const Comments: FC<Props> = ({ issueTerm }) => {
     script.setAttribute("crossorigin", "anonymous");
 
     const scriptParentNode = document.getElementById(commentsUUID);
-    scriptParentNode.appendChild(script);
+    scriptParentNode?.appendChild(script);
 
     return () => {
       // cleanup - remove the older script with previous theme
-      scriptParentNode.removeChild(scriptParentNode.firstChild);
+      if (scriptParentNode?.firstChild != null) {
+        scriptParentNode.removeChild(scriptParentNode?.firstChild);
+      }
     };
   }, [isDarkMode]);
 
   return <div id={commentsUUID} />;
 };
-
