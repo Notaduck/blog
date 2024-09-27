@@ -1,7 +1,7 @@
 ---
 slug: "/stripe-multi-client-factory-pattern"
 title: "Stripe Multi-Client Factory Pattern in NestJS"
-date: "2024-26-09"
+date: "2024-09-26"
 tags: ["NestJS", "Stripe"]
 published: true
 ---
