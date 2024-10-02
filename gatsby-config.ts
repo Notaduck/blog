@@ -21,6 +21,18 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-netlify`,
+    {
+      resolve: `gatsby-plugin-umami`,
+      options: {
+        websiteId: "f12cc39a-7541-44b1-8654-56717dc6fe0b",
+        srcUrl: "https://cloud.umami.is/script.js",
+        includeInDevelopment: false,
+        autoTrack: true,
+        respectDoNotTrack: true,
+        dataCache: false,
+        dataDomains: "guldberglab.info",
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-alias-imports`,

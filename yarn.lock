@@ -5088,6 +5088,14 @@ babel-preset-gatsby@^3.13.2:
     gatsby-core-utils "^4.13.1"
     gatsby-legacy-polyfills "^3.13.1"
 
+babel-runtime@^6.26.0:
+  version "6.26.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
+  integrity sha512-ITKNuq2wKlW1fJg9sSW52eepoYgZBggvOAHC0u/CYu/qxQ9EVzThCgR69BnSXLHjy2f7SY5zaQ4yt7H9ZVxY2g==
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.11.0"
+
 backo2@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/backo2/-/backo2-1.0.2.tgz#31ab1ac8b129363463e35b3ebb69f4dfcfba7947"
@@ -5872,6 +5880,11 @@ core-js-pure@^3.23.3:
   version "3.33.2"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.33.2.tgz#644830db2507ef84d068a70980ccd99c275f5fa6"
   integrity sha512-a8zeCdyVk7uF2elKIGz67AjcXOxjRbwOLz8SbklEso1V+2DoW4OkAMZN9S9GBgvZIaqQi/OemFX4OiSoQEmg1Q==
+
+core-js@^2.4.0:
+  version "2.6.12"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
+  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-js@^3.31.0:
   version "3.33.2"
@@ -8173,6 +8186,13 @@ gatsby-plugin-typescript@^5.13.1:
     "@babel/preset-typescript" "^7.18.6"
     "@babel/runtime" "^7.20.13"
     babel-plugin-remove-graphql-queries "^5.13.1"
+
+gatsby-plugin-umami@^0.1.5:
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-umami/-/gatsby-plugin-umami-0.1.5.tgz#bb23c67f060465dee02bd9513c54425030733f24"
+  integrity sha512-eeMHRIZ0LMKaUuVz7OZ3o3HlnlOLf4F4vGS6OsZw2QrI7rGBjWLm8h2hehfWlin/a1G8ydY1vOw3ucj7JX0Iig==
+  dependencies:
+    babel-runtime "^6.26.0"
 
 gatsby-plugin-use-dark-mode@^2.0.1:
   version "2.0.1"
@@ -12531,6 +12551,11 @@ regenerate@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/regenerate/-/regenerate-1.4.2.tgz#b9346d8827e8f5a32f7ba29637d398b69014848a"
   integrity sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==
+
+regenerator-runtime@^0.11.0:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
+  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.9"
