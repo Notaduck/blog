@@ -11,13 +11,12 @@ module.exports = {
     author: `@notaduck`,
     name: "Danie Guldberg Aaes",
     profession: "Software Developer",
-    siteUrl: `https://stupefied-lalande-60e9d4.netlify.app`,
+    siteUrl: `https://guldberglab.info`,
   },
   graphqlTypegen: {
     typesOutputPath: `gatsby-types.d.ts`,
     generateOnBuild: false,
     documentSearchPaths: [`./gatsby-node.ts`, `./plugins/**/gatsby-node.ts`],
-    // Other options...
   },
   plugins: [
     `gatsby-plugin-netlify`,
