@@ -4,6 +4,11 @@ title: "How to send email with Gatsby functions and Sendgrid"
 date: "2022-01-02"
 tags: ["gatsby", "sendgrid"]
 published: true
+meta:
+  description: "Learn how to create a contact form in Gatsby and send emails using SendGrid functions. A step-by-step guide for freelancers and bloggers."
+  keywords: "Gatsby, SendGrid, serverless functions, email, contact form"
+  author: "Daniel" 
+  excerpt: "In this article, I will show you how to create a contact form using Gatsby and SendGrid to easily send emails."
 ---
 
 I believe that every personal blog and portfolo website should have a way to reach out to the owner of the website. It is utterly important to have a contact form if you are a freelancer and want to reach out to new clients or a comment section if you are writing a blog where you would like to get feedback or start a discussion between you and the reader.

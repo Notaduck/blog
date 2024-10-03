@@ -1,9 +1,14 @@
 ---
 slug: '/how_to_setup_Jupyter'
-title: 'Setup Jupyter Notebook server – Centos/Rhel 7'
+title: 'Setup Jupyter Notebook Server – CentOS/RHEL 7'
 date: '2015-01-03'
 tags: ['python']
 published: true 
+meta:
+  description: 'A step-by-step guide to setting up a Jupyter Notebook server on CentOS/RHEL 7, enabling remote access and HTTPS.'
+  keywords: 'Jupyter, CentOS, RHEL, Python, server setup, notebook server, remote access'
+  author: 'Your Name'  # Replace with your name
+  excerpt: 'Learn how to install and configure Jupyter Notebook on CentOS/RHEL 7 for remote access and HTTPS support.'
 ---
 
 I bought a python course from udemy because they have some great prices right now, lucky me.
