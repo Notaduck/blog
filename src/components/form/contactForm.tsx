@@ -14,6 +14,13 @@ type InputProps = {
   errors?: any; // Type for errors
 };
 
+type FormData = {
+  email: string,
+  name: string,
+  subjet: string
+  text: string
+}
+
 const Input: React.FC<InputProps> = ({ label, name, type = "text", placeholder, register, errors }) => {
   return (
     <div className="w-full px-3 mb-2">
@@ -36,6 +43,12 @@ const Input: React.FC<InputProps> = ({ label, name, type = "text", placeholder, 
   );
 };
 
+const encode = (data: Object) => {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
 export const ContactForm = () => {
   const [isSend, setIsSend] = useState(false);
   const resolver = useYupValidationResolver(validationSchema);
@@ -43,20 +56,19 @@ export const ContactForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver });
+  } = useForm<FormData>({ resolver });
 
-  const onSubmit = (formData) => {
-    event.preventDefault();
-
-    const myForm = event.target;
-
+  const onSubmit = (formData: FormData) => {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
+      body: encode({ "form-name": "contact", ...formData })
     })
-      .then(() => setIsSend(true))
-      .catch((error) => alert(error));
+      .then(() => {
+        setIsSend(true)
+        alert("Success!")
+      })
+      .catch(error => alert(error));
   };
 
   return !isSend ? (
