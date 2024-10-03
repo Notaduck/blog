@@ -39,7 +39,7 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
               <time dateTime={date} className="text-gray-500">
                 {date}
               </time>
-              <span className="text-gray-500">By: {meta.author}</span>
+              <span className="text-gray-500">By: {meta?.author}</span>
               <div className="flex space-x-2 items-center m-0">
                 <FiCoffee />
                 <p className="m-0">{timeToRead} min</p>
@@ -49,15 +49,15 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
 
           <section className="prose md:prose-lg lg:prose-xl">
             <SEO
-              description={meta.description}
+              description={meta?.description}
               title={title}
-              keywords={meta.keywords}
+              keywords={meta?.keywords}
             />
             <div dangerouslySetInnerHTML={{ __html: html }} />
           </section>
 
           <footer>
-            <Comments issueTerm={location.pathname} />
+            <Comments issueTerm={location?.pathname} />
             <div className="flex justify-center mt-10 mb-10">
               <Link
                 to="/blog"
