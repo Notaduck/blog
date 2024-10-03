@@ -45,8 +45,18 @@ export const ContactForm = () => {
     formState: { errors },
   } = useForm({ resolver });
 
-  const onSubmit = async (data) => {
-    setIsSend(true); // Set the success state
+  const onSubmit = (formData) => {
+    event.preventDefault();
+
+    const myForm = event.target;
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => setIsSend(true))
+      .catch((error) => alert(error));
   };
 
   return !isSend ? (
@@ -88,7 +98,7 @@ export const ContactForm = () => {
 
 
         <div className="w-full px-3 bo  mb-2">
-          <label htmlFor={name} className="block text-sm font-medium">
+          <label htmlFor={'text'} className="block text-sm font-medium">
             Body
           </label>
           <Textarea
@@ -100,8 +110,8 @@ export const ContactForm = () => {
             placeholder="Write your message here..."
             errors={errors} // Assuming you have an errors prop in TextArea
           />
-          {errors?.[name] && (
-            <p className="text-red-500">{errors[name].message}</p>
+          {errors?.['text'] && (
+            <p className="text-red-500">{errors['text'].message}</p>
           )}
         </div>
       </fieldset>
