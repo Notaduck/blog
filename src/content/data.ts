@@ -29,7 +29,7 @@ export const content: Type = {
       "with a passion for devops \u{1F680} ",
       2000,
 
-      "A Linux geek linux  " ,
+      "A Linux geek",
       2000,
       "a keyboard entuast \u{2328}",
       2000,

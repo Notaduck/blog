@@ -1,23 +1,26 @@
+import React, { useEffect, useState, useRef } from 'react';
 import { ContactForm } from "@components/form";
 import { Section } from "@components/indexPage";
 import { Layout } from "@components/layout";
 import { content } from "@src/content/data";
 import { StaticImage } from "gatsby-plugin-image";
-import { useState, useEffect } from "react";
 import Typical from "react-typical";
+import { SEO } from "@components/seo"; // Ensure you have an SEO component
+import FloatingIcons from "@components/floating-icons";
 
 const Index = () => {
   const [animated, setAnimated] = useState(false);
+  const floatingIconsRef = useRef<HTMLDivElement>(null); // Create a ref for the icons container
 
   useEffect(() => {
     setAnimated(true);
   }, []);
 
   const calculateAge = (dob: string) => {
-    var today = new Date();
-    var birthDate = new Date(dob); // create a date object directly from `dob1` argument
-    var age_now = today.getFullYear() - birthDate.getFullYear();
-    var m = today.getMonth() - birthDate.getMonth();
+    const today = new Date();
+    const birthDate = new Date(dob);
+    let age_now = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
 
     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
       age_now--;
@@ -26,37 +29,46 @@ const Index = () => {
     return age_now;
   };
 
+  enum SECTIONS {
+    HERO = 'hero',
+    ABOUT = 'about',
+    CONTACT = 'contact'
+  }
+
   return (
     <Layout>
-      <Section headOrTail id="hero" to="tech_stack" btnText="Scroll">
+      <SEO
+        title="Welcome to My Personal Blog"
+        description="This is the personal blog of Daniel Guldberg Aaes, where I share my insights on software development and technology."
+        keywords="Daniel Guldberg Aaes, personal blog, software development, technology, programming"
+      />
+
+      <Section headOrTail id={SECTIONS.HERO} to={SECTIONS.ABOUT} btnText="Scroll">
         <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto ">
           <div className="w-10/12 mx-auto py-14 flex flex-col xl:flex-row-reverse items-center justify-between ">
-            <div className="  flex-1 flex flex-col w-full md:w-2/5">
-              <StaticImage src="../images/profile.png" alt="avatar" />
+            <div className="flex-1 flex flex-col w-full md:w-2/5">
+              <StaticImage loading='eager' src="../images/profile.png" alt="avatar of Daniel Guldberg Aaes" />
             </div>
-            <div className=" text-main-text text-center md:text-left">
+            <div className="text-main-text text-center md:text-left">
               <h2
-                className={`${
-                  animated ? "" : "translate-y-10 opacity-0"
-                } font-inconsolata transform transition duration-2000 ease-in-out text-3xl md:text-5xl font-bold`}
+                className={`${animated ? "" : "translate-y-10 opacity-0"
+                  } font-inconsolata transform transition duration-2000 ease-in-out text-3xl md:text-5xl font-bold`}
               >
                 <br />
                 {content.index.text[1]}
               </h2>
 
               <h2
-                className={`${
-                  animated ? "" : "translate-y-10 opacity-0"
-                } font-inconsolata transform transition duration-2000 ease-in-out text-2xl md:text-3xl font-bold`}
+                className={`${animated ? "" : "translate-y-10 opacity-0"
+                  } font-inconsolata transform transition duration-2000 ease-in-out text-2xl md:text-3xl font-bold`}
               >
                 {content.index.text[2]}
                 <br />
                 <br />
               </h2>
               <h1
-                className={`${
-                  animated ? "" : "translate-y-10 opacity-0"
-                }  font-inconsolata transform transition duration-2000 ease-in-out font-bold text-2xl text-gray-500`}
+                className={`${animated ? "" : "translate-y-10 opacity-0"
+                  } font-inconsolata transform transition duration-2000 ease-in-out font-bold text-2xl text-gray-500`}
               >
                 {content.index.text[3]}{" "}
                 <Typical
@@ -66,119 +78,47 @@ const Index = () => {
                 />
               </h1>
             </div>
+            {/* Include FloatingIcons and pass the ref */}
+          </div>
+
+          <div ref={floatingIconsRef} style={{ position: 'relative', width: '100%', height: '300px' }}> {/* Adjust height as needed */}
+            <FloatingIcons containerRef={floatingIconsRef} />
           </div>
         </div>
       </Section>
 
-      <Section id="tech_stack" to="about_me" btnText="About Me">
-        <div className="flex justify-center items-start space-x-14">
-          <div>
-            <h2>Languages I speak</h2>
-            <div className="flex">
-              <div>
-                <h2> Frontend </h2>
-                <ul>
-                  <li> HTML </li>
-                  <li> CSS </li>
-                  <li> Tailwind </li>
-                  <li> React </li>
-                  <li> Gatsby Js </li>
-                  <li> Next js </li>
-                  <li> Handlebars </li>
-                </ul>
-              </div>
+      <Section id={SECTIONS.ABOUT} to={SECTIONS.CONTACT} btnText="Get in touch">
 
-              <div>
-                <h2> Backend </h2>
-                <ul>
-                  <li> Node </li>
-                  <li> CSS </li>
-                  <li> Tailwind </li>
-                  <li> Handlebars </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* <div>
-            <h2>Tools I use</h2>
-            <ul>
-              <li> Node </li>
-              <li> CSS </li>
-              <li> Tailwind </li>
-              <li> Handlebars </li>
-            </ul>
-          </div> */}
-        </div>
-
-        {/* <Parallax pages={1}>
-      <div>
-        <Divider speed={0.7} offset={0} factor={2}></Divider> 
-        <Content sx={{ variant: `texts.bigger` }} speed={0.4} offset={0} factor={1}></Content>
-      </div>
-    </Parallax> */}
-      </Section>
-
-      <Section id="about_me" to="contact" btnText="Get in touch">
-        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12">
-          <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
+        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12 flex justify-center align-middle flex-col ">
+          <h2 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 font-black" role="heading" aria-level="2">
             Who am I?
-          </h1>
+          </h2>
           <p className="mb-4">
-            My name is Daniel Guldberg Aaes, I am a {calculateAge("1991-07-02")}{" "}
-            year old with a bachelor in Sofware development from the IT
-            University of Copenhagen in Denmark.
+            My name is Daniel Guldberg Aaes, and I am {calculateAge("1991-07-02")} years old, with a bachelor’s degree in Software Development from the IT University of Copenhagen in Denmark.
           </p>
 
           <p>
-            {" "}
-            Initially I started out in the social and healt care profession and
-            worked there for a coule of years. Howeever, I had always been in
-            doubt if I wanted to work with people or in the tech industry due to
-            fact that I was afraid of turning a hobby into work and loosing the
-            joy within it. But at some point I took the decision to transition
-            my career from the social and healt care field into Initially I
-            started out in the social and healt care profession and worked there
-            for a coule of years. Howeever, I had always been in doubt if I
-            wanted to work with people or in the tech industry due to fact that
-            I was afraid of turning a hobby into work and loosing the joy within
-            it.
+            Initially, I started out in the social and healthcare profession and worked there for a couple of years. However, I had always been in doubt if I wanted to work with people or in the tech industry due to my fear of turning a hobby into work and losing the joy within it. At some point, I decided to transition my career from the social and healthcare field to technology.
           </p>
 
-          <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
+          <h2 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 font-black" role="heading" aria-level="2">
             Why this blog?
-          </h1>
+          </h2>
           <p className="mb-4">
-            Throuhout the last couple of years I have gained experince with
-            various programming languages in different domains such as Java,
-            Python, C, C#, F# JS and so on. Most of the knowlegde I have gained
-            is spending countless of hours reading the docs, used google fu and
-            read a tun of online tutorials and guides. I fell that I now have
-            enough experience to pass on the knowlgede and at the same time I
-            learn a whole lot by making theese blog post since it forces me to
-            reflect on my aquired knowlegde which often leads to flaws where I
-            have to dive deeper in the topic in order to pass on the knowlegde
-            in a responsive way.
+            Throughout the last couple of years, I have gained experience with various programming languages in different domains such as Java, Python, C, C#, F#, JavaScript, and so on. Most of the knowledge I have gained is from spending countless hours reading documentation, using Google, and reading a ton of online tutorials and guides. I feel that I now have enough experience to pass on this knowledge while also learning a lot by creating these blog posts, as it forces me to reflect on my acquired knowledge, which often leads to flaws that I must address.
           </p>
-
-          <h1 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 space-x-4 font-black">
-            What do I do in my sparetime
-          </h1>
-
-          <p></p>
         </div>
       </Section>
 
       <Section
-        id="contact"
+        id={SECTIONS.CONTACT}
         to="hero"
-        // className="flex-col items-center justify center"
         btnText="Back to the top"
         reset
         headOrTail
       >
         <div className="flex-col pt-20 w-10/12 justify-center items-center mx-auto my-auto">
-          <h1> Ping me section</h1>
+          <h1 role="heading" aria-level="1"> Ping me section</h1>
         </div>
         <ContactForm />
       </Section>
