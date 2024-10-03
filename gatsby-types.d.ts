@@ -1419,6 +1419,7 @@ type MarkdownRemarkFilterListInput = {
 
 type MarkdownRemarkFrontmatter = {
   readonly date: Maybe<Scalars['Date']>;
+  readonly meta: Maybe<MarkdownRemarkFrontmatterMeta>;
   readonly published: Maybe<Scalars['Boolean']>;
   readonly slug: Maybe<Scalars['String']>;
   readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
@@ -1435,6 +1436,7 @@ type MarkdownRemarkFrontmatter_dateArgs = {
 
 type MarkdownRemarkFrontmatterFieldSelector = {
   readonly date: InputMaybe<FieldSelectorEnum>;
+  readonly meta: InputMaybe<MarkdownRemarkFrontmatterMetaFieldSelector>;
   readonly published: InputMaybe<FieldSelectorEnum>;
   readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly tags: InputMaybe<FieldSelectorEnum>;
@@ -1443,14 +1445,44 @@ type MarkdownRemarkFrontmatterFieldSelector = {
 
 type MarkdownRemarkFrontmatterFilterInput = {
   readonly date: InputMaybe<DateQueryOperatorInput>;
+  readonly meta: InputMaybe<MarkdownRemarkFrontmatterMetaFilterInput>;
   readonly published: InputMaybe<BooleanQueryOperatorInput>;
   readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly tags: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
+type MarkdownRemarkFrontmatterMeta = {
+  readonly author: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly excerpt: Maybe<Scalars['String']>;
+  readonly keywords: Maybe<Scalars['String']>;
+};
+
+type MarkdownRemarkFrontmatterMetaFieldSelector = {
+  readonly author: InputMaybe<FieldSelectorEnum>;
+  readonly description: InputMaybe<FieldSelectorEnum>;
+  readonly excerpt: InputMaybe<FieldSelectorEnum>;
+  readonly keywords: InputMaybe<FieldSelectorEnum>;
+};
+
+type MarkdownRemarkFrontmatterMetaFilterInput = {
+  readonly author: InputMaybe<StringQueryOperatorInput>;
+  readonly description: InputMaybe<StringQueryOperatorInput>;
+  readonly excerpt: InputMaybe<StringQueryOperatorInput>;
+  readonly keywords: InputMaybe<StringQueryOperatorInput>;
+};
+
+type MarkdownRemarkFrontmatterMetaSortInput = {
+  readonly author: InputMaybe<SortOrderEnum>;
+  readonly description: InputMaybe<SortOrderEnum>;
+  readonly excerpt: InputMaybe<SortOrderEnum>;
+  readonly keywords: InputMaybe<SortOrderEnum>;
+};
+
 type MarkdownRemarkFrontmatterSortInput = {
   readonly date: InputMaybe<SortOrderEnum>;
+  readonly meta: InputMaybe<MarkdownRemarkFrontmatterMetaSortInput>;
   readonly published: InputMaybe<SortOrderEnum>;
   readonly slug: InputMaybe<SortOrderEnum>;
   readonly tags: InputMaybe<SortOrderEnum>;
@@ -2739,7 +2771,7 @@ type PostsByIDQueryVariables = Exact<{
 }>;
 
 
-type PostsByIDQuery = { readonly markdownRemark: { readonly html: string | null, readonly excerpt: string | null, readonly timeToRead: number | null, readonly headings: ReadonlyArray<{ readonly id: string | null, readonly value: string | null, readonly depth: number | null } | null> | null, readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly date: string | null } | null } | null };
+type PostsByIDQuery = { readonly markdownRemark: { readonly html: string | null, readonly excerpt: string | null, readonly timeToRead: number | null, readonly headings: ReadonlyArray<{ readonly id: string | null, readonly value: string | null, readonly depth: number | null } | null> | null, readonly frontmatter: { readonly title: string | null, readonly tags: ReadonlyArray<string | null> | null, readonly date: string | null, readonly meta: { readonly description: string | null, readonly keywords: string | null, readonly author: string | null, readonly excerpt: string | null } | null } | null } | null };
 
 type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

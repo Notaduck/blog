@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Link, graphql } from "gatsby";
+import { Link, PageProps, graphql } from "gatsby";
 import { FiCoffee } from "react-icons/fi";
 
 import { Layout } from "@components/layout";
@@ -7,73 +7,81 @@ import { SEO } from "@components/seo";
 import { Comments } from "@components/comments/comments";
 
 import "../styles/markdown.css";
-import { ArticleData } from "./types";
-import ToC from "../components/toc";
 
-// type Props = {
-//   dat: Queries.
-// }
+const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location }) => {
+  // Destructure markdownRemark safely
+  const markdownRemark = data.markdownRemark;
 
-const ArticleTemplate: FC<ArticleData> = ({ data, location }) => {
+  // Check if markdownRemark is null or undefined
+  if (!markdownRemark) {
+    return <div>Error: Post not found</div>;
+  }
+
   const {
-    frontmatter: { title, date },
+    frontmatter: { title, date, meta },
     html,
-    excerpt,
+    timeToRead,
     headings,
-  } = data.markdownRemark;
+  } = markdownRemark;
 
   return (
     <Layout>
-      <div className="grid-cols-2">
+      <main className="grid-cols-2">
+        {/*
         <ToC headings={headings} />
-        <div className="mb-8 xs:mt-2 md:mt-8">
-          <h1 className=" font-inconsolata text-4xl font-black antialiased">
-            {" "}
-            {title}
-          </h1>
-          <div className="flex space-x-4">
-            <span> {date}</span>
-
-            <div className="flex space-x-2 items-center m-0">
-              <FiCoffee />
-
-              <p className="m-0"> {data.markdownRemark.timeToRead} min </p>
+        */}
+        <article className="mb-8 xs:mt-2 md:mt-8">
+          <header>
+            <h1 className="font-inconsolata text-4xl font-black antialiased">
+              {title}
+            </h1>
+            <div className="flex space-x-4">
+              <time dateTime={date} className="text-gray-500">
+                {date}
+              </time>
+              <span className="text-gray-500">By: {meta.author}</span>
+              <div className="flex space-x-2 items-center m-0">
+                <FiCoffee />
+                <p className="m-0">{timeToRead} min</p>
+              </div>
             </div>
-          </div>
-        </div>
+          </header>
 
-        <div className="">
-          <SEO description={excerpt} title={title} />
-          <div className="grid grid-cols-1 divide-yespace-y-10gg">
-            <article
-              className="prose  md:prose-lg lg:prose-xl"
-              dangerouslySetInnerHTML={{ __html: html }}
+          <section className="prose md:prose-lg lg:prose-xl">
+            <SEO
+              description={meta.description}
+              title={title}
+              keywords={meta.keywords}
             />
+            <div dangerouslySetInnerHTML={{ __html: html }} />
+          </section>
 
+          <footer>
             <Comments issueTerm={location.pathname} />
-          </div>
-          <div className="flex justify-center mt-10 mb-10  ">
-            <Link
-              to="/blog"
-              className="p-3  
-            uppercase
-            cursor-pointer 
-            border-gray-600
-             border-2 rounded 
-             hover:bg-gray-800 
-             hover:border-gray-800
-            hover:text-gray-300
-            dark:text-white"
-            >
-              go back
-            </Link>
-          </div>
-        </div>
-      </div>
+            <div className="flex justify-center mt-10 mb-10">
+              <Link
+                to="/blog"
+                className="p-3  
+                           uppercase
+                           cursor-pointer 
+                         border-gray-600
+                           border-2 rounded 
+                         hover:bg-gray-800 
+                         hover:border-gray-800
+                         hover:text-gray-300
+                         dark:text-white"
+              >
+                Go back
+              </Link>
+            </div>
+          </footer>
+        </article>
+      </main>
     </Layout>
   );
 };
 
+// Update the GraphQL query to include all relevant frontmatter fields
 export const query = graphql`
   query PostsByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -89,6 +97,12 @@ export const query = graphql`
         title
         tags
         date(formatString: "MMMM YYYY")
+        meta {
+          description
+          keywords
+          author
+          excerpt
+        }
       }
     }
   }
