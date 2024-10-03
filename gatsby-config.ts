@@ -114,6 +114,7 @@ module.exports = {
               maxWidth: 590,
             },
           },
+          `gatsby-remark-prismjs-copy-button`,
           {
             resolve: `gatsby-remark-prismjs`,
             options: {

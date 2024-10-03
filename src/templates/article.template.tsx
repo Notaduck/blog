@@ -6,13 +6,11 @@ import { Layout } from "@components/layout";
 import { SEO } from "@components/seo";
 import { Comments } from "@components/comments/comments";
 
-import "../styles/markdown.css";
+// import "../styles/markdown.css";
 
 const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location }) => {
-  // Destructure markdownRemark safely
   const markdownRemark = data.markdownRemark;
 
-  // Check if markdownRemark is null or undefined
   if (!markdownRemark) {
     return <div>Error: Post not found</div>;
   }
@@ -26,42 +24,49 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
 
   return (
     <Layout>
-      <main className="grid-cols-2">
-        {/*
-        <ToC headings={headings} />
-        */}
-        <article className="mb-8 xs:mt-2 md:mt-8">
-          <header>
-            <h1 className="font-inconsolata text-4xl font-black antialiased">
-              {title}
-            </h1>
-            <div className="flex space-x-4">
-              <time dateTime={date} className="text-gray-500">
-                {date}
-              </time>
-              <span className="text-gray-500">By: {meta?.author}</span>
-              <div className="flex space-x-2 items-center m-0">
-                <FiCoffee />
-                <p className="m-0">{timeToRead} min</p>
-              </div>
+      <SEO
+        description={meta?.description}
+        title={title}
+        keywords={meta?.keywords}
+      />
+      <article className="mb-8 xs:mt-2 md:mt-8">
+        <div className="mb-4">
+          <h1 className="font-inconsolata text-4xl font-black antialiased">
+            {title}
+          </h1>
+          <div className="flex space-x-4">
+            <time dateTime={date} className="text-gray-500">
+              {date}
+            </time>
+            <span className="text-gray-500">By: {meta?.author}</span>
+            <div className="flex space-x-2 items-center m-0">
+              <FiCoffee />
+              <p className="m-0">{timeToRead} min</p>
             </div>
-          </header>
+          </div>
+        </div>
 
-          <section className="prose md:prose-lg lg:prose-xl">
-            <SEO
-              description={meta?.description}
-              title={title}
-              keywords={meta?.keywords}
-            />
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-          </section>
+        <section >
+          <div
 
-          <footer>
-            <Comments issueTerm={location?.pathname} />
-            <div className="flex justify-center mt-10 mb-10">
-              <Link
-                to="/blog"
-                className="p-3  
+            className="prose dark:prose-invert
+  prose-h1:font-bold prose-h1:text-xl
+   prose-p:text-justify prose-img:rounded-xl
+  prose-headings:underline mb-2"
+            dangerouslySetInnerHTML={{ __html: html }} />
+        </section>
+
+        <div className="relative flex py-5 items-center prose">
+          <div className="flex-grow border-t border-gray-400"></div>
+          <span className="flex-shrink mx-4 text-gray-400">Comments</span>
+          <div className="flex-grow border-t border-gray-400"></div>
+        </div>
+
+        <Comments issueTerm={location?.pathname} />
+        <div className="prose flex justify-center mt-10 mb-10">
+          <Link
+            to="/blog"
+            className="p-3  
                            uppercase
                            cursor-pointer 
                          border-gray-600
@@ -70,13 +75,11 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
                          hover:border-gray-800
                          hover:text-gray-300
                          dark:text-white"
-              >
-                Go back
-              </Link>
-            </div>
-          </footer>
-        </article>
-      </main>
+          >
+            Go back
+          </Link>
+        </div>
+      </article>
     </Layout>
   );
 };

@@ -1,23 +1,16 @@
-import React, { useState, FC } from "react";
+import { useState, FC } from "react";
 import { Transition } from "@headlessui/react";
 import useDarkMode from "use-dark-mode";
 
-import { NavLink } from "./navLink";
 import { Link } from "gatsby";
-import { useEffect } from "react";
 import { FaGreaterThan, FaHamburger, FaLessThan } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { content } from "../../content/data";
 
 export const NavBar: FC = () => {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const darkMode = useDarkMode(false);
 
-//   useEffect(() => {
-// const hours = new Date().getHours()
-// const isDayTime = hours > 6 && hours < 20
-//   });
 
   return (
     <div>
@@ -28,19 +21,17 @@ export const NavBar: FC = () => {
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center w-full h-full justify-between">
-              {/* <div className="h-full align-middle"> */}
               <Link
                 to="/"
                 className="font-inconsolata text-2xl font-bold󠁧 uppercase flex items-center h-full text-main-text px-3 font-medium transition-all duration-300"
               >
                 <FaLessThan /> {content.nav.titel} <FaGreaterThan />
               </Link>
-              {/* </div> */}
               <div className=" h-full hidden md:block">
                 <div className="h-full flex items-baseline py-auto">
                   {content.nav.items.map((link) => (
                     <Link
-                    key={link.slug}
+                      key={link.slug}
                       to={link.slug}
                       className=" font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white px-3 font-medium transition-all duration-300"
                     >

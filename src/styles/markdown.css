@@ -1,55 +1,7 @@
-.markdown {
-    @apply antialiased text-lg ;
+.gatsby-remark-prismjs-copy-button-container {
+  @apply left-4;
 }
 
-.markdown > h1 {
-  @apply text-5xl text-main-text mt-16 mb-8;
-}
-
-.markdown > h2 {
-  @apply text-3xl  font-bold text-main-text mt-4 mb-4;
-}
-
-.markdown > h3 {
-  @apply text-2xl text-main-text mb-8;
-}
-
-.markdown > h4 {
-  @apply text-main-text uppercase mb-8;
-}
-
-.markdown > h5 {
-  @apply text-sm text-main-text mb-8;
-}
-
-.markdown > h6 {
-  @apply text-xs text-main-text mb-8;
-}
-
-.markdown a {
-  @apply text-main-text;
-}
-
-.markdown > p {
-  @apply text-main-text;
-}
-
-.markdown > blockquote {
-  @apply text-main-text -ml-8 mb-8 border-l-2;
-}
-
-.markdown ul {
-  @apply text-main-text list-disc mb-8 ml-4 mt-4;
-}
-
-.markdown li {
-  @apply mb-4;
-}
-
-.markdown ol {
-  @apply list-decimal mb-8;
-}
-
-.markdown code {
-  @apply m-0;
+.gatsby-remark-prismjs-copy-button {
+  @apply hover:bg-[#bc435d] shadow-xl border-2 border-black bg-gray-300 text-black
 }

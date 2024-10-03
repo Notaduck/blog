@@ -31,5 +31,18 @@ export const Comments: FC<Props> = ({ issueTerm }) => {
     };
   }, [isDarkMode]);
 
-  return <div id={commentsUUID} />;
+  return <div
+
+    id={commentsUUID}>
+
+    <style jsx>{`
+        .utterances {
+       max-width: 65ch; /* Limit the width */
+          width: 100%; /* Ensure it takes the full width of the parent */
+          height: auto; /* Allow the height to adjust as needed */
+          margin-left: 0; /* Align to the left */
+          margin-right: auto; /* Center the remaining space on the right */
+        }
+      `}</style>
+  </div>;
 };

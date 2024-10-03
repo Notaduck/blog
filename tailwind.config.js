@@ -1,12 +1,69 @@
 module.exports = {
   mode: "jit",
-  content:[
- "./src/pages/*.{js,jsx,ts,tsx}",
-   "./src/components/**/*.{js,jsx,ts,tsx}"
-  ] ,
+  content: [
+    './src/pages/**/*.{js,jsx,ts,tsx}',
+    './src/components/**/*.{js,jsx,ts,tsx}',
+    './src/templates/**/*.{js,jsx,ts,tsx}',
+  ],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            // Existing customizations
+            color: theme('colors.gray.800'),
+            h1: {
+              fontWeight: '700',
+            },
+            h2: {
+            },
+
+            h3: {
+              marginBottom: '1rem',
+            },
+            // Increase specificity for h3 without classes
+            'h3:not([class])': {
+              marginBottom: '1rem',
+            },
+
+            h4: {
+              marginBottom: theme('spacing.1'),
+            },
+            // Add custom styles for ul and ol
+            ul: {
+              marginTop: theme('spacing.4'),
+              marginBottom: theme('spacing.4'),
+              marginLeft: theme('spacing.6'),
+              listStyleType: 'square', // You can also use 'square' or other list styles
+            },
+            'ul:not([class])': {
+              marginTop: theme('spacing.4'),
+              marginBottom: theme('spacing.4'),
+              marginLeft: theme('spacing.6'),
+              listStyleType: 'disc',
+              listStylePosition: 'outside',
+            },
+            'ol:not([class])': {
+              marginTop: theme('spacing.4'),
+              marginBottom: theme('spacing.4'),
+              marginLeft: theme('spacing.6'),
+              listStyleType: 'decimal',
+              listStylePosition: 'outside',
+            },
+            'li:not([class])': {
+              marginTop: theme('spacing.2'),
+              marginBottom: theme('spacing.2'),
+              color: theme('colors.gray.700'),
+            },
+            // Style nested lists
+            'ul ul, ul ol, ol ul, ol ol': {
+              marginLeft: theme('spacing.6'),
+            },
+            // Additional customizations as needed
+          },
+        },
+      }),
       bottom: {
         14: "6rem",
       },
