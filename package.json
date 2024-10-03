@@ -8,7 +8,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fontsource/unica-one": "^5.1.0",
-    "@headlessui/react": "^2.1.8",
+    "@headlessui/react": "^2.1.9",
     "@mdx-js/react": "^3.0.1",
     "@react-spring/parallax": "^9.7.4",
     "@sendgrid/mail": "^8.1.3",

@@ -22,9 +22,8 @@ export const Section: FC<TSection> = ({
   return (
     <section
       id={id}
-      className={`inline-flex flex-col relative w-full ${
-        headOrTail ? "min-h-full-minus-nav" : "min-h-screen"
-      }`}
+      className={`inline-flex flex-col relative w-full ${headOrTail ? "min-h-full-minus-nav" : "min-h-screen"
+        }`}
     >
       <div className="flex-1">{children}</div>
 
@@ -33,7 +32,6 @@ export const Section: FC<TSection> = ({
           spy={true}
           to={to}
           offset={reset && -50}
-          smooth
           className="cursor-pointer bottom-4 left-1/2  animate-bounce delay-100 flex flex-col items-center"
         >
           {icon} {btnText}

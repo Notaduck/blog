@@ -44,10 +44,15 @@ const Index = () => {
       />
 
       <Section headOrTail id={SECTIONS.HERO} to={SECTIONS.ABOUT} btnText="Scroll">
-        <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto ">
-          <div className="w-10/12 mx-auto py-14 flex flex-col xl:flex-row-reverse items-center justify-between ">
-            <div className="flex-1 flex flex-col w-full md:w-2/5">
-              <StaticImage loading='eager' src="../images/profile.png" alt="avatar of Daniel Guldberg Aaes" />
+        <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto overflow-hidden">
+          <div className="w-10/12 mx-auto py-6 flex flex-col xl:flex-row-reverse items-center justify-between !max-w-[2329px] max-h-[2084px]">
+            <div className="flex flex flex-col w-full md:w-2/5">
+              <StaticImage
+                loading='eager'
+                src="../images/profile.png"
+                alt="avatar of Daniel Guldberg Aaes"
+                className="!h-auto "
+              />
             </div>
             <div className="text-main-text text-center md:text-left">
               <h2
@@ -78,10 +83,9 @@ const Index = () => {
                 />
               </h1>
             </div>
-            {/* Include FloatingIcons and pass the ref */}
           </div>
 
-          <div ref={floatingIconsRef} style={{ position: 'relative', width: '100%', height: '300px' }}> {/* Adjust height as needed */}
+          <div ref={floatingIconsRef} style={{ position: 'relative', width: '100%', height: '300px' }}>
             <FloatingIcons containerRef={floatingIconsRef} />
           </div>
         </div>
@@ -89,7 +93,7 @@ const Index = () => {
 
       <Section id={SECTIONS.ABOUT} to={SECTIONS.CONTACT} btnText="Get in touch">
 
-        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12 flex justify-center align-middle flex-col ">
+        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12 flex justify-center align-middle flex-col prose ">
           <h2 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 font-black" role="heading" aria-level="2">
             Who am I?
           </h2>
