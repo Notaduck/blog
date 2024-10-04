@@ -11,7 +11,7 @@ meta:
   excerpt: "Discover how to streamline Stripe account integration in NestJS applications using the Factory Pattern. Say goodbye to messy code and hello to scalability!"
 ---
 
-# Navigating the Stripe Jungle in NestJS: A Personal Adventure.
+## Navigating the Stripe Jungle in NestJS: A Personal Adventure.
 
 Hey there, fellow code wranglers! 👋
 
