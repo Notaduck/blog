@@ -97,7 +97,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {content.nav.items.map((item) => {
                   if (item.label === "Contact") {
-                    return location.pathname === "/" ? (
+                    return location >.pathname === "/" ? (
                       <ScrollLink
                         key={item.slug}
                         spy={true}
