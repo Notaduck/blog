@@ -6,8 +6,6 @@ import { Layout } from "@components/layout";
 import { SEO } from "@components/seo";
 import { Comments } from "@components/comments/comments";
 
-// import "../styles/markdown.css";
-
 const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location }) => {
   const markdownRemark = data.markdownRemark;
 
@@ -48,11 +46,7 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
 
         <section >
           <div
-
-            className="prose dark:prose-invert
-  prose-h1:font-bold prose-h1:text-xl
-   prose-p:text-justify prose-img:rounded-xl
-  prose-headings:underline mb-2"
+            className="prose dark:prose-invert "
             dangerouslySetInnerHTML={{ __html: html }} />
         </section>
 
@@ -67,14 +61,14 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
           <Link
             to="/blog"
             className="p-3  
-                           uppercase
-                           cursor-pointer 
+                         uppercase
+                         cursor-pointer 
                          border-gray-600
-                           border-2 rounded 
+                         border-2 rounded 
                          hover:bg-gray-800 
                          hover:border-gray-800
                          hover:text-gray-300
-                         dark:text-white"
+                         dark:text-gray-200"
           >
             Go back
           </Link>

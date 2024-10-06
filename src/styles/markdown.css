@@ -1,7 +1,0 @@
-.gatsby-remark-prismjs-copy-button-container {
-  @apply left-4;
-}
-
-.gatsby-remark-prismjs-copy-button {
-  @apply hover:bg-[#bc435d] shadow-xl border-2 border-black bg-gray-300 text-black
-}

@@ -93,7 +93,7 @@ const Index = () => {
 
       <Section id={SECTIONS.ABOUT} to={SECTIONS.CONTACT} btnText="Get in touch">
 
-        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12 flex justify-center align-middle flex-col prose ">
+        <div className="font-montserrat w-10/12 mx-auto my-auto md:mt-12 flex justify-center align-middle flex-col dark:prose-invert prose ">
           <h2 className="md:text-3xl sm:text-2xl text-2xl mt-5 mb-10 font-black" role="heading" aria-level="2">
             Who am I?
           </h2>

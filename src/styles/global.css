@@ -2,76 +2,76 @@
  @import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
 
  html {
-  scroll-behavior: smooth;
-}
- /* h1 {
-	font-size: 1.5rem;
-  line-height: 2rem;
-}
+ 	scroll-behavior: smooth;
+ }
+
+ .light {
+ 	--primary: #ffffff;
+ 	--secondary: #dbe1e8;
+ 	--text-main: #0d0106;
+ 	--text-secondary: #454e56;
+ 	--highlight: rgb(188, 67, 93);
+ 	--accent: #009ffd;
+ }
+
+ .dark {
+ 	--primary: #06131c;
+ 	--secondary: #2a2e35;
+ 	--text-main: #d0cfc4;
+ 	--highlight: rgb(188, 67, 93);
+ 	--text-secondary: #b8b8b9;
+ 	--accent: #fc7753;
+ }
+
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
 
 
- h2 {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-}
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+ 	@apply font-montserrat
+ }
 
-h3 {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-} */
-
-.light-mode {
-  --primary: #ffffff;
-  --secondary: #dbe1e8;
-  --text-main: #0d0106;
-  --text-secondary: #454e56;
-  --highlight: rgb(188, 67, 93);
-  --accent: #009ffd;
-}
-
-.dark-mode {
-  --primary: #06131c;
-  --secondary: #2a2e35;
-  --text-main: #d0cfc4;
-  --highlight: rgb(188, 67, 93);
-  --text-secondary: #b8b8b9;
-  --accent: #fc7753;
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-
-h1, h2, h3, h4, h5, h6 {
-  @apply font-montserrat
-}
-
-h1 {
-  @apply text-5xl text-main-text mt-16 mb-8 ;
-}
+ h1 {
+ 	@apply text-5xl text-main-text mt-16 mb-8;
+ }
 
  h2 {
-  @apply text-3xl font-medium text-main-text mt-4 mb-4;
-}
+ 	@apply text-3xl font-medium text-main-text mt-4 mb-4;
+ }
 
  h3 {
-  @apply text-2xl text-main-text mb-8;
-}
+ 	@apply text-2xl text-main-text mb-8;
+ }
 
  h4 {
-  @apply text-main-text uppercase mb-8;
-}
+ 	@apply text-main-text uppercase mb-8;
+ }
 
  h5 {
-  @apply text-sm text-main-text mb-8;
-}
+ 	@apply text-sm text-main-text mb-8;
+ }
 
-h6 {
-  @apply text-xs text-main-text mb-8;
-}
+ h6 {
+ 	@apply text-xs text-main-text mb-8;
+ }
 
 
-a, p, span {
-   @apply font-montserrat 
-}
+ a,
+ p,
+ span {
+ 	@apply font-montserrat
+ }
+
+ .gatsby-remark-prismjs-copy-button-container {
+ 	@apply left-4;
+ }
+
+ .gatsby-remark-prismjs-copy-button {
+ 	@apply hover:bg-[#bc435d] shadow-xl border-2 border-black bg-gray-300 text-black
+ }

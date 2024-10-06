@@ -5,65 +5,84 @@ module.exports = {
     './src/components/**/*.{js,jsx,ts,tsx}',
     './src/templates/**/*.{js,jsx,ts,tsx}',
   ],
-  darkMode: "class", // or 'media' or 'class'
+  darkMode: 'selector',
   theme: {
     extend: {
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            // Existing customizations
-            color: theme('colors.gray.800'),
-            h1: {
-              fontWeight: '700',
-            },
-            h2: {
-            },
-
-            h3: {
-              marginBottom: '1rem',
-            },
-            // Increase specificity for h3 without classes
-            'h3:not([class])': {
-              marginBottom: '1rem',
-            },
-
-            h4: {
-              marginBottom: theme('spacing.1'),
-            },
-            // Add custom styles for ul and ol
-            ul: {
-              marginTop: theme('spacing.4'),
-              marginBottom: theme('spacing.4'),
-              marginLeft: theme('spacing.6'),
-              listStyleType: 'square', // You can also use 'square' or other list styles
-            },
-            'ul:not([class])': {
-              marginTop: theme('spacing.4'),
-              marginBottom: theme('spacing.4'),
-              marginLeft: theme('spacing.6'),
-              listStyleType: 'disc',
-              listStylePosition: 'outside',
-            },
-            'ol:not([class])': {
-              marginTop: theme('spacing.4'),
-              marginBottom: theme('spacing.4'),
-              marginLeft: theme('spacing.6'),
-              listStyleType: 'decimal',
-              listStylePosition: 'outside',
-            },
-            'li:not([class])': {
-              marginTop: theme('spacing.2'),
-              marginBottom: theme('spacing.2'),
-              color: theme('colors.gray.700'),
-            },
-            // Style nested lists
-            'ul ul, ul ol, ol ul, ol ol': {
-              marginLeft: theme('spacing.6'),
-            },
-            // Additional customizations as needed
-          },
-        },
-      }),
+      //typography: (theme) => ({
+      //  DEFAULT: {
+      //    css: {
+      //      // Existing customizations
+      //      color: theme('colors.gray.800'),
+      //      h1: {
+      //        fontWeight: '700',
+      //      },
+      //      h2: {
+      //        fontWeight: '700',
+      //      },
+      //      h3: {
+      //        marginBottom: '1rem',
+      //      },
+      //      'h3:not([class])': {
+      //        marginBottom: '1rem',
+      //      },
+      //      h4: {
+      //        marginBottom: theme('spacing.1'),
+      //      },
+      //      ul: {
+      //        marginTop: theme('spacing.4'),
+      //        marginBottom: theme('spacing.4'),
+      //        marginLeft: theme('spacing.6'),
+      //        listStyleType: 'square',
+      //      },
+      //      'ul:not([class])': {
+      //        marginTop: theme('spacing.4'),
+      //        marginBottom: theme('spacing.4'),
+      //        marginLeft: theme('spacing.6'),
+      //        listStyleType: 'disc',
+      //        listStylePosition: 'outside',
+      //      },
+      //      'ol:not([class])': {
+      //        marginTop: theme('spacing.4'),
+      //        marginBottom: theme('spacing.4'),
+      //        marginLeft: theme('spacing.6'),
+      //        listStyleType: 'decimal',
+      //        listStylePosition: 'outside',
+      //      },
+      //      'li:not([class])': {
+      //        marginTop: theme('spacing.2'),
+      //        marginBottom: theme('spacing.2'),
+      //        color: theme('colors.gray.700'),
+      //      },
+      //      'ul ul, ul ol, ol ul, ol ol': {
+      //        marginLeft: theme('spacing.6'),
+      //      },
+      //    },
+      //  },
+      //  dark: {
+      //    css: {
+      //      color: theme('colors.gray.300'),
+      //      a: {
+      //        color: theme('colors.blue.500'),
+      //        '&:hover': {
+      //          color: theme('colors.blue.400'),
+      //        },
+      //      },
+      //      h1: {
+      //        color: theme('colors.white.100'),
+      //      },
+      //      h2: {
+      //        color: theme('colors.white.200'),
+      //      },
+      //      h3: {
+      //        color: theme('colors.white'),
+      //      },
+      //      p: {
+      //        color: theme('colors.gray.100'),
+      //      },
+      //      // Add more customizations for other elements if needed
+      //    },
+      //  },
+      //}),
       bottom: {
         14: "6rem",
       },
@@ -91,14 +110,13 @@ module.exports = {
         content: "calc(100vh - 4.0rem - 7.6rem )",
         "full-minus-nav": "calc(100vh - 4.0rem)",
       },
-
       maxHeight: {
         content: "calc(100vh - 4.0rem - 7.6rem )",
         "full-minus-nav": "calc(100vh - 4.0rem)",
       },
       fontFamily: {
-        montserrat: "'Montserrat', sans-serif;",
-        inconsolata: "'Inconsolata', sans-serif;",
+        montserrat: "'Montserrat', sans-serif",
+        inconsolata: "'Inconsolata', sans-serif",
       },
       transitionDuration: {
         75: "75ms",
@@ -130,27 +148,20 @@ module.exports = {
         float: "float 3s infinite",
         refloat: "refloat 3s infinite",
       },
-    },
-    screens: {
-      xs: "300px",
-      sm: "640px",
-      // => @media (min-width: 640px) { ... }
-
-      md: "768px",
-      // => @media (min-width: 768px) { ... }
-
-      lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
-
-      xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
-
-      "2xl": "1536px",
-      // => @media (min-width: 1536px) { ... }
+      screens: {
+        xs: "300px",
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
+      },
     },
   },
-  variants: {
-    extend: {},
-  },
+  //variants: {
+  //  extend: {
+  //    typography: ['dark'], // Enable dark mode variant for typography
+  //  },
+  //},
   plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
 };

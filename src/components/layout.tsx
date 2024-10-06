@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, PageProps } from "gatsby";
 
 import "@fontsource/unica-one"; // Defaults to weight 400.
 import { useLocation } from "@reach/router";
@@ -9,8 +9,8 @@ import { ThemeToggle } from "./themeToggle";
 import { Footer } from "./footer";
 import { Container } from "./shared";
 
-export const Layout = ({ children }) => {
-  const data = useStaticQuery(query);
+export const Layout: FC<PageProps> = ({ children }) => {
+
   const [isIndexPage, setIsIndexPage] = useState();
   const location = useLocation();
 
@@ -48,15 +48,15 @@ export const Layout = ({ children }) => {
   );
 };
 
-export const query = graphql`
-  query SiteTitleQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`;
+//export const query = graphql`
+//  query SiteTitleQuery {
+//    site {
+//      siteMetadata {
+//        title
+//      }
+//    }
+//  }
+//`;
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
