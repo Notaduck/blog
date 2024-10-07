@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, FC } from 'react';
 import { ContactForm } from "@components/form";
 import { Section } from "@components/indexPage";
 import { Layout } from "@components/layout";
@@ -7,14 +7,36 @@ import { StaticImage } from "gatsby-plugin-image";
 import Typical from "react-typical";
 import { SEO } from "@components/seo"; // Ensure you have an SEO component
 import FloatingIcons from "@components/floating-icons";
+import { PageProps } from 'gatsby';
+import { scroller } from 'react-scroll'
 
-const Index = () => {
+
+export enum SECTIONS {
+  HERO = 'hero',
+  ABOUT = 'about',
+  CONTACT = 'contact'
+}
+
+
+const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({ location }) => {
   const [animated, setAnimated] = useState(false);
   const floatingIconsRef = useRef<HTMLDivElement>(null); // Create a ref for the icons container
 
   useEffect(() => {
     setAnimated(true);
   }, []);
+
+  useEffect(() => {
+    console.log('state', location.state)
+    if (location.state && location.state.scrollToContact) {
+      scroller.scrollTo(SECTIONS.CONTACT, {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+        offset: -50,
+      });
+    }
+  }, [location]);
 
   const calculateAge = (dob: string) => {
     const today = new Date();
@@ -28,12 +50,6 @@ const Index = () => {
 
     return age_now;
   };
-
-  enum SECTIONS {
-    HERO = 'hero',
-    ABOUT = 'about',
-    CONTACT = 'contact'
-  }
 
   return (
     <Layout>

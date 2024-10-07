@@ -1,15 +1,29 @@
 import { useState, FC } from "react";
 import { Transition } from "@headlessui/react";
 import useDarkMode from "use-dark-mode";
-import { Link, PageProps } from "gatsby";
+import { Link, navigate, PageProps } from "gatsby";
 import { FaGreaterThan, FaHamburger, FaLessThan } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { content } from "../../content/data";
-import { Link as ScrollLink } from "react-scroll"; // Import the react-scroll Link
+import { scroller } from "react-scroll";
 
 export const NavBar: FC<PageProps> = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false);
   const darkMode = useDarkMode(false);
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    if (location?.pathname === "/") {
+      scroller.scrollTo("contact-section", {
+        duration: 800,
+        delay: 0,
+        smooth: "easeInOutQuart",
+        offset: -50,
+      });
+    } else {
+      navigate("/", { state: { scrollToContact: true } });
+    }
+  };
 
   return (
     <div>
@@ -26,31 +40,18 @@ export const NavBar: FC<PageProps> = ({ location }) => {
               <div className="h-full hidden md:block">
                 <div className="h-full flex items-baseline py-auto">
                   {content.nav.items.map((link) => {
-                    // Check if the link is "Contact" to conditionally render it
                     if (link?.label === "Contact") {
-                      return location?.pathname === "/" ? (
-                        <ScrollLink
+                      return (
+                        <button
                           key={link.slug}
-                          spy={true}
-                          to="contact-section" // The ID of the contact section
-                          smooth={true}
-                          offset={-50}
+                          onClick={handleContactClick}
                           className="cursor-pointer font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white px-3 font-medium transition-all duration-300"
                         >
                           {link.label}
-                        </ScrollLink>
-                      ) : (
-                        <Link
-                          key={link.slug}
-                          to={`${link.slug}#contact-section`} // Navigate to the contact section on other pages
-                          className="font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white px-3 font-medium transition-all duration-300"
-                        >
-                          {link.label}
-                        </Link>
+                        </button>
                       );
                     }
 
-                    // Render other links as normal
                     return (
                       <Link
                         key={link.slug}
@@ -97,25 +98,17 @@ export const NavBar: FC<PageProps> = ({ location }) => {
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {content.nav.items.map((item) => {
                   if (item.label === "Contact") {
-                    return location >.pathname === "/" ? (
-                      <ScrollLink
-                        key={item.slug}
-                        spy={true}
-                        to="contact-section"
-                        smooth={true}
-                        offset={-50}
+                    return (
+                      <button
+                        key={item?.slug}
+                        onClick={() => {
+                          setIsOpen(false);
+                          handleContactClick();
+                        }}
                         className="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                       >
-                        {item.label}
-                      </ScrollLink>
-                    ) : (
-                      <Link
-                        key={item.slug}
-                        to={`${item.slug}#contact-section`}
-                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                      >
-                        {item.label}
-                      </Link>
+                        {item?.label}
+                      </button>
                     );
                   }
 
