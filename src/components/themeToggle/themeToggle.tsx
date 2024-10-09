@@ -1,36 +1,20 @@
+// src/components/ThemeToggle.js
 import { FaMoon, FaSun } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import useTheme from "../../hooks/useTheme";
 
 export const ThemeToggle = () => {
   const iconSize = 28;
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const theme = localStorage?.getItem("theme");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      setIsDarkMode(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    if (document?.documentElement?.classList?.contains("dark")) {
-      document?.documentElement?.classList?.remove("dark");
-      localStorage.setItem("theme", "light");
-      setIsDarkMode(false);
-    } else {
-      document?.documentElement?.classList?.add("dark");
-      localStorage?.setItem("theme", "dark");
-      setIsDarkMode(true);
-    }
-  };
+  const { isDarkMode, toggleTheme } = useTheme(); // Use the custom hook
 
   return (
     <div
       className="z-50 cursor-pointer fixed right-4 bottom-4 border-primary"
       onClick={toggleTheme}
+      role="button"
+      aria-label="Toggle theme"
     >
       {isDarkMode ? <FaSun size={iconSize} /> : <FaMoon size={iconSize} />}
     </div>
   );
 };
+

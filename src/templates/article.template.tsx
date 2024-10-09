@@ -6,6 +6,8 @@ import { Layout } from "@components/layout";
 import { SEO } from "@components/seo";
 import { Comments } from "@components/comments/comments";
 
+import "../styles/prism-onedark.css"
+
 const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location }) => {
   const markdownRemark = data.markdownRemark;
 
@@ -22,11 +24,11 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
 
   return (
     <Layout>
-      <SEO
-        description={meta?.description}
-        title={title}
-        keywords={meta?.keywords}
-      />
+      {/* <SEO */}
+      {/*   description={meta?.description} */}
+      {/*   title={title} */}
+      {/*   keywords={meta?.keywords} */}
+      {/* /> */}
       <article className="mb-8 xs:mt-2 md:mt-8">
         <div className="mb-4">
           <h1 className="font-inconsolata text-4xl font-black antialiased">

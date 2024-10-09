@@ -1,12 +1,15 @@
+import useTheme from "@src/hooks/useTheme";
 import { FC, useEffect } from "react";
-import useDarkMode from "use-dark-mode";
 
 type Props = {
   issueTerm: string;
 };
 
 export const Comments: FC<Props> = ({ issueTerm }) => {
-  const { value: isDarkMode } = useDarkMode(false);
+
+  const { isDarkMode } = useTheme()
+
+
   const commentsUUID = `comments_${issueTerm}`;
 
   useEffect(() => {

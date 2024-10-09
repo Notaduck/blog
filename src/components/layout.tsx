@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useStaticQuery, graphql, PageProps } from "gatsby";
 
+import "../styles/global.css"
+
 import "@fontsource/unica-one"; // Defaults to weight 400.
 import { useLocation } from "@reach/router";
 import { NavBar } from "./nav";
