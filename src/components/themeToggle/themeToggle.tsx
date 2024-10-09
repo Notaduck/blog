@@ -6,24 +6,24 @@ export const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme');
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+    const theme = localStorage?.getItem("theme");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
       setIsDarkMode(true);
     }
   }, []);
 
   const toggleTheme = () => {
-    if (document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+    if (document?.documentElement?.classList?.contains("dark")) {
+      document?.documentElement?.classList?.remove("dark");
+      localStorage.setItem("theme", "light");
       setIsDarkMode(false);
     } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      document?.documentElement?.classList?.add("dark");
+      localStorage?.setItem("theme", "dark");
       setIsDarkMode(true);
     }
-  }
+  };
 
   return (
     <div
