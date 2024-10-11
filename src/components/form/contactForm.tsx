@@ -4,7 +4,6 @@ import { useYupValidationResolver, validationSchema } from "./schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { Input as HeadlessInput, Textarea } from '@headlessui/react';
 import { Button } from "@components/shared";
-import { FaLinkedin } from "react-icons/fa";
 
 type InputProps = {
   label: string;
@@ -49,6 +48,11 @@ export const ContactForm = () => {
   const [formHeight, setFormHeight] = useState<number | undefined>(undefined);
   const formRef = useRef<HTMLFormElement | null>(null);
 
+  const encode = (data: Record<string, any>) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  };
   const resolver = useYupValidationResolver(validationSchema);
   const {
     register,
@@ -59,13 +63,13 @@ export const ContactForm = () => {
   const onSubmit = async (formData: FormData) => {
     setIsLoading(true);
     try {
-      // Uncomment and set up your fetch request
-      // const response = await fetch("/", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      //   body: encode({ "form-name": "contact", ...formData }),
-      // });
-      // if (!response.ok) throw new Error("Network response was not ok");
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...formData }),
+      });
+
+      if (!response.ok) throw new Error("Network response was not ok");
 
       setIsSend(true);
     } catch (error) {
@@ -149,7 +153,7 @@ export const ContactForm = () => {
 
               <div className="mx-auto mt-4">
                 <Button
-                  loading={isLoading}
+                  isLoading={isLoading}
                   className={`mt-1 block w-full rounded-md border-2 ${!errors ? "border-red-500" : "border-gray-700"} shadow-sm focus:border-teal-700 focus:ring-teal-700`}
                 >
                   Submit
