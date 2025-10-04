@@ -1,4 +1,5 @@
 import { useState, FC, MouseEvent } from "react";
+import type React from "react";
 import { Transition } from "@headlessui/react";
 import { Link, navigate, PageProps } from "gatsby";
 import { FaGreaterThan, FaHamburger, FaLessThan } from "react-icons/fa";
@@ -16,7 +17,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
   ) => {
     e?.preventDefault();
     if (location?.pathname === "/") {
-      scroller.scrollTo("contact-section", {
+      scroller.scrollTo("contact", {
         duration: 800,
         delay: 0,
         smooth: "easeInOutQuart",
@@ -49,7 +50,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                       return (
                         <button
                           key={link.slug}
-                          onClick={handleContactClick}
+                          onClick={(e) => handleContactClick(e)}
                           className="font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white hover:bg-red-600 px-3 font-medium transition-all duration-300"
                         >
                           {link.label}
@@ -123,9 +124,9 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                     return (
                       <button
                         key={item?.slug}
-                        onClick={() => {
+                        onClick={(e) => {
                           setIsOpen(false);
-                          handleContactClick();
+                          handleContactClick(e);
                         }}
                         className="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
                       >
