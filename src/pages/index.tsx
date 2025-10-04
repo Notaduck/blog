@@ -7,7 +7,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import Typical from "react-typical";
 import { SEO } from "@components/seo"; // Ensure you have an SEO component
 import FloatingIcons from "@components/floating-icons";
-import { PageProps } from "gatsby";
+import { Link, PageProps } from "gatsby";
 import { scroller } from "react-scroll";
 
 export enum SECTIONS {
@@ -27,7 +27,6 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
   }, []);
 
   useEffect(() => {
-    console.log("state", location.state);
     if (location.state && location.state.scrollToContact) {
       scroller.scrollTo(SECTIONS.CONTACT, {
         duration: 800,
@@ -37,6 +36,15 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
       });
     }
   }, [location]);
+
+  const scrollToContactSection = () => {
+    scroller.scrollTo(SECTIONS.CONTACT, {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: -50,
+    });
+  };
 
   const calculateAge = (dob: string) => {
     const today = new Date();
@@ -103,6 +111,21 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
                   className="inline-block"
                 />
               </h1>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <Link
+                  to="/resume"
+                  className="inline-flex items-center justify-center rounded-md bg-highlight px-8 py-3 text-lg font-semibold text-white transition duration-300 hover:bg-red-600"
+                >
+                  View Resume
+                </Link>
+                <button
+                  type="button"
+                  onClick={scrollToContactSection}
+                  className="inline-flex items-center justify-center rounded-md border-2 border-highlight px-8 py-3 text-lg font-semibold text-highlight transition duration-300 hover:bg-highlight hover:text-white"
+                >
+                  Contact Me
+                </button>
+              </div>
             </div>
           </div>
 
@@ -169,8 +192,8 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
         headOrTail
       >
         <div className="flex-col pt-20 w-10/12 justify-center items-center mx-auto my-auto pl-4">
-          <h1 className=" font-mono" >
-            Ping me section
+          <h1 className="font-mono text-3xl font-bold text-main-text">
+            Get in Touch
           </h1>
         </div>
         <ContactForm />

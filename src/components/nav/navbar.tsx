@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { useState, FC, MouseEvent } from "react";
 import { Transition } from "@headlessui/react";
 import { Link, navigate, PageProps } from "gatsby";
 import { FaGreaterThan, FaHamburger, FaLessThan } from "react-icons/fa";
@@ -6,11 +6,15 @@ import { ImCross } from "react-icons/im";
 import { content } from "../../content/data";
 import { scroller } from "react-scroll";
 
+const isFileLink = (slug: string) => /\.(pdf|docx?)$/i.test(slug);
+
 export const NavBar: FC<PageProps> = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleContactClick = (e) => {
-    e.preventDefault();
+  const handleContactClick = (
+    e?: MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+  ) => {
+    e?.preventDefault();
     if (location?.pathname === "/") {
       scroller.scrollTo("contact-section", {
         duration: 800,
@@ -38,7 +42,10 @@ export const NavBar: FC<PageProps> = ({ location }) => {
               <div className="h-full hidden md:block">
                 <div className="h-full flex items-baseline py-auto">
                   {content?.nav?.items.map((link) => {
-                    if (link?.label === "Contact") {
+                    const isContact = link?.label === "Contact";
+                    const fileLink = isFileLink(link.slug);
+
+                    if (isContact) {
                       return (
                         <button
                           key={link.slug}
@@ -47,6 +54,20 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                         >
                           {link.label}
                         </button>
+                      );
+                    }
+
+                    if (fileLink) {
+                      return (
+                        <a
+                          key={link.slug}
+                          href={link.slug}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white hover:bg-red-600 px-3 font-medium transition-all duration-300"
+                        >
+                          {link.label}
+                        </a>
                       );
                     }
 
@@ -95,7 +116,10 @@ export const NavBar: FC<PageProps> = ({ location }) => {
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {content.nav.items.map((item) => {
-                  if (item.label === "Contact") {
+                  const isContact = item.label === "Contact";
+                  const fileLink = isFileLink(item.slug);
+
+                  if (isContact) {
                     return (
                       <button
                         key={item?.slug}
@@ -107,6 +131,20 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                       >
                         {item?.label}
                       </button>
+                    );
+                  }
+
+                  if (fileLink) {
+                    return (
+                      <a
+                        key={item.slug}
+                        href={item.slug}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                      >
+                        {item.label}
+                      </a>
                     );
                   }
 

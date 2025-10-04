@@ -47,6 +47,10 @@ export const content: Type = {
         slug: "/blog",
       },
       {
+        label: "Resume",
+        slug: "/resume",
+      },
+      {
         label: "Contact",
         slug: "/contact",
       },
