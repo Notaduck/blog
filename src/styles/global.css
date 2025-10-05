@@ -5,23 +5,23 @@
  	scroll-behavior: smooth;
  }
 
- .light {
- 	--primary: #ffffff;
- 	--secondary: #dbe1e8;
- 	--text-main: #0d0106;
- 	--text-secondary: #454e56;
- 	--highlight: rgb(188, 67, 93);
- 	--accent: #009ffd;
- }
+.light {
+        --primary: #ffffff;
+        --secondary: #dbe1e8;
+        --text-main: #0d0106;
+        --text-secondary: #454e56;
+        --highlight: rgb(188, 67, 93);
+        --accent: #a83252;
+}
 
- .dark {
- 	--primary: #06131c;
- 	--secondary: #2a2e35;
- 	--text-main: #d0cfc4;
- 	--highlight: rgb(188, 67, 93);
- 	--text-secondary: #b8b8b9;
- 	--accent: #fc7753;
- }
+.dark {
+        --primary: #06131c;
+        --secondary: #2a2e35;
+        --text-main: #d0cfc4;
+        --highlight: rgb(188, 67, 93);
+        --text-secondary: #b8b8b9;
+        --accent: #ff8a9a;
+}
 
  @tailwind base;
  @tailwind components;
@@ -62,11 +62,30 @@
  }
 
 
- a,
- p,
- span {
- 	@apply font-montserrat
- }
+a,
+p,
+span {
+        @apply font-montserrat
+}
+
+a {
+        color: var(--highlight);
+        transition: color 150ms ease-in-out;
+}
+
+a:hover,
+a:focus {
+        color: var(--accent);
+}
+
+a:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 3px;
+}
+
+.b-accent {
+        border-color: var(--accent);
+}
 
  .gatsby-remark-prismjs-copy-button-container {
  	@apply left-4;
