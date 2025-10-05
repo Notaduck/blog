@@ -69,13 +69,13 @@ span {
 }
 
 a {
-        color: var(--accent);
+        color: var(--highlight);
         transition: color 150ms ease-in-out;
 }
 
 a:hover,
 a:focus {
-        color: var(--highlight);
+        color: var(--accent);
 }
 
 a:focus-visible {

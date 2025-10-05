@@ -27,7 +27,7 @@ export const NavLink: React.FC<Props> = ({ path, title }) => (
                transition
                duration-150
                ease-in-out"
-    activeClassName="text-accent hover:text-highlight"
+    activeClassName="text-highlight hover:text-accent"
     partiallyActive={true}
   >
     {title}
