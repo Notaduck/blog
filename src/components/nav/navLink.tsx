@@ -16,13 +16,18 @@ export const NavLink: React.FC<Props> = ({ path, title }) => (
                m:text-base 
                font-medium 
                uppercase
-               px-px  
+               px-px
                text-main
                hover:underline
-               transition 
-               duration-150 
+               focus-visible:outline-none
+               focus-visible:ring-2
+               focus-visible:ring-accent
+               focus-visible:ring-offset-2
+               focus-visible:ring-offset-primary
+               transition
+               duration-150
                ease-in-out"
-    activeClassName="text-accent text-gray-900 hover:text-leather-light"
+    activeClassName="text-accent hover:text-highlight"
     partiallyActive={true}
   >
     {title}
