@@ -29,9 +29,8 @@ export const Section: FC<TSection> = ({
 
       <div className="flex mx-auto my-8">
         <Link
-          spy={true}
           to={to}
-          offset={reset && -50}
+          offset={reset ? -50 : 0}
           className="cursor-pointer bottom-4 left-1/2  animate-bounce delay-100 flex flex-col items-center"
         >
           {icon} {btnText}
