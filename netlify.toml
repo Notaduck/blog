@@ -3,6 +3,7 @@
   YARN_PRODUCTION = "false"
   YARN_FLAGS = "--production=false --frozen-lockfile"
   NODE_VERSION = "20.16.0"
+  DEBUG = "netlify-plugin-cypress"
 
 [[plugins]]
   package = "@netlify/plugin-gatsby"
