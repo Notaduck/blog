@@ -32,7 +32,7 @@ const Input: React.FC<InputProps> = ({ label, name, type = "text", placeholder, 
         id={name}
         {...register(name)}
         placeholder={placeholder}
-        className={`mt-1 block w-full rounded-md border-2 ${errors?.[name] ? "border-red-500" : "border-gray-700"} shadow-sm focus:border-teal-700 focus:ring-teal-700`}
+        className={`mt-1 block w-full rounded-md border-2 ${errors?.[name] ? "border-red-500" : "border-gray-700"} shadow-xs focus:border-teal-700 focus:ring-teal-700`}
         required
       />
       {errors?.[name] && (
@@ -140,7 +140,7 @@ export const ContactForm = () => {
                     Message
                   </label>
                   <Textarea
-                    className={`mt-1 block w-full rounded-md border-2 ${errors?.['text'] ? "border-red-500" : "border-gray-700"} shadow-sm focus:border-teal-700 focus:ring-teal-700`}
+                    className={`mt-1 block w-full rounded-md border-2 ${errors?.['text'] ? "border-red-500" : "border-gray-700"} shadow-xs focus:border-teal-700 focus:ring-teal-700`}
                     id="text"
                     {...register("text")}
                     placeholder="Write your message here..."
@@ -154,7 +154,7 @@ export const ContactForm = () => {
               <div className="mx-auto mt-4">
                 <Button
                   isLoading={isLoading}
-                  className={`mt-1 block w-full rounded-md border-2 ${!errors ? "border-red-500" : "border-gray-700"} shadow-sm focus:border-teal-700 focus:ring-teal-700`}
+                  className={`mt-1 block w-full rounded-md border-2 ${!errors ? "border-red-500" : "border-gray-700"} shadow-xs focus:border-teal-700 focus:ring-teal-700`}
                 >
                   Submit
                 </Button>

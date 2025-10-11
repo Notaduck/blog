@@ -41,7 +41,7 @@ interface TOCProps {
 }
 
 const TOC = ({ children }: TOCProps) => (
-  <ul className="bg-primary border-black fixed hidde lg:flex flex-col rounded-2xl p-3 mt-8 my-3 w-full left-[calc(55%_+_400px)] top-[90px]">
+  <ul className="bg-primary border-black fixed hidde lg:flex flex-col rounded-2xl p-3 mt-8 my-3 w-full left-[calc(55%+400px)] top-[90px]">
     {children}
   </ul>
 );

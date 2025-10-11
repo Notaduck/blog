@@ -26,7 +26,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
 
   return (
     <div>
-      <nav className={`bg-primary border-b-2 shadow-sm`}>
+      <nav className={`bg-primary border-b-2 shadow-xs`}>
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center w-full h-full justify-between">
@@ -68,7 +68,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-main-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                className="inline-flex items-center justify-center p-2 rounded-md text-main-text focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
               >

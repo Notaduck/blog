@@ -53,9 +53,9 @@ const ArticleTemplate: FC<PageProps<Queries.PostsByIDQuery>> = ({ data, location
         </section>
 
         <div className="relative flex py-5 items-center prose">
-          <div className="flex-grow border-t border-gray-400"></div>
-          <span className="flex-shrink mx-4 text-gray-400">Comments</span>
-          <div className="flex-grow border-t border-gray-400"></div>
+          <div className="grow border-t border-gray-400"></div>
+          <span className="shrink mx-4 text-gray-400">Comments</span>
+          <div className="grow border-t border-gray-400"></div>
         </div>
 
         <Comments issueTerm={location?.pathname} />

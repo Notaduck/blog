@@ -1,8 +1,8 @@
-const path = require("path");
+const path = require("path")
 
 require("dotenv").config({
   path: `.env`,
-});
+})
 
 module.exports = {
   siteMetadata: {
@@ -19,6 +19,7 @@ module.exports = {
     documentSearchPaths: [`./gatsby-node.ts`, `./plugins/**/gatsby-node.ts`],
   },
   plugins: [
+    "gatsby-plugin-postcss",
     `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-umami`,
@@ -184,4 +185,4 @@ module.exports = {
       },
     },
   ],
-};
+}
