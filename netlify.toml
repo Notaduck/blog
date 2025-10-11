@@ -1,3 +1,8 @@
+[build.environment]
+  NPM_CONFIG_PRODUCTION = "false"
+  YARN_PRODUCTION = "false"
+  YARN_FLAGS = "--production=false --frozen-lockfile"
+
 [[plugins]]
   package = "@netlify/plugin-gatsby"
 
