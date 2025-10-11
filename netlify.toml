@@ -4,6 +4,7 @@
   YARN_FLAGS = "--production=false --frozen-lockfile"
   NODE_VERSION = "20.16.0"
   DEBUG = "netlify-plugin-cypress"
+  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
 
 [[plugins]]
   package = "@netlify/plugin-gatsby"
