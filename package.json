@@ -77,7 +77,9 @@
     "@types/react-helmet": "^6.1.11",
     "@types/react-scroll": "^1.8.10",
     "@types/react-typical": "^0.1.2",
+    "cypress": "^15.4.0",
     "gatsby-plugin-root-import": "^2.0.9",
+    "netlify-plugin-cypress": "^2.2.1",
     "prettier": "3.3.3"
   },
   "keywords": [
@@ -92,7 +94,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "cypress run"
   },
   "repository": {
     "type": "git",

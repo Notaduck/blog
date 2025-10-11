@@ -22,12 +22,13 @@ const ArticleList = ({ data, pageContext }) => {
         pathname={undefined}
         children={undefined}
       />
-      <div className="xs:mt-2 md:mt-8 min-h-content">
+      <div className="xs:mt-2 md:mt-8 min-h-content" data-cy="article-list">
         {nodes.map((node, index) => {
           return (
             <div
               key={`${node}_${index}`}
               className="flex flex-col mb-4 border-b-2  pb-4 b-accent"
+              data-cy="article-card"
             >
               {/* TITLE */}
               <h2 className="sm:text-xl md:text-2xl font-black mb-2 flex items-center space-x-4">

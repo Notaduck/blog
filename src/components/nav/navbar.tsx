@@ -9,6 +9,8 @@ import { scroller } from "react-scroll";
 
 export const NavBar: FC<PageProps> = ({ location }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const toTestId = (label: string) =>
+    label.toLowerCase().replace(/\s+/g, "-");
 
   const handleContactClick = (e?: React.MouseEvent<HTMLButtonElement>) => {
     e?.preventDefault();
@@ -33,18 +35,21 @@ export const NavBar: FC<PageProps> = ({ location }) => {
               <Link
                 to="/"
                 className="font-inconsolata text-2xl font-bold uppercase flex items-center h-full text-main-text px-3 font-medium transition-all duration-300"
+                data-cy="nav-brand"
               >
                 <FaLessThan /> {content?.nav?.titel} <FaGreaterThan />
               </Link>
               <div className="h-full hidden md:block">
                 <div className="h-full flex items-baseline py-auto">
                   {content?.nav?.items.map((link) => {
+                    const testId = toTestId(link.label);
                     if (link?.label === "Contact") {
                       return (
                         <button
                           key={link.slug}
                           onClick={(e) => handleContactClick(e)}
                           className="font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white hover:bg-red-600 px-3 font-medium transition-all duration-300"
+                          data-cy={`nav-link-${testId}-desktop`}
                         >
                           {link.label}
                         </button>
@@ -56,6 +61,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                         key={link.slug}
                         to={link.slug}
                         className="font-inconsolata text-xl flex items-center h-full text-main-text hover:bg-highlight hover:text-white hover:bg-red-600 px-3 font-medium transition-all duration-300"
+                        data-cy={`nav-link-${testId}-desktop`}
                       >
                         {link.label}
                       </Link>
@@ -71,6 +77,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                 className="inline-flex items-center justify-center p-2 rounded-md text-main-text focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 aria-controls="mobile-menu"
                 aria-expanded="false"
+                data-cy="nav-menu-toggle"
               >
                 <span className="sr-only">Open main menu</span>
                 {!isOpen ? (
@@ -96,6 +103,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
             <div className="md:hidden" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 {content.nav.items.map((item) => {
+                  const testId = toTestId(item.label);
                   if (item.label === "Contact") {
                     return (
                       <button
@@ -105,6 +113,7 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                           handleContactClick(e);
                         }}
                         className="cursor-pointer block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                        data-cy={`nav-link-${testId}-mobile`}
                       >
                         {item?.label}
                       </button>
@@ -116,6 +125,8 @@ export const NavBar: FC<PageProps> = ({ location }) => {
                       key={item.slug}
                       to={item.slug}
                       className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+                      data-cy={`nav-link-${testId}-mobile`}
+                      onClick={() => setIsOpen(false)}
                     >
                       {item.label}
                     </Link>

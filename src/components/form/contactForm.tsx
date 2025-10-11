@@ -21,7 +21,14 @@ type FormData = {
   text: string;
 };
 
-const Input: React.FC<InputProps> = ({ label, name, type = "text", placeholder, register, errors }) => {
+const Input: React.FC<InputProps> = ({
+  label,
+  name,
+  type = "text",
+  placeholder,
+  register,
+  errors,
+}) => {
   return (
     <div className="w-full px-3 mb-2">
       <label htmlFor={name} className="block text-sm font-medium">
@@ -33,10 +40,15 @@ const Input: React.FC<InputProps> = ({ label, name, type = "text", placeholder, 
         {...register(name)}
         placeholder={placeholder}
         className={`mt-1 block w-full rounded-md border-2 ${errors?.[name] ? "border-red-500" : "border-gray-700"} shadow-xs focus:border-teal-700 focus:ring-teal-700`}
-        required
+        data-cy={`contact-${name}`}
       />
       {errors?.[name] && (
-        <p className="text-red-500">{errors[name].message}</p>
+        <p
+          className="text-red-500"
+          data-cy={`contact-${name}-error`}
+        >
+          {errors[name].message}
+        </p>
       )}
     </div>
   );
@@ -104,6 +116,8 @@ export const ContactForm = () => {
               data-netlify="true" // Netlify attribute
               name="contact" // Form name for Netlify
               className="flex-col w-full" // Ensure form takes full width
+              noValidate
+              data-cy="contact-form"
             >
               <fieldset className="flex flex-wrap -mx-3 mb-4">
                 <legend className="sr-only">Contact Information</legend>
@@ -144,9 +158,15 @@ export const ContactForm = () => {
                     id="text"
                     {...register("text")}
                     placeholder="Write your message here..."
+                    data-cy="contact-text"
                   />
                   {errors?.['text'] && (
-                    <p className="text-red-500">{errors['text'].message}</p>
+                    <p
+                      className="text-red-500"
+                      data-cy="contact-text-error"
+                    >
+                      {errors['text'].message}
+                    </p>
                   )}
                 </div>
               </fieldset>
@@ -155,6 +175,7 @@ export const ContactForm = () => {
                 <Button
                   isLoading={isLoading}
                   className={`mt-1 block w-full rounded-md border-2 ${!errors ? "border-red-500" : "border-gray-700"} shadow-xs focus:border-teal-700 focus:ring-teal-700`}
+                  data-cy="contact-submit"
                 >
                   Submit
                 </Button>
