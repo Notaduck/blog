@@ -2,7 +2,8 @@
   package = "@netlify/plugin-gatsby"
 
 [[plugins]]
-  package = "@netlify/plugin-cypress"
+  package = "netlify-plugin-cypress"
 
   [plugins.inputs]
     configFile = "cypress.config.ts"
+    record = false

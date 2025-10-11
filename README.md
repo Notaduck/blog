@@ -13,8 +13,8 @@ Features
 
 ## Cypress on Netlify
 
-Netlify builds run the Cypress end-to-end suite via `@netlify/plugin-cypress`. The plugin uses
-the existing `cypress.config.ts` and respects the `CYPRESS_BASE_URL` environment variable, falling
-back to the deployed preview URL that Netlify injects. No extra GitHub Action is required—tests
-execute automatically during the post-build phase of each deploy preview. Run `netlify build`
-locally if you want to reproduce the plugin behaviour on your machine.
+Netlify builds run the Cypress end-to-end suite via the `netlify-plugin-cypress` build plugin.
+The plugin uses the existing `cypress.config.ts` and respects the `CYPRESS_BASE_URL`
+environment variable, falling back to the deployed preview URL that Netlify injects. No extra
+GitHub Action is required—tests execute automatically during the post-build phase of each deploy
+preview. Run `netlify build` locally if you want to reproduce the plugin behaviour on your machine.
