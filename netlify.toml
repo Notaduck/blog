@@ -2,6 +2,7 @@
   NPM_CONFIG_PRODUCTION = "false"
   YARN_PRODUCTION = "false"
   YARN_FLAGS = "--production=false --frozen-lockfile"
+  NODE_VERSION = "20.16.0"
 
 [[plugins]]
   package = "@netlify/plugin-gatsby"
