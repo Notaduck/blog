@@ -20,7 +20,6 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-postcss",
-    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-umami`,
       options: {
