@@ -19,7 +19,7 @@ export const NavLink: React.FC<Props> = ({ path, title }) => (
                px-px
                text-main
                hover:underline
-               focus-visible:outline-none
+               focus-visible:outline-hidden
                focus-visible:ring-2
                focus-visible:ring-accent
                focus-visible:ring-offset-2

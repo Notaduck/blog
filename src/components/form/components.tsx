@@ -27,7 +27,7 @@ export const Input: FC<TInput> = ({ register, name, type, error, label }) => (
     </label>
     <input
       {...register(name)}
-      className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white uppercase"
+      className="appearance-none block w-full text-gray-700 border rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden focus:bg-white uppercase"
       id="grid-first-name"
       type={type}
       placeholder={label}
@@ -47,7 +47,7 @@ export const TextArea: FC<TTextArea> = ({ register, name, error, label }) => (
       {label}
     </label>
     <textarea
-      className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white uppercase min-h-full"
+      className="appearance-none block w-full text-gray-700 border rounded-sm py-3 px-4 mb-3 leading-tight focus:outline-hidden focus:bg-white uppercase min-h-full"
       placeholder={label}
       {...register(name)}
     />

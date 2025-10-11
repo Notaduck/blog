@@ -66,13 +66,13 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
         btnText="Scroll"
       >
         <div className="flex-1 flex flex-col xs:mt-4 items-center justify-center mx-auto overflow-hidden">
-          <div className="w-10/12 mx-auto py-6 flex flex-col xl:flex-row-reverse items-center justify-between !max-w-[2329px] max-h-[2084px]">
+          <div className="w-10/12 mx-auto py-6 flex flex-col xl:flex-row-reverse items-center justify-between max-w-[2329px]! max-h-[2084px]">
             <div className="flex flex flex-col w-full md:w-2/5">
               <StaticImage
                 loading="eager"
                 src="../images/profile.png"
                 alt="avatar of Daniel Guldberg Aaes"
-                className="!h-auto "
+                className="h-auto! "
               />
             </div>
             <div className="text-main-text text-center md:text-left">
