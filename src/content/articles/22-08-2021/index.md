@@ -4,6 +4,12 @@ title: "How to create a multistep form with gatsby"
 date: "2015-01-03"
 tags: ["gatsby", "recoil", "react-rook-form", "@reach/router"]
 published: true
+meta:
+  description: "Build an accessible multi-step form in Gatsby using Recoil for state management and react-hook-form for validation."
+  keywords: "Gatsby, multi-step form, React Hook Form, Recoil, tutorial"
+  author: "Daniel Guldberg Aaes"
+  image: "/og/gatsby-multistep-form.png"
+  excerpt: "Discover how to break complex forms into multiple steps with Gatsby while keeping user experience smooth."
 ---
 
 I am currently rewriting a 10+ year old website written in `ASP.NET` to `React/GatsbyJS`. The website had multiple forms with more than 50 input fields, some which could be omitted but a large portion of the inputfields is vital for the price caluclation.  

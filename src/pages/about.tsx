@@ -3,10 +3,11 @@ import { graphql, PageProps } from "gatsby";
 import Img from "gatsby-image";
 import { SEO } from "../components/seo";
 import { Layout } from "../components/layout";
+import { useSiteMetadata } from "@src/hooks/use-site-metadata";
 
 type PageData = { site: Queries.Site; file: Queries.File };
 
-const About: FC<PageProps<PageData>> = ({ data }) => {
+const About: FC<PageProps<PageData>> = ({ data, location }) => {
   const {
     site: {
       siteMetadata: { name, profession },
@@ -17,10 +18,29 @@ const About: FC<PageProps<PageData>> = ({ data }) => {
       childImageSharp: { fluid: picture },
     },
   } = data;
+  const siteMetadata = useSiteMetadata();
+  const canonicalPath = location?.pathname ?? "/about";
+  const pageDescription =
+    siteMetadata?.description ??
+    `Learn more about ${name}, a ${profession} based in Copenhagen.`;
 
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO
+        title="About"
+        description={pageDescription}
+        keywords={[name ?? "Daniel Guldberg Aaes", "About", profession ?? "Software Developer"]}
+        pathname={canonicalPath}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          name: `About ${name ?? "Daniel Guldberg Aaes"}`,
+          description: pageDescription,
+          url: siteMetadata?.siteUrl
+            ? `${siteMetadata.siteUrl}${canonicalPath}`
+            : undefined,
+        }}
+      />
       <div className="xs:px-10">
         <div className="flex xs:flex-col md:flex-row justify-evenly mb-6">
           <Img

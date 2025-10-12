@@ -6,9 +6,7 @@ type Props = {
 };
 
 export const Comments: FC<Props> = ({ issueTerm }) => {
-
   const { isDarkMode } = useTheme()
-
 
   const commentsUUID = `comments_${issueTerm}`;
 
@@ -32,13 +30,11 @@ export const Comments: FC<Props> = ({ issueTerm }) => {
         scriptParentNode.removeChild(scriptParentNode?.firstChild);
       }
     };
-  }, [isDarkMode]);
+  }, [isDarkMode, issueTerm]);
 
-  return <div
-
-    id={commentsUUID}>
-
-    <style jsx>{`
+  return (
+    <div id={commentsUUID}>
+      <style>{`
         .utterances {
        max-width: 65ch; /* Limit the width */
           width: 100%; /* Ensure it takes the full width of the parent */
@@ -47,5 +43,6 @@ export const Comments: FC<Props> = ({ issueTerm }) => {
           margin-right: auto; /* Center the remaining space on the right */
         }
       `}</style>
-  </div>;
+    </div>
+  );
 };

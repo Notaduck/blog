@@ -7,7 +7,8 @@ published: true
 meta:
   description: "Learn how to integrate multiple Stripe accounts into your NestJS application using the Factory Pattern for cleaner code, scalability, and maintainability."
   keywords: "NestJS, Stripe, Factory Pattern, Multi-Client Integration, Payment Processing, Software Development, Code Optimization"
-  author: "Daniel"
+  author: "Daniel Guldberg Aaes"
+  image: "/og/stripe-multi-client-factory-pattern.png"
   excerpt: "Discover how to streamline Stripe account integration in NestJS applications using the Factory Pattern. Say goodbye to messy code and hello to scalability!"
 ---
 

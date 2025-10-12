@@ -7,7 +7,8 @@ published: true
 meta:
   description: "Learn how to create a contact form in Gatsby and send emails using SendGrid functions. A step-by-step guide for freelancers and bloggers."
   keywords: "Gatsby, SendGrid, serverless functions, email, contact form"
-  author: "Daniel" 
+  author: "Daniel Guldberg Aaes"
+  image: "/og/send-emails-with-gatsby-and-sendgrid.png"
   excerpt: "In this article, I will show you how to create a contact form using Gatsby and SendGrid to easily send emails."
 ---
 
@@ -103,5 +104,4 @@ const handler = (req, res) => {
 
 module.exports = handler;
 ````
-
 

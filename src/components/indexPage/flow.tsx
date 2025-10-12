@@ -4,14 +4,6 @@ import ReactFlow, { removeElements, addEdge } from 'react-flow-renderer';
 
 const onLoad = (reactFlowInstance) => reactFlowInstance.fitView();
 
-const onNodeMouseEnter = (event, node) => console.log('mouse enter:', node);
-const onNodeMouseMove = (event, node) => console.log('mouse move:', node);
-const onNodeMouseLeave = (event, node) => console.log('mouse leave:', node);
-const onNodeContextMenu = (event, node) => {
-  event.preventDefault();
-  console.log('context menu:', node);
-};
-
 const initialElements = [
   {
     id: 'horizontal-1',
@@ -146,10 +138,6 @@ const HorizontalFlow = () => {
       onConnect={onConnect}
       onLoad={onLoad}
       selectNodesOnDrag={false}
-      onNodeMouseEnter={onNodeMouseEnter}
-      onNodeMouseMove={onNodeMouseMove}
-      onNodeMouseLeave={onNodeMouseLeave}
-      onNodeContextMenu={onNodeContextMenu}
     >
       <button
         onClick={changeClassName}

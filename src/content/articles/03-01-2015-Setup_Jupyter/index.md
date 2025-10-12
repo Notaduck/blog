@@ -7,7 +7,8 @@ published: true
 meta:
   description: 'A step-by-step guide to setting up a Jupyter Notebook server on CentOS/RHEL 7, enabling remote access and HTTPS.'
   keywords: 'Jupyter, CentOS, RHEL, Python, server setup, notebook server, remote access'
-  author: 'Your Name'  # Replace with your name
+  author: 'Daniel Guldberg Aaes'
+  image: '/og/setup-jupyter-notebook-server.png'
   excerpt: 'Learn how to install and configure Jupyter Notebook on CentOS/RHEL 7 for remote access and HTTPS support.'
 ---
 

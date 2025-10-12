@@ -3,6 +3,7 @@ import { ContactForm } from "@components/form";
 import { Section } from "@components/indexPage";
 import { Layout } from "@components/layout";
 import { content } from "@src/content/data";
+import { useSiteMetadata } from "@src/hooks/use-site-metadata";
 import { StaticImage } from "gatsby-plugin-image";
 import Typical from "react-typical";
 import { SEO } from "@components/seo"; // Ensure you have an SEO component
@@ -21,22 +22,31 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
 }) => {
   const [animated, setAnimated] = useState(false);
   const floatingIconsRef = useRef<HTMLDivElement>(null); // Create a ref for the icons container
+  const { siteUrl } = useSiteMetadata();
 
   useEffect(() => {
     setAnimated(true);
   }, []);
 
   useEffect(() => {
-    console.log("state", location.state);
-    if (location.state && location.state.scrollToContact) {
+    if (location.state?.scrollToContact) {
       scroller.scrollTo(SECTIONS.CONTACT, {
         duration: 800,
         delay: 0,
         smooth: "easeInOutQuart",
         offset: -50,
       });
+
+      if (typeof window !== "undefined" && window.history?.replaceState) {
+        const currentState =
+          typeof window.history.state === "object" && window.history.state !== null
+            ? { ...window.history.state }
+            : {};
+        delete currentState.scrollToContact;
+        window.history.replaceState(currentState, "", window.location.href);
+      }
     }
-  }, [location]);
+  }, [location.key]);
 
   const calculateAge = (dob: string) => {
     const today = new Date();
@@ -56,7 +66,33 @@ const Index: FC<PageProps<null, null, { scrollToContact: boolean }>> = ({
       <SEO
         title="Welcome to My Personal Blog"
         description="This is the personal blog of Daniel Guldberg Aaes, where I share my insights on software development and technology."
-        keywords="Daniel Guldberg Aaes, personal blog, software development, technology, programming"
+        keywords={[
+          "Daniel Guldberg Aaes",
+          "personal blog",
+          "software development",
+          "technology",
+          "programming",
+          "cloud",
+        ]}
+        pathname={location.pathname}
+        structuredData={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Daniel Guldberg Aaes",
+          jobTitle: "Software Developer",
+          url: siteUrl,
+          image: siteUrl ? `${siteUrl}/og-default.png` : undefined,
+          sameAs: [
+            "https://github.com/notaduck/",
+            "https://www.linkedin.com/in/daniel-guldberg-aaes-12145b180/",
+          ],
+          knowsAbout: [
+            "Full-stack development",
+            "Cloud architecture",
+            "DevOps",
+            "TypeScript",
+          ],
+        }}
       />
 
       <Section

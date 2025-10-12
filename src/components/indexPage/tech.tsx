@@ -119,7 +119,6 @@ const initialElements = [
 
 
 const onLoad = (reactFlowInstance) => {
-  console.log('flow loaded:', reactFlowInstance);
   reactFlowInstance.fitView();
 };
 

@@ -8,19 +8,22 @@ export const Footer = () => {
 
   useEffect(() => {
     setCurrentYear(new Date().getFullYear().toString())
-  })
+  }, [])
 
   const links = [
     {
       slug: "https://github.com/notaduck/",
+      label: "GitHub",
       icon: <FiGithub size={iconSize} />,
     },
     {
       slug: "https://www.linkedin.com/in/daniel-guldberg-aaes-12145b180/",
+      label: "LinkedIn",
       icon: <FiLinkedin size={iconSize} />,
     },
     {
       slug: "https://www.facebook.com/daniel.guldberg.aaes/",
+      label: "Facebook",
       icon: <FiFacebook size={iconSize} />,
     },
   ]
@@ -28,14 +31,21 @@ export const Footer = () => {
   return (
     <footer className="flex justify-between p-4">
       <div className="flex space-x-4">
-        {links.map((link, index) => (
+        {links.map((link) => (
           <div
-            key={index}
+            key={link.slug}
             className="transition duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-140 "
           >
-            <a href={link.slug} target="_blank" rel="noreferrer">
-              {" "}
-              {link.icon}{" "}
+            <a
+              href={link.slug}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              title={link.label}
+              className="focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary rounded-full"
+            >
+              <span className="sr-only">{link.label}</span>
+              {link.icon}
             </a>
           </div>
         ))}

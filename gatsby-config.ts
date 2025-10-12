@@ -7,11 +7,13 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Guldberglab`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@notaduck`,
-    name: "Danie Guldberg Aaes",
+    description: `Insights on full-stack software development, cloud architecture, and developer tooling from Daniel Guldberg Aaes.`,
+    author: `Daniel Guldberg Aaes`,
+    name: "Daniel Guldberg Aaes",
     profession: "Software Developer",
     siteUrl: `https://guldberglab.info`,
+    twitterUsername: `@notaduck`,
+    socialImage: `/og-default.png`,
   },
   graphqlTypegen: {
     typesOutputPath: `gatsby-types.d.ts`,
@@ -76,13 +78,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Guldberglab`,
+        short_name: `Guldberg`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/favicon_io/favicon-32x32.png`, // This path is relative to the root of the site.
+        background_color: `#0b1120`,
+        theme_color: `#0ea5e9`,
+        display: `standalone`,
+        icon: `src/images/favicon_io/android-chrome-512x512.png`, // This path is relative to the root of the site.
+        lang: `en`,
       },
     },
     {

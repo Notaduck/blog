@@ -1,41 +1,87 @@
-import { Link, graphql } from "gatsby";
+import { FC, useMemo } from "react";
+import { Link, PageProps, graphql } from "gatsby";
 import { FiCoffee, FiCalendar, FiTerminal } from "react-icons/fi";
+
 import { Layout } from "@components/layout";
 import { SEO } from "@components/seo";
+import { useSiteMetadata } from "@src/hooks/use-site-metadata";
 
-const ArticleList = ({ data, pageContext }) => {
+type PageContext = {
+  currentPage: number;
+  numPages: number;
+  limit: number;
+  skip: number;
+};
+
+const ArticleList: FC<PageProps<Queries.articleListQuery, PageContext>> = ({
+  data,
+  pageContext,
+  location,
+}) => {
   const { currentPage, numPages } = pageContext;
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
   const prevPage =
-    currentPage - 1 === 1 ? "/articles" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
+    currentPage - 1 === 1 ? "/blog" : `/blog/${currentPage - 1}`;
+  const nextPage = `/blog/${currentPage + 1}`;
   const {
     allMarkdownRemark: { nodes },
   } = data;
+  const siteMetadata = useSiteMetadata();
+  const pageTitle = currentPage > 1 ? `Blog - Page ${currentPage}` : "Blog";
+  const uniqueTags = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          nodes.flatMap(
+            (node) =>
+              node.frontmatter?.tags?.filter(
+                (tag): tag is string => Boolean(tag),
+              ) ?? [],
+          ),
+        ),
+      ),
+    [nodes],
+  );
+  const canonicalPath = location?.pathname ?? "/blog";
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: siteMetadata?.title ?? "Guldberglab",
+    description: siteMetadata?.description,
+    url: siteMetadata?.siteUrl
+      ? `${siteMetadata.siteUrl}${canonicalPath}`
+      : undefined,
+  };
 
   return (
     <Layout>
       <SEO
-        title="Blog"
-        description={undefined}
-        pathname={undefined}
-        children={undefined}
+        title={pageTitle}
+        description={
+          currentPage === 1
+            ? siteMetadata?.description
+            : `Page ${currentPage} of the Guldberglab blog featuring software development insights and tutorials.`
+        }
+        keywords={uniqueTags}
+        pathname={canonicalPath}
+        structuredData={blogSchema}
       />
       <div className="xs:mt-2 md:mt-8 min-h-content" data-cy="article-list">
         {nodes.map((node, index) => {
+          const articleSlug = node?.frontmatter?.slug;
+          const articleUrl = articleSlug ? `/blog${articleSlug}` : "#";
+
           return (
             <div
-              key={`${node}_${index}`}
+              key={`${node?.id ?? "article"}_${index}`}
               className="flex flex-col mb-4 border-b-2  pb-4 b-accent"
               data-cy="article-card"
             >
               {/* TITLE */}
               <h2 className="sm:text-xl md:text-2xl font-black mb-2 flex items-center space-x-4">
                 <FiTerminal className="xm:hidden" />
-                <Link to={`/blog${node?.frontmatter?.slug}`}>
-                  {node?.frontmatter?.title}
-                </Link>
+                <Link to={articleUrl}>{node?.frontmatter?.title}</Link>
               </h2>
 
               {/* DATE AND TAGS */}
@@ -44,14 +90,6 @@ const ArticleList = ({ data, pageContext }) => {
                   <FiCalendar className="mr-2" />
                   {node?.frontmatter?.date}
                 </div>
-
-                {/* {node?.frontmatter?.tags && (
-                <div className="flex flex-wrap items-center space-x-2 text-tag">
-                  {node.frontmatter.tags.map((tag) => (
-                    <div> {tag} </div>
-                  ))}
-                </div>
-              )} */}
               </div>
 
               {/* EXCERPT AND READ MORE */}
@@ -60,7 +98,7 @@ const ArticleList = ({ data, pageContext }) => {
               <div className="flex">
                 <Link
                   className="hover:underline hover:text-secondary-text flex space-x-2 items-center m-0"
-                  to={`/articles${node?.frontmatter?.slug}`}
+                  to={articleUrl}
                 >
                   <FiCoffee />
 
@@ -99,7 +137,7 @@ export const query = graphql`
         excerpt(truncate: true, pruneLength: 300)
         timeToRead
         frontmatter {
-          date(formatString: "MMMM YYYY")
+          date(formatString: "MMMM DD, YYYY")
           title
           slug
           tags
