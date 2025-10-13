@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("articles", ({ data }) => data.published)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const articleSlug = (entry: (typeof posts)[number]) => {
+  const raw = entry.data.slug ?? entry.slug;
+  return raw.replace(/\/index$/i, "").replace(/^\/+/, "").replace(/\/+$/, "");
+};
+const toPermalink = (entry: (typeof posts)[number]) => `/blog/${articleSlug(entry)}`;
+---
+
+<BaseLayout title="Blog" description="Articles, tutorials, and reflections from Daniel Guldberg Aaes.">
+  <section class="space-y-6">
+    <header class="space-y-2">
+      <p class="text-sm uppercase tracking-widest text-secondary-text">Writing</p>
+      <h1 class="font-inconsolata text-4xl font-bold tracking-tight sm:text-5xl">
+        Blog
+      </h1>
+      <p class="max-w-2xl text-secondary-text">
+        Long-form explorations into the tools, techniques, and teams that make great software. Expect a mix of tutorials, architecture notes, and personal reflections.
+      </p>
+    </header>
+
+    <div class="space-y-8">
+      {posts.map((post) => (
+        <article class="rounded-3xl border border-accent/20 bg-secondary/10 p-6 transition hover:-translate-y-1 hover:shadow-lg">
+          <h2 class="text-2xl font-semibold text-main-text">
+            <a class="hover:underline" href={toPermalink(post)}>
+              {post.data.title}
+            </a>
+          </h2>
+          <p class="mt-1 text-sm text-secondary-text">
+            {dateFormatter.format(post.data.date)}
+          </p>
+          {post.data.meta?.excerpt && (
+            <p class="mt-4 text-secondary-text">{post.data.meta.excerpt}</p>
+          )}
+          {post.data.tags.length > 0 && (
+            <ul class="mt-4 flex flex-wrap gap-2 text-sm text-secondary-text">
+              {post.data.tags.map((tag) => (
+                <li class="rounded-full border border-highlight px-3 py-1">{tag}</li>
+              ))}
+            </ul>
+          )}
+          <a class="mt-4 inline-flex items-center text-highlight hover:text-accent" href={toPermalink(post)}>
+            Read article →
+          </a>
+        </article>
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <p class="rounded-lg border border-accent/20 bg-secondary/10 p-6 text-secondary-text">
+        Nothing has been published just yet. Subscribe to the feed and get notified once new content arrives.
+      </p>
+    )}
+  </section>
+</BaseLayout>

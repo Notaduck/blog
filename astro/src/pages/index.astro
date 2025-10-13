@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { hero } from "../content/site";
+import { getCollection } from "astro:content";
+import ContactForm from "../components/ContactForm.tsx";
+import TechBubbles from "../components/TechBubbles.astro";
+
+const posts = (await getCollection("articles", ({ data }) => data.published)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const recentPosts = posts.slice(0, 3);
+const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const articleSlug = (entry: (typeof posts)[number]) => {
+  const raw = entry.data.slug ?? entry.slug;
+  return raw.replace(/\/index$/i, "").replace(/^\/+/, "").replace(/\/+$/, "");
+};
+const toPermalink = (entry: (typeof posts)[number]) =>
+  `/blog/${articleSlug(entry)}`;
+---
+
+<BaseLayout>
+  <section class="grid gap-12 py-12 md:grid-cols-[minmax(0,1.15fr),minmax(0,0.85fr)] md:items-center">
+    <div class="space-y-6">
+      <p class="text-sm uppercase tracking-widest text-secondary-text">Welcome</p>
+      <h1 class="font-inconsolata text-4xl font-bold tracking-tight sm:text-5xl">
+        {hero.heading}
+      </h1>
+      <p class="max-w-xl text-lg text-secondary-text">{hero.summary}</p>
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          class="inline-flex items-center gap-2 rounded-md border border-highlight px-4 py-2 text-highlight transition hover:bg-highlight hover:text-white"
+          href="#contact"
+        >
+          Let’s work together →
+        </a>
+        <a
+          class="inline-flex items-center gap-2 rounded-md border border-accent/40 px-4 py-2 text-secondary-text transition hover:border-accent hover:text-highlight"
+          href="https://www.linkedin.com/in/daniel-guldberg-aaes-12145b180/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Connect on LinkedIn ↗
+        </a>
+      </div>
+    </div>
+    <div class="flex w-full justify-center md:justify-end">
+      <div class="flex w-full max-w-md flex-col items-center gap-5 text-center">
+        <div class="relative w-full overflow-hidden rounded-3xl border border-accent/30 shadow-lg">
+          <img
+            src="/images/profile.png"
+            alt="Portrait of Daniel Guldberg Aaes"
+            loading="eager"
+            class="h-full w-full object-cover"
+          />
+          <span class="absolute left-4 top-4 rounded-md bg-highlight px-3 py-1 text-xs font-semibold uppercase text-white">
+            Software Developer
+          </span>
+        </div>
+        <div class="rounded-2xl border border-accent/20 bg-secondary/10 px-6 py-4 text-secondary-text shadow-sm">
+          <p>
+            Building resilient systems, guiding teams through tricky platform challenges, and writing the playbooks that help teams ship with confidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-8">
+    <TechBubbles />
+  </section>
+
+  <section class="py-12">
+    <div class="flex items-center justify-between">
+      <h2 class="text-3xl font-bold">Recent writing</h2>
+      <a class="text-highlight transition hover:text-accent" href="/blog">
+        View all posts →
+      </a>
+    </div>
+    <div class="mt-6 grid gap-6 md:grid-cols-3">
+      {recentPosts.map((post) => (
+        <article class="flex h-full flex-col rounded-xl border border-accent/20 bg-secondary/10 p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+          <h3 class="font-montserrat text-xl font-semibold text-main-text">
+            <a class="hover:underline" href={toPermalink(post)}>
+              {post.data.title}
+            </a>
+          </h3>
+          <p class="mt-2 text-sm text-secondary-text">
+            {dateFormatter.format(post.data.date)}
+          </p>
+          {post.data.meta?.excerpt && (
+            <p class="mt-4 flex-1 text-sm text-secondary-text">
+              {post.data.meta.excerpt}
+            </p>
+          )}
+          <a class="mt-4 inline-flex items-center text-highlight hover:text-accent" href={toPermalink(post)}>
+            Read article →
+          </a>
+        </article>
+      ))}
+    </div>
+    {recentPosts.length === 0 && (
+      <p class="mt-6 text-secondary-text">No articles published yet. Check back soon!</p>
+    )}
+  </section>
+
+  <section id="contact" class="py-12">
+    <div class="mb-8 space-y-3 text-center">
+      <h2 class="text-3xl font-bold">Need a hand?</h2>
+      <p class="mx-auto max-w-2xl text-secondary-text">
+        I love collaborating on developer tooling, DX improvements, and thoughtful engineering culture.
+        Tell me what you are working on and I’ll get back as soon as I can.
+      </p>
+    </div>
+    <ContactForm client:visible />
+  </section>
+</BaseLayout>

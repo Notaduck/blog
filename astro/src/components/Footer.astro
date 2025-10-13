@@ -1,0 +1,42 @@
+--- 
+const year = new Date().getFullYear();
+
+const socials = [
+  {
+    href: "https://github.com/notaduck/",
+    label: "GitHub",
+    icon: `<svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-current"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55 0-.27-.01-1.15-.01-2.09-3.2.7-3.88-1.39-3.88-1.39-.52-1.35-1.29-1.72-1.29-1.72-1.06-.72.08-.71.08-.71 1.18.08 1.8 1.22 1.8 1.22 1.04 1.78 2.74 1.27 3.41.97.11-.76.41-1.27.75-1.56-2.55-.29-5.23-1.28-5.23-5.67 0-1.25.45-2.27 1.2-3.07-.12-.29-.52-1.44.11-3 0 0 .97-.31 3.19 1.18a11.12 11.12 0 0 1 5.8 0c2.22-1.49 3.18-1.18 3.18-1.18.63 1.56.23 2.71.12 3 .75.8 1.2 1.82 1.2 3.07 0 4.4-2.68 5.38-5.24 5.66.42.37.8 1.1.8 2.22 0 1.6-.01 2.89-.01 3.28 0 .3.21.66.79.54A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>`,
+  },
+  {
+    href: "https://www.linkedin.com/in/daniel-guldberg-aaes-12145b180/",
+    label: "LinkedIn",
+    icon: `<svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-current"><path d="M20.45 20.45h-3.56v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96v5.7H9.32V9h3.42v1.56h.05c.48-.9 1.66-1.86 3.42-1.86 3.66 0 4.34 2.4 4.34 5.5v6.25ZM5.34 7.43a2.07 2.07 0 1 1 0-4.15 2.07 2.07 0 0 1 0 4.15Zm1.78 13.02H3.55V9h3.57v11.45ZM22.23 0H1.77C.79 0 0 .78 0 1.75v20.5C0 23.22.79 24 1.77 24h20.46c.97 0 1.77-.78 1.77-1.75V1.75C24 .78 23.2 0 22.23 0Z"/></svg>`,
+  },
+  {
+    href: "https://www.facebook.com/daniel.guldberg.aaes/",
+    label: "Facebook",
+    icon: `<svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-current"><path d="M22.68 0H1.32C.6 0 0 .6 0 1.32v21.36C0 23.4.6 24 1.32 24h11.5v-9.27H9.69V11.1h3.13V8.41c0-3.1 1.9-4.79 4.66-4.79 1.32 0 2.45.1 2.78.14v3.22h-1.9c-1.5 0-1.8.72-1.8 1.77v2.33h3.6l-.47 3.63h-3.13V24h6.14c.73 0 1.32-.6 1.32-1.32V1.32C24 .6 23.4 0 22.68 0Z"/></svg>`,
+  },
+];
+---
+
+<footer class="border-t border-accent/40 bg-primary">
+  <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-6 text-main-text sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-center gap-4">
+      {socials.map((social) => (
+        <a
+          class="flex h-10 w-10 items-center justify-center rounded-full border border-transparent transition hover:-translate-y-1 hover:scale-105 hover:border-accent"
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="sr-only">{social.label}</span>
+          <span aria-hidden="true" class="text-main-text" set:html={social.icon} />
+        </a>
+      ))}
+    </div>
+    <p class="text-sm text-secondary-text">
+      © {year} · Crafted with Astro & Tailwind · Hosted on Netlify
+    </p>
+  </div>
+</footer>

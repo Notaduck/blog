@@ -1,0 +1,54 @@
+---
+import { navigation } from "../content/site";
+
+type Props = {
+  currentPath?: string;
+};
+
+const { currentPath = "/" } = Astro.props as Props;
+---
+
+<nav class="bg-primary text-main-text border-b-2 border-accent/40 shadow-sm">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <a class="font-inconsolata text-2xl font-bold uppercase flex items-center gap-2" href="/">
+      &lt; {navigation.brand} &gt;
+    </a>
+    <div class="hidden items-center gap-2 md:flex">
+      {navigation.items.map((item) => {
+        const isActive =
+          item.href === "/"
+            ? currentPath === "/"
+            : currentPath.startsWith(item.href.replace("/#", "/"));
+        return (
+          <a
+            class={`font-inconsolata text-lg font-medium rounded-md px-3 py-2 transition-colors ${
+              isActive
+                ? "bg-highlight text-white"
+                : "text-main-text hover:bg-highlight hover:text-white"
+            }`}
+            href={item.href}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </div>
+    <details class="relative md:hidden">
+      <summary class="flex cursor-pointer items-center justify-center rounded-md p-2 text-main-text transition hover:bg-highlight hover:text-white">
+        <span class="sr-only">Toggle navigation</span>
+        ☰
+      </summary>
+      <div class="absolute right-0 mt-2 w-48 rounded-md border border-accent/30 bg-primary p-2 shadow-lg">
+        {navigation.items.map((item) => (
+          <a
+            class="block rounded px-3 py-2 text-main-text transition hover:bg-highlight hover:text-white"
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </details>
+  </div>
+</nav>

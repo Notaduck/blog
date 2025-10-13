@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
+
+.light {
+  --primary: #ffffff;
+  --secondary: #dbe1e8;
+  --text-main: #0d0106;
+  --text-secondary: #454e56;
+  --highlight: rgb(188, 67, 93);
+  --accent: #a83252;
+}
+
+.dark {
+  --primary: #06131c;
+  --secondary: #2a2e35;
+  --text-main: #d0cfc4;
+  --highlight: rgb(188, 67, 93);
+  --text-secondary: #b8b8b9;
+  --accent: #ff8a9a;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-montserrat;
+}
+
+h1 {
+  @apply text-5xl text-main-text mt-16 mb-8;
+}
+
+h2 {
+  @apply text-3xl font-medium text-main-text mt-4 mb-4;
+}
+
+h3 {
+  @apply text-2xl text-main-text mb-8;
+}
+
+h4 {
+  @apply text-main-text uppercase mb-8;
+}
+
+h5 {
+  @apply text-sm text-main-text mb-8;
+}
+
+h6 {
+  @apply text-xs text-main-text mb-8;
+}
+
+a,
+p,
+span {
+  @apply font-montserrat;
+}
+
+a {
+  color: var(--highlight);
+  transition: color 150ms ease-in-out;
+}
+
+a:hover,
+a:focus {
+  color: var(--accent);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.b-accent {
+  border-color: var(--accent);
+}
+
+.prism-copy-button-container {
+  @apply left-4;
+}
+
+.prism-copy-button {
+  @apply hover:bg-[#bc435d] shadow-xl border-2 border-black bg-gray-300 text-black;
+}
+
+.utterances {
+  max-width: 65ch;
+  width: 100%;
+  margin-left: 0;
+  margin-right: auto;
+}

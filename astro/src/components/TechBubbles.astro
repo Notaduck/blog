@@ -1,0 +1,363 @@
+---
+import { BiLogoTypescript } from "react-icons/bi";
+import { DiDocker, DiGo, DiJavascript, DiNodejs } from "react-icons/di";
+import {
+  SiAzuredevops,
+  SiGatsby,
+  SiKubernetes,
+  SiNestjs,
+  SiNextdotjs,
+} from "react-icons/si";
+
+const icons = [
+  { component: BiLogoTypescript, label: "TypeScript", color: "#3178c6" },
+  { component: SiNestjs, label: "NestJS", color: "#e0234e" },
+  { component: DiDocker, label: "Docker", color: "#0db7ed" },
+  { component: DiJavascript, label: "JavaScript", color: "#f7df1e" },
+  { component: DiNodejs, label: "Node.js", color: "#43853d" },
+  { component: SiGatsby, label: "Gatsby", color: "#663399" },
+  { component: SiNextdotjs, label: "Next.js", color: "#111111" },
+  { component: SiKubernetes, label: "Kubernetes", color: "#326ce5" },
+  { component: SiAzuredevops, label: "Azure DevOps", color: "#0078d7" },
+  { component: DiGo, label: "Go", color: "#00add8" },
+] as const;
+
+const bubbles = icons.map((item, index) => ({
+  ...item,
+  id: `${item.label}-${index}`,
+}));
+---
+<section
+  aria-label="Technology highlights"
+  class="relative isolate overflow-hidden rounded-[28px] border border-accent/25 bg-gradient-to-br from-highlight/10 via-secondary/80 to-accent/10 p-6 sm:rounded-[38px] sm:p-10"
+>
+  <div class="pointer-events-none absolute -left-24 top-10 h-48 w-48 rounded-full bg-highlight/20 blur-3xl" />
+  <div class="pointer-events-none absolute -right-20 bottom-6 h-52 w-52 rounded-full bg-accent/15 blur-3xl" />
+
+  <div class="relative h-[360px] w-full overflow-hidden" data-tech-bubbles>
+    {bubbles.map(({ id, component: Icon, label, color }) => (
+      <div class="group absolute left-0 top-0 will-change-transform" data-bubble id={id}>
+        <div class="bubble flex min-w-[180px] max-w-[220px] items-center gap-3 rounded-full border border-highlight bg-white px-5 py-3 text-main-text shadow-lg transition hover:-translate-y-1 dark:bg-primary/60 dark:text-secondary-text origin-center">
+          <span
+            class="flex h-11 w-11 items-center justify-center rounded-full border border-highlight/30 bg-white text-main-text transition   dark:bg-primary/70 dark:text-secondary-text "
+            style={`color: ${color};`}
+          >
+            <Icon size={24} aria-hidden="true" />
+          </span>
+          <span class="text-base font-semibold tracking-wide">{label}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const initTechBubbles = () => {
+      const container = document.querySelector("[data-tech-bubbles]");
+      if (!container) return;
+
+      const wrapNodes = Array.from(container.querySelectorAll("[data-bubble]"));
+      if (wrapNodes.length === 0) return;
+
+      const margin = 16;
+      const SPEED_MIN = 0.25;
+      const SPEED_MAX = 4.2;
+      const BOUNCE_DAMPING = 0.55;
+      const COLLISION_DAMPING = 0.65;
+      const DRIFT_FORCE = 0.9;
+      const FRICTION = 0.985;
+      const FRAME_RATE = 60;
+
+      const randomDirection = () => (Math.random() < 0.5 ? -1 : 1);
+      const randomSpeed = () =>
+        SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN);
+
+      const clampVelocity = (value) => {
+        const direction = value === 0 ? randomDirection() : Math.sign(value);
+        let speed = Math.abs(value);
+        if (speed > SPEED_MAX) {
+          speed = SPEED_MAX;
+        }
+        if (speed < SPEED_MIN) {
+          speed = SPEED_MIN;
+        }
+        return speed * direction;
+      };
+
+      const bounceVelocity = (value, direction) => {
+        const damped = Math.abs(value) * BOUNCE_DAMPING;
+        const speed = Math.max(SPEED_MIN, Math.min(SPEED_MAX, damped));
+        return speed * direction;
+      };
+
+      const bubbles = wrapNodes.map((el) => ({
+        el,
+        width: el.offsetWidth,
+        height: el.offsetHeight,
+        x: margin,
+        y: margin,
+        vx: clampVelocity(randomSpeed() * randomDirection()),
+        vy: clampVelocity(randomSpeed() * randomDirection()),
+        phaseX: Math.random() * Math.PI * 2,
+        phaseY: Math.random() * Math.PI * 2,
+        frequencyX: 0.55 + Math.random() * 0.45,
+        frequencyY: 0.55 + Math.random() * 0.45,
+      }));
+
+      let containerWidth = container.clientWidth || container.offsetWidth;
+      let containerHeight = container.clientHeight || container.offsetHeight;
+
+      const applyTransforms = () => {
+        for (const bubble of bubbles) {
+          const snappedX = Math.round(bubble.x * 10) / 10;
+          const snappedY = Math.round(bubble.y * 10) / 10;
+          bubble.el.style.transform = `translate3d(${snappedX}px, ${snappedY}px, 0)`;
+        }
+      };
+
+      const clampToBounds = (bubble) => {
+        const maxX = Math.max(margin, containerWidth - bubble.width - margin);
+        const maxY = Math.max(margin, containerHeight - bubble.height - margin);
+
+        if (bubble.x <= margin) {
+          bubble.x = margin;
+          bubble.vx = bounceVelocity(bubble.vx, 1);
+        } else if (bubble.x >= maxX) {
+          bubble.x = maxX;
+          bubble.vx = bounceVelocity(bubble.vx, -1);
+        }
+
+        if (bubble.y <= margin) {
+          bubble.y = margin;
+          bubble.vy = bounceVelocity(bubble.vy, 1);
+        } else if (bubble.y >= maxY) {
+          bubble.y = maxY;
+          bubble.vy = bounceVelocity(bubble.vy, -1);
+        }
+      };
+
+      const resolveCollisions = () => {
+        for (let i = 0; i < bubbles.length; i++) {
+          const a = bubbles[i];
+          for (let j = i + 1; j < bubbles.length; j++) {
+            const b = bubbles[j];
+
+            if (
+              a.x < b.x + b.width &&
+              a.x + a.width > b.x &&
+              a.y < b.y + b.height &&
+              a.y + a.height > b.y
+            ) {
+              const overlapX = (a.x + a.width / 2) - (b.x + b.width / 2);
+              const overlapY = (a.y + a.height / 2) - (b.y + b.height / 2);
+              const halfWidth = (a.width + b.width) / 2;
+              const halfHeight = (a.height + b.height) / 2;
+              const penetrationX = halfWidth - Math.abs(overlapX);
+              const penetrationY = halfHeight - Math.abs(overlapY);
+
+              if (penetrationX < penetrationY) {
+                const correction = penetrationX / 2 || 0;
+                if (overlapX > 0) {
+                  a.x += correction;
+                  b.x -= correction;
+                } else {
+                  a.x -= correction;
+                  b.x += correction;
+                }
+                const tempVx = a.vx;
+                a.vx = clampVelocity(b.vx * COLLISION_DAMPING);
+                b.vx = clampVelocity(tempVx * COLLISION_DAMPING);
+              } else {
+                const correction = penetrationY / 2 || 0;
+                if (overlapY > 0) {
+                  a.y += correction;
+                  b.y -= correction;
+                } else {
+                  a.y -= correction;
+                  b.y += correction;
+                }
+                const tempVy = a.vy;
+                a.vy = clampVelocity(b.vy * COLLISION_DAMPING);
+                b.vy = clampVelocity(tempVy * COLLISION_DAMPING);
+              }
+
+              clampToBounds(a);
+              clampToBounds(b);
+            }
+          }
+        }
+      };
+
+      const placeInitial = () => {
+        containerWidth = container.clientWidth || container.offsetWidth;
+        containerHeight = container.clientHeight || container.offsetHeight;
+
+        const placed = [];
+
+        bubbles.forEach((bubble, index) => {
+          bubble.width = bubble.el.offsetWidth;
+          bubble.height = bubble.el.offsetHeight;
+
+          const maxX = Math.max(margin, containerWidth - bubble.width - margin);
+          const maxY = Math.max(margin, containerHeight - bubble.height - margin);
+          const rangeX = Math.max(0, maxX - margin);
+          const rangeY = Math.max(0, maxY - margin);
+
+          let attempts = 0;
+          let placedSuccessfully = false;
+
+          while (attempts < 200 && !placedSuccessfully) {
+            const x = margin + (rangeX > 0 ? Math.random() * rangeX : 0);
+            const y = margin + (rangeY > 0 ? Math.random() * rangeY : 0);
+
+            const overlaps = placed.some((other) => !(
+              x + bubble.width + 4 <= other.x ||
+              x >= other.x + other.width + 4 ||
+              y + bubble.height + 4 <= other.y ||
+              y >= other.y + other.height + 4
+            ));
+
+            if (!overlaps) {
+              bubble.x = x;
+              bubble.y = y;
+              placedSuccessfully = true;
+            }
+
+            attempts++;
+          }
+
+          if (!placedSuccessfully) {
+            const cols = Math.ceil(Math.sqrt(bubbles.length));
+            const rows = Math.ceil(bubbles.length / cols);
+            const cellW = (containerWidth - margin * 2) / cols;
+            const cellH = (containerHeight - margin * 2) / rows;
+            const col = index % cols;
+            const row = Math.floor(index / cols);
+
+            bubble.x = margin + col * cellW + Math.max(0, (cellW - bubble.width) / 2);
+            bubble.y = margin + row * cellH + Math.max(0, (cellH - bubble.height) / 2);
+          }
+
+          clampToBounds(bubble);
+          placed.push({ x: bubble.x, y: bubble.y, width: bubble.width, height: bubble.height });
+        });
+      };
+
+      placeInitial();
+      applyTransforms();
+
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let lastTime = performance.now();
+      let animationFrameId = 0;
+
+      const step = (time) => {
+        const delta = Math.min((time - lastTime) / 1000, 0.05);
+        lastTime = time;
+
+        const frictionFactor = Math.pow(FRICTION, delta * FRAME_RATE);
+
+        const timeInSeconds = time / 1000;
+
+        for (const bubble of bubbles) {
+          const driftX =
+            Math.sin(timeInSeconds * bubble.frequencyX + bubble.phaseX) *
+            DRIFT_FORCE;
+          const driftY =
+            Math.cos(timeInSeconds * bubble.frequencyY + bubble.phaseY) *
+            DRIFT_FORCE;
+
+          bubble.vx = clampVelocity((bubble.vx + driftX * delta) * frictionFactor);
+          bubble.vy = clampVelocity((bubble.vy + driftY * delta) * frictionFactor);
+
+          bubble.x += bubble.vx * delta;
+          bubble.y += bubble.vy * delta;
+          clampToBounds(bubble);
+        }
+
+        resolveCollisions();
+        applyTransforms();
+
+        animationFrameId = requestAnimationFrame(step);
+      };
+
+      const start = () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+          animationFrameId = 0;
+        }
+
+        if (prefersReducedMotion.matches) {
+          applyTransforms();
+          return;
+        }
+
+        lastTime = performance.now();
+        animationFrameId = requestAnimationFrame(step);
+      };
+
+      const handleMotionChange = () => {
+        start();
+      };
+
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = 0;
+          }
+        } else {
+          start();
+        }
+      };
+
+      const resizeObserver =
+        "ResizeObserver" in window
+          ? new ResizeObserver(() => {
+              placeInitial();
+              applyTransforms();
+            })
+          : null;
+
+      if (resizeObserver) {
+        resizeObserver.observe(container);
+      }
+
+      if (typeof prefersReducedMotion.addEventListener === "function") {
+        prefersReducedMotion.addEventListener("change", handleMotionChange);
+      } else if (typeof prefersReducedMotion.addListener === "function") {
+        prefersReducedMotion.addListener(handleMotionChange);
+      }
+
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      const cleanup = () => {
+        if (animationFrameId) {
+          cancelAnimationFrame(animationFrameId);
+        }
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
+        if (typeof prefersReducedMotion.removeEventListener === "function") {
+          prefersReducedMotion.removeEventListener("change", handleMotionChange);
+        } else if (typeof prefersReducedMotion.removeListener === "function") {
+          prefersReducedMotion.removeListener(handleMotionChange);
+        }
+        document.removeEventListener("visibilitychange", handleVisibilityChange);
+        window.removeEventListener("beforeunload", cleanup);
+      };
+
+      window.addEventListener("beforeunload", cleanup);
+
+      start();
+    };
+
+    if (typeof window !== "undefined") {
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initTechBubbles, { once: true });
+      } else {
+        initTechBubbles();
+      }
+    }
+  })();
+</script>

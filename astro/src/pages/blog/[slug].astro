@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { site } from "../../content/site";
+import Comments from "../../components/Comments.tsx";
+
+export const getStaticPaths = async () => {
+  const articles = await getCollection("articles", ({ data }) => data.published);
+  const slugFromEntry = (entry: typeof articles[number]) =>
+    (entry.data.slug ?? entry.slug)
+      .replace(/\/index$/i, "")
+      .replace(/^\/+/, "")
+      .replace(/\/+$/, "");
+
+  return articles.map((article) => ({
+    params: {
+      slug: slugFromEntry(article),
+    },
+    props: {
+      article,
+      slug: slugFromEntry(article),
+    },
+  }));
+};
+
+type Props = {
+  article: CollectionEntry<"articles">;
+  slug: string;
+};
+
+const { article, slug } = Astro.props as Props;
+const { Content } = await article.render();
+const formattedDate = new Intl.DateTimeFormat("en-GB", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+}).format(article.data.date);
+const canonicalUrl = `${site.url}/blog/${slug}`;
+const keywords = (() => {
+  const metaKeywords = article.data.meta?.keywords;
+  if (Array.isArray(metaKeywords)) {
+    return metaKeywords;
+  }
+  if (typeof metaKeywords === "string") {
+    return metaKeywords.split(",").map((keyword) => keyword.trim());
+  }
+  return article.data.tags;
+})();
+---
+
+<BaseLayout
+  title={article.data.title}
+  description={article.data.meta?.description}
+  keywords={keywords}
+  canonical={canonicalUrl}
+>
+  <article class="prose prose-neutral max-w-none dark:prose-invert">
+    <header class="mb-8 border-b border-accent/20 pb-6">
+      <p class="text-sm uppercase tracking-widest text-secondary-text">
+        {formattedDate}
+      </p>
+      <h1 class="mt-2 font-inconsolata text-4xl font-bold tracking-tight sm:text-5xl">
+        {article.data.title}
+      </h1>
+      {article.data.tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2 text-sm text-secondary-text">
+          {article.data.tags.map((tag) => (
+            <li class="rounded-full border border-highlight px-3 py-1">{tag}</li>
+          ))}
+        </ul>
+      )}
+      {article.data.meta?.description && (
+        <p class="mt-4 max-w-3xl text-lg text-secondary-text">
+          {article.data.meta.description}
+        </p>
+      )}
+    </header>
+    <Content />
+  </article>
+  <Comments issueTerm={slug} client:visible />
+</BaseLayout>

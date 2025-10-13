@@ -1,0 +1,76 @@
+---
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+import ThemeToggle from "../components/ThemeToggle.tsx";
+import "../styles/global.css";
+import { site } from "../content/site";
+
+type Props = {
+  title?: string;
+  description?: string;
+  keywords?: string[] | string;
+  canonical?: string;
+};
+
+const { title, description, keywords, canonical } = Astro.props as Props;
+
+const pageTitle = title ? `${title} | ${site.title}` : site.title;
+const pageDescription = description ?? site.description;
+const keywordList = Array.isArray(keywords)
+  ? keywords.join(", ")
+  : keywords ?? site.keywords.join(", ");
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, site.url).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <meta name="keywords" content={keywordList} />
+    <meta name="author" content={site.author} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+   <meta property="og:url" content={canonicalUrl} />
+    <link rel="canonical" href={canonicalUrl} />
+    <script is:inline>
+      (function () {
+        try {
+          var storageKey = "theme";
+          var stored = localStorage.getItem(storageKey);
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = stored || (prefersDark ? "dark" : "light");
+          var root = document.documentElement;
+          root.classList.remove("light", "dark");
+          root.classList.add(theme === "dark" ? "dark" : "light");
+          root.dataset.theme = theme;
+          root.style.colorScheme = theme;
+        } catch (error) {
+          console.warn("Theme detection failed", error);
+        }
+      })();
+    </script>
+    <script
+      is:inline
+      async
+      defer
+      data-website-id="f12cc39a-7541-44b1-8654-56717dc6fe0b"
+      data-domains="guldberglab.info"
+      data-do-not-track="true"
+      data-cache="false"
+      src="https://cloud.umami.is/script.js"
+    ></script>
+    <slot name="head" />
+  </head>
+  <body class="bg-primary text-main-text transition-colors duration-200">
+    <ThemeToggle client:load />
+    <NavBar currentPath={Astro.url.pathname} />
+    <main class="mx-auto min-h-[calc(100vh-16rem)] w-full max-w-6xl px-4 py-8">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
